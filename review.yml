@@ -1,0 +1,376 @@
+aid: aeso
+name: AESO
+review:
+  question: >-
+    Does AESO expose a real, documented, publicly reachable API surface — and does any
+    energy-data mandate (Consumer Data Right, Green Button, smart-meter infrastructure)
+    apply to it, and if so, is it actually implemented?
+  answer: >-
+    Yes to the API surface, emphatically no to any mandate. AESO operates a live Azure
+    API Management developer portal at developer-apim.aeso.ca cataloguing fourteen JSON
+    APIs, all readable anonymously and all reachable with a free self-serve key, plus a
+    fully anonymous legacy CSV report surface at ets.aeso.ca. No energy-data mandate of
+    any kind applies to AESO: Alberta has no Consumer Data Right, no Green Button
+    regulation, and no consumer energy-data obligation, and AESO — a system and market
+    operator — holds no retail customer usage or billing data to be obliged over.
+  date: '2026-07-27'
+  reviewer: API Evangelist
+  homeMarket: Canada
+  tier: system-operator
+
+mandate:
+  regime: none
+  status: not-applicable
+  regimeNotes: >-
+    AESO is a Crown corporation and independent system operator constituted under
+    Alberta's Electric Utilities Act. Canadian electricity regulation is provincial, and
+    the only Canadian energy-data mandates found are provincial and do not reach Alberta:
+    Ontario mandated Green Button (Connect My Data and Download My Data) for the majority
+    of its electricity and natural-gas local distribution companies by regulation, and
+    Nova Scotia Power is required to implement Green Button. Alberta has issued no
+    equivalent regulation. There is no Canadian federal analogue to the Australian
+    Consumer Data Right for energy, and no CDR-style designation, accreditation regime,
+    data-holder register, or consumer data standards body applies here.
+  statusNotes: >-
+    Recorded as not-applicable rather than none because the distinction matters for this
+    sector: AESO is not an unmandated retailer that could hold consumer data and chooses
+    not to publish it — it is structurally not a consumer data holder at all. It does not
+    own retail customers, meters at premises level, or billing relationships. The
+    obligation surface that CDR-energy and Green Button target (a customer's own interval
+    usage and billing data, released to an accredited third party on consent) has no
+    counterpart inside AESO. No compliance claim, press release, register entry, or
+    conformance statement about consumer energy data was found on aeso.ca, and none was
+    expected.
+  mandateIsNotImplementation: >-
+    Nothing here required separating a claim from an implementation, because AESO makes
+    no claim. This profile is the control case for the sector's central question: a fully
+    open, well-run market-data API programme that exists entirely without a mandate, next
+    to Ontario utilities that have a mandate and Australian retailers that have both.
+  greenButtonSearched: true
+  greenButtonFinding: >-
+    Searched for any Alberta or AESO Green Button / ESPI deployment. The Green Button
+    Alliance's Canadian initiatives material describes Alberta as having considered Green
+    Button informally with no known deployment of Green Button Connect My Data, and names
+    Ontario (regulation) and Nova Scotia as the Canadian jurisdictions with obligations.
+    No Green Button, ESPI, or OAuth-based customer data-sharing endpoint exists on any
+    AESO host probed.
+
+dataStandard:
+  standard: no standard reference found
+  notes: >-
+    AESO implements no named energy data standard. There is no Green Button/ESPI surface,
+    no CDR Consumer Data Standards conformance, no IEC CIM 61968/61970 payload, no
+    IEEE 2030.5, no OpenADR, and no OCPP/OCPI. The fourteen gateway APIs are a proprietary
+    JSON shape defined by AESO in Azure API Management — flat objects such as
+    MarketPriceDemandDataReport wrapping arrays of MarketPriceDemandDataVO with string
+    fields (begin_datetime_utc, begin_datetime_mpt, pool_price, forecast_pool_price,
+    rolling_30day_avg). The ETS report servlets are a proprietary CSV/HTML shape with no
+    schema at all. The only standard in play is OpenAPI 3.0.1, which is how APIM exports
+    the contracts.
+
+consumerVersusMarketData:
+  consumer_data_api: false
+  consumerDataNotes: >-
+    None exists and none can. AESO holds no retail customer usage or billing data. There
+    is no consent flow, no accreditation, no customer-authorized data sharing, and no
+    login-gated customer portal for individuals. Its Metered Volume Report API is
+    settlement-grade metering at market-asset granularity (generators and market
+    participants), not premises-level household metering, and is explicitly not consumer
+    data. In Alberta, any consumer usage data lives with the wires companies (ENMAX,
+    EPCOR, FortisAlberta, ATCO Electric) and retailers, not with the system operator.
+  market_data_open: true
+  marketDataNotes: >-
+    Open on both layers, and open in the strong sense on the legacy one. Layer one, the
+    Energy Trading System report servlets under
+    http://ets.aeso.ca/ets_web/ip/Market/Reports, are completely anonymous — no key, no
+    account, no login, no licence click-through — and return real machine-readable CSV
+    when contentType=csv is supplied. Verified 2026-07-27: CSDReportServlet HTTP 200
+    (Current Supply Demand — Alberta Total Net Generation 10,430 MW, Net Actual
+    Interchange 241 MW, Alberta Internal Load 10,189 MW, contingency reserve, generation
+    mix by fuel); SMPriceReportServlet HTTP 200 (hourly Pool Price with 30-day rolling
+    average and AIL demand); DailyAveragePoolPriceReportServlet HTTP 200 (daily, on-peak
+    and off-peak averages); SupplySurplusReportServlet HTTP 200;
+    RealTimeShiftReportServlet HTTP 200; ActualForecastWMRQHReportServlet HTTP 200;
+    HistoricalPoolPriceReportServlet HTTP 200 for a date range. Layer two, the fourteen
+    JSON APIs on the APIM gateway, requires a key — but that key is free, self-serve and
+    issued without approval, and the full API reference, operation definitions, schemas
+    and OpenAPI export are all readable anonymously. The split that defines this sector
+    elsewhere (open market data, closed consumer data) resolves here as open market data
+    and no consumer data to close.
+
+accessGate:
+  gate: self-serve
+  gated: false
+  whatADeveloperMustDo: >-
+    For the ETS CSV reports — nothing at all. Issue an HTTP GET. For the fourteen JSON
+    APIs: go to https://developer-apim.aeso.ca/signup, sign up with any email, click the
+    confirmation link in the notification email, sign in, open the Products page, select
+    the single product "AESO Public API", name a subscription, agree to the terms of use
+    and click Subscribe. Primary and secondary keys are generated immediately and shown
+    on the Profile page. Verified from AESO's own instructions PDF (HTTP 200,
+    https://www.aeso.ca/assets/downloads/external/api/API-Access-Instructions-APIM-API-Gateway.pdf,
+    "Updated: May 15, 2024") and corroborated by the portal's own product metadata, which
+    returns "approvalRequired": false, "subscriptionRequired": true,
+    "subscriptionsLimit": 1. There is no application form, no review, no accreditation, no
+    partner agreement, no commercial negotiation, and no proof of participant status.
+  productTerms: >-
+    The single product is "AESO Public API" — "Subscribers can access the AESO public data
+    through these APIs." Its terms field simply points at https://www.aeso.ca/legal.
+  legalCaveat: >-
+    The real constraint is legal, not technical. AESO's site terms permit use of its
+    material "for non-commercial, personal or educational purposes, provided that the
+    material is not modified and that copyright notices are not deleted", and state "Any
+    other use of this material without the AESO's written permission is prohibited." So a
+    commercial redistributor needs written permission even though the key is free.
+
+authModel:
+  scheme: API key
+  header: API-KEY
+  queryParameter: subscription-key
+  notes: >-
+    Taken verbatim from the portal's API metadata: subscriptionKeyParameterNames
+    {"header": "API-KEY", "query": "subscription-key", "bearer": null}, and from every
+    exported OpenAPI document, which declares apiKeyHeader (API-KEY, in header) and
+    apiKeyQuery (subscription-key, in query). No OAuth2 and no OpenID Connect are
+    configured — authenticationSettings returns empty oAuth2AuthenticationSettings and
+    empty openidAuthenticationSettings on all fourteen APIs. No mTLS. No accreditation.
+    /.well-known/openid-configuration was not served on any AESO host probed.
+  wellKnownProbes:
+  - url: https://www.aeso.ca/.well-known/security.txt
+    status: 404
+  - url: https://www.aeso.ca/openapi.json
+    status: 404
+  - url: https://www.aeso.ca/robots.txt
+    status: 404
+
+findings:
+  summary: |
+    AESO is the independent system and market operator for Alberta's electricity system,
+    a Crown corporation under the Electric Utilities Act. It dispatches the Alberta
+    Interconnected Electric System, plans transmission, administers grid connections and
+    runs Alberta's energy-only wholesale market, serving roughly five million Albertans.
+
+    Its API surface is real, current and unusually approachable for a system operator. A
+    live Azure API Management developer portal at developer-apim.aeso.ca lists fourteen
+    APIs across price, load, generation, outage, intertie, merit-order, metering and
+    registry data. Every one of them can be read anonymously — the portal's own data API
+    served the API list, per-API metadata, the full operation definitions with parameters,
+    responses and examples, and the component schemas, all without a token. Fourteen
+    OpenAPI 3.0.1 documents were harvested into openapi/.
+
+    The gateway is real. An anonymous GET to
+    https://apimgw.aeso.ca/public/poolprice-api/v1.1/price/poolPrice?startDate=2026-07-26
+    returned HTTP 401 "Access denied due to missing subscription key", while
+    https://apimgw.aeso.ca/public/nosuchapi-xyz/v1/foo and
+    https://apimgw.aeso.ca/public/poolprice-api/v1.1/nope both returned HTTP 404 "Resource
+    not found" — so the documented routes resolve and the only barrier is the free key.
+
+    The legacy documented host, api.aeso.ca (still cited in third-party writeups as the
+    AESO API documentation home), no longer resolves: api.aeso.ca is a CNAME to
+    api.gtm.aeso.ca, which returns SERVFAIL from both the local resolver and 8.8.8.8.
+    curl reports "Could not resolve host". The live surface is developer-apim.aeso.ca for
+    documentation and apimgw.aeso.ca / gateway-apim.aeso.ca for traffic.
+
+    On the sector's central question, AESO is the control case. No mandate applies to it,
+    it makes no compliance claim, and it publishes an open market-data programme anyway.
+    Ontario's Green Button regulation and Australia's CDR-energy machinery have no
+    Alberta counterpart, and a system operator holds no consumer data to mandate. The
+    consumer/market split resolves as: market data open, consumer data non-existent.
+  openApiHarvestMethod: >-
+    IMPORTANT PROVENANCE NOTE. AESO's own OpenAPI export endpoint
+    (?export=true&format=openapi) returns a syntactically valid OpenAPI 3.0.1 document
+    whose paths object is EMPTY — it carries only info, servers and securitySchemes. The
+    same empty-shell behaviour was observed at AEMO. Rather than save fourteen useless
+    shells, each document in openapi/ was assembled verbatim from AESO's own anonymously
+    served APIM developer-portal data API: info, servers and securitySchemes from AESO's
+    OpenAPI export; paths, HTTP methods, operationIds, summaries, descriptions,
+    path/query/header parameters, response status codes and response examples from
+    /developer/apis/{id}/operations and /developer/apis/{id}/operations/{opId}; and
+    components.schemas from /developer/apis/{id}/schemas/{schemaId}. Nothing was invented,
+    inferred or paraphrased. Every file carries an x-provenance block listing every source
+    URL fetched.
+  apisHarvested: 14
+  specsSaved: 14
+  operationsCovered: 16
+  gatewayHosts:
+  - https://apimgw.aeso.ca
+  - https://gateway-apim.aeso.ca
+  apiInventory:
+  - name: Pool Price Report
+    version: v1.1
+    path: public/poolprice-api
+    operations: 1
+  - name: System Marginal Price Report
+    version: v1.1
+    path: public/systemmarginalprice-api
+    operations: 2
+  - name: Current Supply Demand
+    version: v2
+    path: public/currentsupplydemand-api
+    operations: 1
+  - name: Current Supply Demand
+    version: v1
+    path: public/currentsupplydemand-api
+    operations: 1
+  - name: Actual Forecast Report
+    version: v1
+    path: public/actualforecast-api
+    operations: 1
+  - name: AIES Gen Capacity API
+    version: v1
+    path: public/aiesgencapacity-api
+    operations: 1
+  - name: Load Outage Forecast API
+    version: v1
+    path: public/loadoutageforecast-api
+    operations: 1
+  - name: Intertie Public Reports
+    version: v1
+    path: public/itc
+    operations: 2
+  - name: Energy Merit Order Report
+    version: v1
+    path: public/energymeritorder-api
+    operations: 1
+  - name: Metered Volume Report
+    version: v1
+    path: public/meteredvolume-api
+    operations: 1
+  - name: Operating Reserve Offer Control Report
+    version: v1
+    path: public/operatingreserveoffercontrol-api
+    operations: 1
+  - name: Asset List API
+    version: v1
+    path: public/assetlist-api
+    operations: 1
+  - name: Pool Participant API
+    version: v1
+    path: public/PoolParticipant-api
+    operations: 1
+  - name: Unit Commitment Data API
+    version: v2
+    path: public/unitcommitmentdata-api
+    operations: 1
+
+probes:
+- url: https://www.aeso.ca/
+  status: 200
+  note: Corporate site, live.
+- url: https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
+  status: 200
+  note: AESO's API landing page. Lists fourteen APIs by name and links the developer portal and the access-instructions PDF. Support contact info@aeso.ca.
+- url: https://developer-apim.aeso.ca/
+  status: 200
+  note: Live Azure API Management developer portal. Real self-serve portal with Home / APIs / Products / Help / Sign in / Sign up navigation, not a customer login.
+- url: https://developer-apim.aeso.ca/apis
+  status: 200
+  note: APIs list page (SPA shell; content loaded from the portal data API).
+- url: https://developer-apim.aeso.ca/signup
+  status: 200
+  note: Self-serve sign-up page. Collection notice - "This personal information is being collected for the purpose of providing and administering access to AESO data".
+- url: https://developer-apim.aeso.ca/products
+  status: 200
+  note: Products page.
+- url: https://developer-apim.aeso.ca/developer/apis?api-version=2022-04-01-preview
+  status: 200
+  note: Anonymous. Returned all fourteen APIs with ids, paths, versions, subscriptionRequired=true and API-KEY parameter names.
+- url: https://developer-apim.aeso.ca/developer/products?api-version=2022-04-01-preview
+  status: 200
+  note: 'Anonymous. Single product - id aeso-public-api-product, name "AESO Public API", subscriptionRequired true, approvalRequired FALSE, subscriptionsLimit 1, terms point to https://www.aeso.ca/legal. This is the evidence that the gate is self-serve, not application-approval.'
+- url: https://developer-apim.aeso.ca/developer/apis/{id}/operations?api-version=2022-04-01-preview
+  status: 200
+  note: Anonymous, all fourteen APIs. Full operation lists with methods and urlTemplates.
+- url: https://developer-apim.aeso.ca/developer/apis/{id}/operations/{opId}?api-version=2022-04-01-preview
+  status: 200
+  note: Anonymous. Full parameter, response and example detail per operation.
+- url: https://developer-apim.aeso.ca/developer/apis/{id}/schemas/{schemaId}?api-version=2022-04-01-preview
+  status: 200
+  note: Anonymous. Full OpenAPI components.schemas documents.
+- url: https://developer-apim.aeso.ca/developer/apis/{id}?export=true&format=openapi%2Bjson&api-version=2022-04-01-preview
+  status: 200
+  note: AESO's own OpenAPI export. Valid document but paths is EMPTY.
+- url: https://apimgw.aeso.ca/public/poolprice-api/v1.1/price/poolPrice?startDate=2026-07-26&endDate=2026-07-26
+  status: 401
+  note: '{ "statusCode": 401, "message": "Access denied due to missing subscription key..." } - route confirmed real, key required.'
+- url: https://gateway-apim.aeso.ca/public/poolprice-api/v1.1/price/poolPrice?startDate=2026-07-26
+  status: 401
+  note: Secondary gateway host, same behaviour.
+- url: https://apimgw.aeso.ca/public/nosuchapi-xyz/v1/foo
+  status: 404
+  note: Control probe. Nonexistent routes 404 rather than 401, which is what makes the 401 above meaningful.
+- url: https://apimgw.aeso.ca/public/poolprice-api/v1.1/nope
+  status: 404
+  note: Second control probe on a real API with a fake operation. Also 404.
+- url: https://api.aeso.ca/web/api/
+  status: 000
+  note: DNS SERVFAIL. api.aeso.ca is a CNAME to api.gtm.aeso.ca which does not resolve from the local resolver or 8.8.8.8. The legacy documentation host is dead.
+- url: http://ets.aeso.ca/
+  status: 200
+  note: Energy Trading System, anonymous.
+- url: http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet?contentType=csv
+  status: 200
+  note: Anonymous CSV. Current Supply Demand with real values and generation mix by fuel.
+- url: http://ets.aeso.ca/ets_web/ip/Market/Reports/SMPriceReportServlet?contentType=csv
+  status: 200
+  note: Anonymous CSV. Hourly Pool Price, 30-day rolling average, AIL demand.
+- url: http://ets.aeso.ca/ets_web/ip/Market/Reports/DailyAveragePoolPriceReportServlet?contentType=csv
+  status: 200
+  note: Anonymous CSV. Daily, on-peak and off-peak averages.
+- url: http://ets.aeso.ca/ets_web/ip/Market/Reports/SupplySurplusReportServlet?contentType=csv
+  status: 200
+  note: Anonymous.
+- url: http://ets.aeso.ca/ets_web/ip/Market/Reports/RealTimeShiftReportServlet
+  status: 200
+  note: Anonymous.
+- url: http://ets.aeso.ca/ets_web/ip/Market/Reports/ActualForecastWMRQHReportServlet?contentType=csv
+  status: 200
+  note: Anonymous.
+- url: http://ets.aeso.ca/ets_web/ip/Market/Reports/HistoricalPoolPriceReportServlet?contentType=csv&beginDate=07262026&endDate=07272026
+  status: 200
+  note: Anonymous, date-ranged.
+- url: https://www.aeso.ca/market/market-and-system-reporting/
+  status: 200
+  note: Documents the ETS report servlet URLs and the public dashboards.
+- url: https://www.aeso.ca/market/market-and-system-reporting/data-requests/
+  status: 200
+  note: Data request path for datasets not published.
+- url: https://www.aeso.ca/assets/downloads/external/api/API-Access-Instructions-APIM-API-Gateway.pdf
+  status: 200
+  note: 'AESO APIM API Gateway Instructions, updated May 15, 2024. Eighteen steps - sign up by email, confirm, sign in, Products, subscribe, keys generated. Step 13/14 - "select the Type = API-KEY" and "Enter API-KEY into the Key field". Confirms no approval step.'
+- url: https://www.aeso.ca/legal
+  status: 200
+  note: Site terms. Non-commercial, personal or educational use only without written permission.
+- url: https://api.github.com/users/aeso
+  status: 200
+  note: NOT AESO. github.com/aeso is an unrelated individual user account (type User, no name, no bio, 1 repo). Deliberately omitted from apis.yml. No AESO GitHub organization was found.
+
+sources:
+- url: https://www.aeso.ca/aeso/about-the-aeso/
+  type: Documentation
+  note: Statutory role, four functional areas (grid operations, transmission planning, grid connections, wholesale market operations), roughly five million Albertans served, coordination with NERC, WECC and the ISO/RTO Council.
+- url: https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
+  type: Documentation
+  note: Names all fourteen APIs and points at the developer portal and instructions PDF.
+- url: https://developer-apim.aeso.ca/
+  type: DeveloperPortal
+  note: Primary and only live developer portal.
+- url: https://www.greenbuttonalliance.org/canadian-initiatives
+  type: Reference
+  note: Canadian Green Button landscape. Ontario mandated by regulation, Nova Scotia Power required to implement, Alberta considered informally with no known Green Button Connect My Data deployment.
+- url: https://www.oeb.ca/consumer-information-and-protection/green-button
+  type: Reference
+  note: Ontario Energy Board Green Button, the Canadian mandate that does NOT extend to Alberta.
+
+actions:
+  apisYmlCreated: true
+  apisListed: 15
+  openapiDirCreated: true
+  specsSaved: 14
+  reason: >-
+    Fourteen OpenAPI 3.0.1 documents assembled verbatim from AESO's anonymously served
+    APIM developer-portal metadata (see findings.openApiHarvestMethod), each carrying an
+    x-provenance block. The fifteenth apis[] entry, the ETS public report surface, has no
+    specification and is listed as a verified anonymous data surface with documentation
+    links only. No consumer-data, Green Button, ESPI, CDR or OpenID Connect artifact was
+    found or created, because none exists.
