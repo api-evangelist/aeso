@@ -1,0 +1,185 @@
+generated: '2026-07-27'
+method: derived
+source: openapi/*.json (4xx/5xx responses)
+format: none
+notes:
+- AESO does not publish an RFC 9457 problem+json error contract. Every operation declares 400/401/403/404/405/500/503
+  with a plain description and no response body schema.
+- The gateway is Azure API Management; the 401 body observed live on 2026-07-27 is the standard APIM envelope
+  {"statusCode":401,"message":"Access denied due to missing subscription key. Make sure to include subscription
+  key when making requests to an API."}.
+- Remediation text below is derived from the AESO APIM API Gateway Instructions PDF and the observed gateway
+  behaviour, not from a published error reference (AESO publishes none).
+envelope:
+  gateway: Azure API Management
+  fields:
+  - statusCode
+  - message
+  observed_source: https://apimgw.aeso.ca/public/poolprice-api/v1.1/price/poolPrice (anonymous GET, 2026-07-27)
+problems:
+- status: 400
+  title: Bad Request
+  spec_description: Bad Request
+  remediation: The request was rejected — usually a malformed or out-of-range date parameter. Dates must
+    match yyyy-MM-dd and fall inside the range the operation documents.
+  media_type: null
+  schema: null
+  source_operations:
+  - openapi/aeso-actualforecast-api-v1-openapi.json#getActualForecastReport
+  - openapi/aeso-aiesgencapacity-api-v1-openapi.json#getAIESControlReport
+  - openapi/aeso-assetlist-api-v1-openapi.json#getAssetListData
+  - openapi/aeso-currentsupplydemand-api-v1-openapi.json#getCSDReportByAsset
+  - openapi/aeso-currentsupplydemand-api-v2-openapi.json#getCSDSummaryDataReportv2
+  - openapi/aeso-energymeritorder-api-v1-openapi.json#getMeritOrderReport
+  - openapi/aeso-itc-api-v1-openapi.json#getOutages
+  - openapi/aeso-itc-api-v1-openapi.json#getReportByRange
+  - openapi/aeso-loadoutageforecast-api-v1-openapi.json#getLoadOutageRangeReport
+  - openapi/aeso-meteredvolume-api-v1-openapi.json#getMeteredVolumeReport
+  - openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json#getOperatingReserveOfferControlReport
+  - openapi/aeso-poolparticipant-api-v1-openapi.json#getPoolParticipantListData
+  - openapi/aeso-poolprice-api-v1-1-openapi.json#getPoolPriceDateRangeReport
+  - openapi/aeso-systemmarginalprice-api-v1-1-openapi.json#getCurrentSystemMarginalPriceReport
+  - openapi/aeso-systemmarginalprice-api-v1-1-openapi.json#getSystemMarginalPriceReportForDateRange
+  - openapi/aeso-unitcommitmentdata-api-v2-openapi.json#getUnitCommitmentDataReportV11ForDateRange
+- status: 401
+  title: Unauthorized
+  spec_description: Unauthorized
+  remediation: No subscription key was supplied. Send the key as the API-KEY request header (or the subscription-key
+    query parameter). Anonymous calls to the gateway return 'Access denied due to missing subscription
+    key'.
+  media_type: null
+  schema: null
+  source_operations:
+  - openapi/aeso-actualforecast-api-v1-openapi.json#getActualForecastReport
+  - openapi/aeso-aiesgencapacity-api-v1-openapi.json#getAIESControlReport
+  - openapi/aeso-assetlist-api-v1-openapi.json#getAssetListData
+  - openapi/aeso-currentsupplydemand-api-v1-openapi.json#getCSDReportByAsset
+  - openapi/aeso-currentsupplydemand-api-v2-openapi.json#getCSDSummaryDataReportv2
+  - openapi/aeso-energymeritorder-api-v1-openapi.json#getMeritOrderReport
+  - openapi/aeso-itc-api-v1-openapi.json#getOutages
+  - openapi/aeso-itc-api-v1-openapi.json#getReportByRange
+  - openapi/aeso-loadoutageforecast-api-v1-openapi.json#getLoadOutageRangeReport
+  - openapi/aeso-meteredvolume-api-v1-openapi.json#getMeteredVolumeReport
+  - openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json#getOperatingReserveOfferControlReport
+  - openapi/aeso-poolparticipant-api-v1-openapi.json#getPoolParticipantListData
+  - openapi/aeso-poolprice-api-v1-1-openapi.json#getPoolPriceDateRangeReport
+  - openapi/aeso-systemmarginalprice-api-v1-1-openapi.json#getCurrentSystemMarginalPriceReport
+  - openapi/aeso-systemmarginalprice-api-v1-1-openapi.json#getSystemMarginalPriceReportForDateRange
+  - openapi/aeso-unitcommitmentdata-api-v2-openapi.json#getUnitCommitmentDataReportV11ForDateRange
+- status: 403
+  title: Forbidden
+  spec_description: Forbidden
+  remediation: The supplied key is not subscribed to the AESO Public API product, or was invalidated.
+    Regenerate the primary key from the developer-portal Profile page.
+  media_type: null
+  schema: null
+  source_operations:
+  - openapi/aeso-actualforecast-api-v1-openapi.json#getActualForecastReport
+  - openapi/aeso-aiesgencapacity-api-v1-openapi.json#getAIESControlReport
+  - openapi/aeso-assetlist-api-v1-openapi.json#getAssetListData
+  - openapi/aeso-currentsupplydemand-api-v1-openapi.json#getCSDReportByAsset
+  - openapi/aeso-currentsupplydemand-api-v2-openapi.json#getCSDSummaryDataReportv2
+  - openapi/aeso-energymeritorder-api-v1-openapi.json#getMeritOrderReport
+  - openapi/aeso-itc-api-v1-openapi.json#getOutages
+  - openapi/aeso-itc-api-v1-openapi.json#getReportByRange
+  - openapi/aeso-loadoutageforecast-api-v1-openapi.json#getLoadOutageRangeReport
+  - openapi/aeso-meteredvolume-api-v1-openapi.json#getMeteredVolumeReport
+  - openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json#getOperatingReserveOfferControlReport
+  - openapi/aeso-poolparticipant-api-v1-openapi.json#getPoolParticipantListData
+  - openapi/aeso-poolprice-api-v1-1-openapi.json#getPoolPriceDateRangeReport
+  - openapi/aeso-systemmarginalprice-api-v1-1-openapi.json#getCurrentSystemMarginalPriceReport
+  - openapi/aeso-systemmarginalprice-api-v1-1-openapi.json#getSystemMarginalPriceReportForDateRange
+  - openapi/aeso-unitcommitmentdata-api-v2-openapi.json#getUnitCommitmentDataReportV11ForDateRange
+- status: 404
+  title: Not Found
+  spec_description: Not Found
+  remediation: No such route on the gateway — check the API path segment and version in the base URL.
+  media_type: null
+  schema: null
+  source_operations:
+  - openapi/aeso-actualforecast-api-v1-openapi.json#getActualForecastReport
+  - openapi/aeso-aiesgencapacity-api-v1-openapi.json#getAIESControlReport
+  - openapi/aeso-assetlist-api-v1-openapi.json#getAssetListData
+  - openapi/aeso-currentsupplydemand-api-v1-openapi.json#getCSDReportByAsset
+  - openapi/aeso-currentsupplydemand-api-v2-openapi.json#getCSDSummaryDataReportv2
+  - openapi/aeso-energymeritorder-api-v1-openapi.json#getMeritOrderReport
+  - openapi/aeso-itc-api-v1-openapi.json#getOutages
+  - openapi/aeso-itc-api-v1-openapi.json#getReportByRange
+  - openapi/aeso-loadoutageforecast-api-v1-openapi.json#getLoadOutageRangeReport
+  - openapi/aeso-meteredvolume-api-v1-openapi.json#getMeteredVolumeReport
+  - openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json#getOperatingReserveOfferControlReport
+  - openapi/aeso-poolparticipant-api-v1-openapi.json#getPoolParticipantListData
+  - openapi/aeso-poolprice-api-v1-1-openapi.json#getPoolPriceDateRangeReport
+  - openapi/aeso-systemmarginalprice-api-v1-1-openapi.json#getCurrentSystemMarginalPriceReport
+  - openapi/aeso-systemmarginalprice-api-v1-1-openapi.json#getSystemMarginalPriceReportForDateRange
+  - openapi/aeso-unitcommitmentdata-api-v2-openapi.json#getUnitCommitmentDataReportV11ForDateRange
+- status: 405
+  title: Invalid method
+  spec_description: Invalid method
+  remediation: Only GET is supported by every AESO public report operation.
+  media_type: null
+  schema: null
+  source_operations:
+  - openapi/aeso-actualforecast-api-v1-openapi.json#getActualForecastReport
+  - openapi/aeso-aiesgencapacity-api-v1-openapi.json#getAIESControlReport
+  - openapi/aeso-assetlist-api-v1-openapi.json#getAssetListData
+  - openapi/aeso-currentsupplydemand-api-v1-openapi.json#getCSDReportByAsset
+  - openapi/aeso-currentsupplydemand-api-v2-openapi.json#getCSDSummaryDataReportv2
+  - openapi/aeso-energymeritorder-api-v1-openapi.json#getMeritOrderReport
+  - openapi/aeso-itc-api-v1-openapi.json#getOutages
+  - openapi/aeso-itc-api-v1-openapi.json#getReportByRange
+  - openapi/aeso-loadoutageforecast-api-v1-openapi.json#getLoadOutageRangeReport
+  - openapi/aeso-meteredvolume-api-v1-openapi.json#getMeteredVolumeReport
+  - openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json#getOperatingReserveOfferControlReport
+  - openapi/aeso-poolparticipant-api-v1-openapi.json#getPoolParticipantListData
+  - openapi/aeso-poolprice-api-v1-1-openapi.json#getPoolPriceDateRangeReport
+  - openapi/aeso-systemmarginalprice-api-v1-1-openapi.json#getCurrentSystemMarginalPriceReport
+  - openapi/aeso-systemmarginalprice-api-v1-1-openapi.json#getSystemMarginalPriceReportForDateRange
+  - openapi/aeso-unitcommitmentdata-api-v2-openapi.json#getUnitCommitmentDataReportV11ForDateRange
+- status: 500
+  title: Internal server error
+  spec_description: Internal server error
+  remediation: AESO gateway or backend report error. Retry; contact info@aeso.ca if it persists.
+  media_type: null
+  schema: null
+  source_operations:
+  - openapi/aeso-actualforecast-api-v1-openapi.json#getActualForecastReport
+  - openapi/aeso-aiesgencapacity-api-v1-openapi.json#getAIESControlReport
+  - openapi/aeso-assetlist-api-v1-openapi.json#getAssetListData
+  - openapi/aeso-currentsupplydemand-api-v1-openapi.json#getCSDReportByAsset
+  - openapi/aeso-currentsupplydemand-api-v2-openapi.json#getCSDSummaryDataReportv2
+  - openapi/aeso-energymeritorder-api-v1-openapi.json#getMeritOrderReport
+  - openapi/aeso-itc-api-v1-openapi.json#getOutages
+  - openapi/aeso-itc-api-v1-openapi.json#getReportByRange
+  - openapi/aeso-loadoutageforecast-api-v1-openapi.json#getLoadOutageRangeReport
+  - openapi/aeso-meteredvolume-api-v1-openapi.json#getMeteredVolumeReport
+  - openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json#getOperatingReserveOfferControlReport
+  - openapi/aeso-poolparticipant-api-v1-openapi.json#getPoolParticipantListData
+  - openapi/aeso-poolprice-api-v1-1-openapi.json#getPoolPriceDateRangeReport
+  - openapi/aeso-systemmarginalprice-api-v1-1-openapi.json#getCurrentSystemMarginalPriceReport
+  - openapi/aeso-systemmarginalprice-api-v1-1-openapi.json#getSystemMarginalPriceReportForDateRange
+  - openapi/aeso-unitcommitmentdata-api-v2-openapi.json#getUnitCommitmentDataReportV11ForDateRange
+- status: 503
+  title: Service unavailable
+  spec_description: Service unavailable
+  remediation: The report backend is temporarily unavailable (maintenance or upstream outage). Retry with
+    backoff.
+  media_type: null
+  schema: null
+  source_operations:
+  - openapi/aeso-actualforecast-api-v1-openapi.json#getActualForecastReport
+  - openapi/aeso-aiesgencapacity-api-v1-openapi.json#getAIESControlReport
+  - openapi/aeso-assetlist-api-v1-openapi.json#getAssetListData
+  - openapi/aeso-currentsupplydemand-api-v1-openapi.json#getCSDReportByAsset
+  - openapi/aeso-currentsupplydemand-api-v2-openapi.json#getCSDSummaryDataReportv2
+  - openapi/aeso-energymeritorder-api-v1-openapi.json#getMeritOrderReport
+  - openapi/aeso-itc-api-v1-openapi.json#getOutages
+  - openapi/aeso-itc-api-v1-openapi.json#getReportByRange
+  - openapi/aeso-loadoutageforecast-api-v1-openapi.json#getLoadOutageRangeReport
+  - openapi/aeso-meteredvolume-api-v1-openapi.json#getMeteredVolumeReport
+  - openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json#getOperatingReserveOfferControlReport
+  - openapi/aeso-poolparticipant-api-v1-openapi.json#getPoolParticipantListData
+  - openapi/aeso-poolprice-api-v1-1-openapi.json#getPoolPriceDateRangeReport
+  - openapi/aeso-systemmarginalprice-api-v1-1-openapi.json#getCurrentSystemMarginalPriceReport
+  - openapi/aeso-systemmarginalprice-api-v1-1-openapi.json#getSystemMarginalPriceReportForDateRange
+  - openapi/aeso-unitcommitmentdata-api-v2-openapi.json#getUnitCommitmentDataReportV11ForDateRange

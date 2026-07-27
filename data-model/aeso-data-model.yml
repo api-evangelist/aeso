@@ -1,0 +1,926 @@
+generated: '2026-07-27'
+method: derived
+source: openapi/*.json (components.schemas $ref graph + shared identifier fields)
+summary:
+  specs: 14
+  entities: 43
+  ref_relationships: 31
+  join_keys:
+  - asset_ID
+  - pool_participant_ID
+notes:
+- 'AESO''s public APIs are a read-only report surface: every entity is a report envelope wrapping an array
+  of value objects (VO). There are no writable resources and no resource URIs.'
+- 'The real relational spine is not $ref but shared identifiers: asset_ID (issued by the Asset List API)
+  and pool_participant_ID (issued by the Pool Participant API) join the reference registries to the metered-volume,
+  generation, outage and offer-control reports.'
+join_keys:
+- key: asset_ID
+  issued_by: openapi/aeso-assetlist-api-v1-openapi.json#getAssetListData
+  used_by:
+  - openapi/aeso-meteredvolume-api-v1-openapi.json#getMeteredVolumeReport
+  - openapi/aeso-currentsupplydemand-api-v1-openapi.json#getCSDReportByAsset
+  - openapi/aeso-aiesgencapacity-api-v1-openapi.json#getAIESControlReport
+  - openapi/aeso-unitcommitmentdata-api-v2-openapi.json#getUnitCommitmentDataReportV11ForDateRange
+  appears_in_entities:
+  - AssetList
+  - AssetListVO
+  - EnergyBlocks
+  - OperatingReserverOfferControlCoreDataVO
+  - UnitCommitmentDataV2VO
+- key: pool_participant_ID
+  issued_by: openapi/aeso-poolparticipant-api-v1-openapi.json#getPoolParticipantListData
+  used_by:
+  - openapi/aeso-assetlist-api-v1-openapi.json#getAssetListData
+  - openapi/aeso-meteredvolume-api-v1-openapi.json#getMeteredVolumeReport
+  appears_in_entities:
+  - AssetListVO
+  - MeteredVolumeReport
+  - PoolParticipantVO
+entities:
+- name: AIESHourlyOutageVO
+  source: openapi/aeso-aiesgencapacity-api-v1-openapi.json
+  description: null
+  fields:
+  - name: begin_datetime_utc
+    type: string
+    ref: null
+  - name: begin_datetime_mpt
+    type: string
+    ref: null
+  - name: outage_grouping
+    type: object
+    ref: AIESOutageGroupingVO
+- name: AIESOutageGroupingVO
+  source: openapi/aeso-aiesgencapacity-api-v1-openapi.json
+  description: null
+  fields:
+  - name: MC
+    type: integer
+    ref: null
+  - name: MBO OUT
+    type: integer
+    ref: null
+  - name: OP OUT
+    type: integer
+    ref: null
+  - name: AC
+    type: integer
+    ref: null
+- name: AIESReportVO
+  source: openapi/aeso-aiesgencapacity-api-v1-openapi.json
+  description: null
+  fields:
+  - name: fuel_type
+    type: string
+    ref: null
+  - name: sub_fuel_type
+    type: string
+    ref: null
+  - name: Hours
+    type: array
+    ref: AIESHourlyOutageVO
+- name: ActualForecastAILReport
+  source: openapi/aeso-actualforecast-api-v1-openapi.json
+  description: null
+  fields:
+  - name: Actual Forecast Report
+    type: array
+    ref: ActualForecastAILVO
+- name: ActualForecastAILVO
+  source: openapi/aeso-actualforecast-api-v1-openapi.json
+  description: null
+  fields:
+  - name: begin_datetime_utc
+    type: string
+    ref: null
+  - name: begin_datetime_mpt
+    type: string
+    ref: null
+  - name: alberta_internal_load
+    type: string
+    ref: null
+  - name: forecast_alberta_internal_load
+    type: string
+    ref: null
+- name: AgentsInfo
+  source: openapi/aeso-poolparticipant-api-v1-openapi.json
+  description: null
+  fields:
+  - name: agent_ID
+    type: string
+    ref: null
+  - name: agent_name
+    type: string
+    ref: null
+- name: AssetList
+  source: openapi/aeso-meteredvolume-api-v1-openapi.json
+  description: null
+  fields:
+  - name: asset_ID
+    type: string
+    ref: null
+  - name: asset_class
+    type: string
+    ref: null
+  - name: metered_volume_list
+    type: array
+    ref: MeteredVolumes
+- name: AssetListVO
+  source: openapi/aeso-assetlist-api-v1-openapi.json
+  description: null
+  fields:
+  - name: asset_name
+    type: string
+    ref: null
+  - name: asset_ID
+    type: string
+    ref: null
+  - name: asset_type
+    type: string
+    ref: null
+  - name: operating_status
+    type: string
+    ref: null
+  - name: pool_participant_name
+    type: string
+    ref: null
+  - name: pool_participant_ID
+    type: string
+    ref: null
+  - name: net_to_grid_asset_flag
+    type: string
+    ref: null
+  - name: asset_incl_storage_flag
+    type: string
+    ref: null
+- name: CSDAssetGenerationReport
+  source: openapi/aeso-currentsupplydemand-api-v1-openapi.json
+  description: null
+  fields:
+  - name: last_updated_datetime_utc
+    type: string
+    ref: null
+  - name: last_updated_datetime_mpt
+    type: string
+    ref: null
+  - name: asset_list
+    type: array
+    ref: CSDAssetGenerationTypeVO
+- name: CSDAssetGenerationTypeVO
+  source: openapi/aeso-currentsupplydemand-api-v1-openapi.json
+  description: null
+  fields:
+  - name: asset
+    type: string
+    ref: null
+  - name: fuel_type
+    type: string
+    ref: null
+  - name: sub_fuel_type
+    type: string
+    ref: null
+  - name: maximum_capability
+    type: integer
+    ref: null
+  - name: net_generation
+    type: integer
+    ref: null
+  - name: dispatched_contingency_reserve
+    type: integer
+    ref: null
+- name: CSDGenerationFuelTypeVO
+  source: openapi/aeso-currentsupplydemand-api-v2-openapi.json
+  description: null
+  fields:
+  - name: fuel_type
+    type: string
+    ref: null
+  - name: aggregated_maximum_capability
+    type: integer
+    ref: null
+  - name: aggregated_net_generation
+    type: integer
+    ref: null
+  - name: aggregated_dispatched_contingency_reserve
+    type: integer
+    ref: null
+- name: CSDInterchangeVO
+  source: openapi/aeso-currentsupplydemand-api-v2-openapi.json
+  description: null
+  fields:
+  - name: path
+    type: string
+    ref: null
+  - name: actual_flow
+    type: integer
+    ref: null
+- name: CSDSummaryDataVOv2
+  source: openapi/aeso-currentsupplydemand-api-v2-openapi.json
+  description: null
+  fields:
+  - name: effective_datetime_utc
+    type: string
+    ref: null
+  - name: effective_datetime_mpt
+    type: string
+    ref: null
+  - name: total_max_generation_capability
+    type: integer
+    ref: null
+  - name: total_net_generation
+    type: integer
+    ref: null
+  - name: net_to_grid_generation
+    type: integer
+    ref: null
+  - name: net_actual_interchange
+    type: integer
+    ref: null
+  - name: alberta_internal_load
+    type: integer
+    ref: null
+  - name: contingency_reserve_required
+    type: integer
+    ref: null
+  - name: dispatched_contigency_reserve_total
+    type: integer
+    ref: null
+  - name: dispatched_contingency_reserve_gen
+    type: integer
+    ref: null
+  - name: dispatched_contingency_reserve_other
+    type: integer
+    ref: null
+  - name: ffr_armed_dispatch
+    type: integer
+    ref: null
+  - name: ffr_offered_volume
+    type: integer
+    ref: null
+  - name: long_lead_time_volume
+    type: integer
+    ref: null
+  - name: generation_data_list
+    type: array
+    ref: CSDGenerationFuelTypeVO
+  - name: interchange_list
+    type: array
+    ref: CSDInterchangeVO
+- name: EnergyBlocks
+  source: openapi/aeso-energymeritorder-api-v1-openapi.json
+  description: null
+  fields:
+  - name: import_or_export
+    type: string
+    ref: null
+  - name: asset_ID
+    type: string
+    ref: null
+  - name: block_number
+    type: integer
+    ref: null
+  - name: block_price
+    type: number
+    ref: null
+  - name: from_MW
+    type: integer
+    ref: null
+  - name: to_MW
+    type: integer
+    ref: null
+  - name: block_size
+    type: integer
+    ref: null
+  - name: available_MW
+    type: integer
+    ref: null
+  - name: dispatched?
+    type: string
+    ref: null
+  - name: dispatched_MW
+    type: integer
+    ref: null
+  - name: flexible?
+    type: string
+    ref: null
+  - name: offer_control
+    type: string
+    ref: null
+- name: EnergyMeritOrderReport
+  source: openapi/aeso-energymeritorder-api-v1-openapi.json
+  description: null
+  fields:
+  - name: data
+    type: array
+    ref: MeritOrderData
+- name: FlowGateTransferReport
+  source: openapi/aeso-itc-api-v1-openapi.json
+  description: null
+  fields:
+  - name: links
+    type: array
+    ref: Link
+  - name: Allocations
+    type: array
+    ref: IntertieData
+- name: HealthComponent
+  source: openapi/aeso-loadoutageforecast-api-v1-openapi.json
+  description: null
+  fields:
+  - name: description
+    type: string
+    ref: null
+  - name: status
+    type: string
+    ref: null
+- name: ITCExportReport
+  source: openapi/aeso-itc-api-v1-openapi.json
+  description: null
+  fields:
+  - name: transferType
+    type: string
+    ref: null
+  - name: reason
+    type: string
+    ref: null
+  - name: atc
+    type: number
+    ref: null
+  - name: trmTotal
+    type: number
+    ref: null
+  - name: ttc
+    type: number
+    ref: null
+  - name: trmSystem
+    type: number
+    ref: null
+  - name: trmAllocation
+    type: number
+    ref: null
+  - name: grossOffer
+    type: number
+    ref: null
+  - name: version
+    type: array
+    ref: TransferDataVersion
+  - name: updatedLocalTime
+    type: string
+    ref: null
+  - name: effectiveLocalTime
+    type: string
+    ref: null
+- name: ITCImportReport
+  source: openapi/aeso-itc-api-v1-openapi.json
+  description: null
+  fields:
+  - name: transferType
+    type: string
+    ref: null
+  - name: reason
+    type: string
+    ref: null
+  - name: atc
+    type: number
+    ref: null
+  - name: trmTotal
+    type: number
+    ref: null
+  - name: ttc
+    type: number
+    ref: null
+  - name: trmSystem
+    type: number
+    ref: null
+  - name: trmAllocation
+    type: number
+    ref: null
+  - name: grossOffer
+    type: number
+    ref: null
+  - name: version
+    type: array
+    ref: TransferDataVersion
+  - name: updatedLocalTime
+    type: string
+    ref: null
+  - name: effectiveLocalTime
+    type: string
+    ref: null
+- name: InterchangeReport
+  source: openapi/aeso-itc-api-v1-openapi.json
+  description: null
+  fields:
+  - name: BcIntertie
+    type: object
+    ref: IntertieTransferReport
+  - name: MatlIntertie
+    type: object
+    ref: IntertieTransferReport
+  - name: SkIntertie
+    type: object
+    ref: IntertieTransferReport
+  - name: BcMatlFlowgate
+    type: object
+    ref: FlowGateTransferReport
+  - name: SystemlFlowgate
+    type: object
+    ref: FlowGateTransferReport
+- name: IntertieData
+  source: openapi/aeso-itc-api-v1-openapi.json
+  description: null
+  fields:
+  - name: flowgate
+    type: boolean
+    ref: null
+  - name: date
+    type: string
+    ref: null
+  - name: he
+    type: string
+    ref: null
+  - name: import
+    type: object
+    ref: ITCImportReport
+  - name: export
+    type: object
+    ref: ITCExportReport
+- name: IntertieTransferReport
+  source: openapi/aeso-itc-api-v1-openapi.json
+  description: null
+  fields:
+  - name: Allocations
+    type: array
+    ref: IntertieData
+- name: Link
+  source: openapi/aeso-itc-api-v1-openapi.json
+  description: null
+  fields:
+  - name: rel
+    type: string
+    ref: null
+  - name: href
+    type: string
+    ref: null
+  - name: hreflang
+    type: string
+    ref: null
+  - name: media
+    type: string
+    ref: null
+  - name: title
+    type: string
+    ref: null
+  - name: type
+    type: string
+    ref: null
+  - name: deprecation
+    type: string
+    ref: null
+- name: LoadOutagePerHourVO
+  source: openapi/aeso-loadoutageforecast-api-v1-openapi.json
+  description: null
+  fields:
+  - name: begin_datetime_utc
+    type: string
+    ref: null
+  - name: begin_datetime_mpt
+    type: string
+    ref: null
+  - name: load_outage_forecast (in MW)
+    type: number
+    ref: null
+- name: LoadOutageVO
+  source: openapi/aeso-loadoutageforecast-api-v1-openapi.json
+  description: null
+  fields:
+  - name: loadOutagePerHourVO
+    type: array
+    ref: LoadOutagePerHourVO
+- name: MarketPriceDemandDataReport
+  source: openapi/aeso-poolprice-api-v1-1-openapi.json
+  description: null
+  fields:
+  - name: Pool Price Report
+    type: array
+    ref: MarketPriceDemandDataVO
+- name: MarketPriceDemandDataVO
+  source: openapi/aeso-poolprice-api-v1-1-openapi.json
+  description: null
+  fields:
+  - name: begin_datetime_utc
+    type: string
+    ref: null
+  - name: begin_datetime_mpt
+    type: string
+    ref: null
+  - name: pool_price
+    type: string
+    ref: null
+  - name: forecast_pool_price
+    type: string
+    ref: null
+  - name: rolling_30day_avg
+    type: string
+    ref: null
+- name: MeritOrderData
+  source: openapi/aeso-energymeritorder-api-v1-openapi.json
+  description: null
+  fields:
+  - name: begin_dateTime_utc
+    type: string
+    ref: null
+  - name: begin_dateTime_mpt
+    type: string
+    ref: null
+  - name: energy_blocks
+    type: array
+    ref: EnergyBlocks
+- name: MeteredVolumeReport
+  source: openapi/aeso-meteredvolume-api-v1-openapi.json
+  description: null
+  fields:
+  - name: pool_participant_ID
+    type: string
+    ref: null
+  - name: asset_list
+    type: array
+    ref: AssetList
+- name: MeteredVolumes
+  source: openapi/aeso-meteredvolume-api-v1-openapi.json
+  description: null
+  fields:
+  - name: begin_date_utc
+    type: string
+    ref: null
+  - name: begin_date_mpt
+    type: string
+    ref: null
+  - name: metered_volume
+    type: string
+    ref: null
+- name: OperatingReserveOfferControlReport
+  source: openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json
+  description: null
+  fields:
+  - name: Operating Reserve Trade Merit Order
+    type: array
+    ref: OperatingReserveOfferControlVO
+- name: OperatingReserveOfferControlVO
+  source: openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json
+  description: null
+  fields:
+  - name: begin_datetime_utc
+    type: string
+    ref: null
+  - name: begin_datetime_mpt
+    type: string
+    ref: null
+  - name: operating_reserve_blocks
+    type: array
+    ref: OperatingReserverOfferControlCoreDataVO
+- name: OperatingReserverOfferControlCoreDataVO
+  source: openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json
+  description: null
+  fields:
+  - name: commodity
+    type: string
+    ref: null
+  - name: product
+    type: string
+    ref: null
+  - name: asset_ID
+    type: string
+    ref: null
+  - name: volume
+    type: string
+    ref: null
+  - name: active_price
+    type: number
+    ref: null
+  - name: premium_price
+    type: number
+    ref: null
+  - name: activation_price
+    type: number
+    ref: null
+  - name: offer_control
+    type: string
+    ref: null
+- name: OutageReport
+  source: openapi/aeso-itc-api-v1-openapi.json
+  description: null
+  fields:
+  - name: Outage
+    type: array
+    ref: OutageVO
+- name: OutageVO
+  source: openapi/aeso-itc-api-v1-openapi.json
+  description: null
+  fields:
+  - name: element
+    type: string
+    ref: null
+  - name: affectedIntertieOrFlowgate
+    type: array
+    ref: null
+  - name: toInLocalTime
+    type: string
+    ref: null
+  - name: fromInLocalTime
+    type: string
+    ref: null
+- name: OutagesReport
+  source: openapi/aeso-itc-api-v1-openapi.json
+  description: null
+  fields:
+  - name: Outages
+    type: object
+    ref: OutageReport
+- name: PoolParticipantVO
+  source: openapi/aeso-poolparticipant-api-v1-openapi.json
+  description: null
+  fields:
+  - name: pool_participant_name
+    type: string
+    ref: null
+  - name: pool_participant_ID
+    type: string
+    ref: null
+  - name: corporate_contact
+    type: string
+    ref: null
+  - name: agent_list
+    type: array
+    ref: AgentsInfo
+- name: SystemHealth
+  source: openapi/aeso-loadoutageforecast-api-v1-openapi.json
+  description: null
+  fields:
+  - name: description
+    type: string
+    ref: null
+  - name: status
+    type: string
+    ref: null
+  - name: components
+    type: object
+    ref: null
+  - name: details
+    type: object
+    ref: null
+  - name: groups
+    type: array
+    ref: null
+- name: SystemMarginalPriceDataReport
+  source: openapi/aeso-systemmarginalprice-api-v1-1-openapi.json
+  description: null
+  fields:
+  - name: System Marginal Price Report
+    type: array
+    ref: SystemMarginalPriceDataVO
+- name: SystemMarginalPriceDataVO
+  source: openapi/aeso-systemmarginalprice-api-v1-1-openapi.json
+  description: null
+  fields:
+  - name: begin_datetime_utc
+    type: string
+    ref: null
+  - name: end_datetime_utc
+    type: string
+    ref: null
+  - name: begin_datetime_mpt
+    type: string
+    ref: null
+  - name: end_datetime_mpt
+    type: string
+    ref: null
+  - name: system_marginal_price
+    type: number
+    ref: null
+  - name: volume
+    type: string
+    ref: null
+- name: TransferDataVersion
+  source: openapi/aeso-itc-api-v1-openapi.json
+  description: null
+  fields:
+  - name: reason
+    type: string
+    ref: null
+  - name: atc
+    type: number
+    ref: null
+  - name: trmTotal
+    type: number
+    ref: null
+  - name: ttc
+    type: number
+    ref: null
+  - name: trmSystem
+    type: number
+    ref: null
+  - name: trmAllocation
+    type: number
+    ref: null
+  - name: grossOffer
+    type: number
+    ref: null
+  - name: versionUpdatedLocaltime
+    type: string
+    ref: null
+- name: UnitCommitmentDataV2Report
+  source: openapi/aeso-unitcommitmentdata-api-v2-openapi.json
+  description: null
+  fields:
+  - name: unit_commitment
+    type: array
+    ref: UnitCommitmentDataV2VO
+- name: UnitCommitmentDataV2VO
+  source: openapi/aeso-unitcommitmentdata-api-v2-openapi.json
+  description: null
+  fields:
+  - name: asset_ID
+    type: string
+    ref: null
+  - name: issued_time_utc
+    type: string
+    ref: null
+  - name: issued_time_mpt
+    type: string
+    ref: null
+  - name: begin_time_utc
+    type: string
+    ref: null
+  - name: begin_time_mpt
+    type: string
+    ref: null
+  - name: operation_start_time_utc
+    type: string
+    ref: null
+  - name: operation_start_time_mpt
+    type: string
+    ref: null
+  - name: operation_end_time_utc
+    type: string
+    ref: null
+  - name: operation_end_time_mpt
+    type: string
+    ref: null
+relationships:
+- from: AIESHourlyOutageVO
+  to: AIESOutageGroupingVO
+  kind: has_one
+  via: outage_grouping
+  source: openapi/aeso-aiesgencapacity-api-v1-openapi.json
+- from: AIESReportVO
+  to: AIESHourlyOutageVO
+  kind: has_many
+  via: Hours
+  source: openapi/aeso-aiesgencapacity-api-v1-openapi.json
+- from: ActualForecastAILReport
+  to: ActualForecastAILVO
+  kind: has_many
+  via: Actual Forecast Report
+  source: openapi/aeso-actualforecast-api-v1-openapi.json
+- from: AssetList
+  to: MeteredVolumes
+  kind: has_many
+  via: metered_volume_list
+  source: openapi/aeso-meteredvolume-api-v1-openapi.json
+- from: CSDAssetGenerationReport
+  to: CSDAssetGenerationTypeVO
+  kind: has_many
+  via: asset_list
+  source: openapi/aeso-currentsupplydemand-api-v1-openapi.json
+- from: CSDSummaryDataVOv2
+  to: CSDGenerationFuelTypeVO
+  kind: has_many
+  via: generation_data_list
+  source: openapi/aeso-currentsupplydemand-api-v2-openapi.json
+- from: CSDSummaryDataVOv2
+  to: CSDInterchangeVO
+  kind: has_many
+  via: interchange_list
+  source: openapi/aeso-currentsupplydemand-api-v2-openapi.json
+- from: EnergyMeritOrderReport
+  to: MeritOrderData
+  kind: has_many
+  via: data
+  source: openapi/aeso-energymeritorder-api-v1-openapi.json
+- from: FlowGateTransferReport
+  to: IntertieData
+  kind: has_many
+  via: Allocations
+  source: openapi/aeso-itc-api-v1-openapi.json
+- from: FlowGateTransferReport
+  to: Link
+  kind: has_many
+  via: links
+  source: openapi/aeso-itc-api-v1-openapi.json
+- from: ITCExportReport
+  to: TransferDataVersion
+  kind: has_many
+  via: version
+  source: openapi/aeso-itc-api-v1-openapi.json
+- from: ITCImportReport
+  to: TransferDataVersion
+  kind: has_many
+  via: version
+  source: openapi/aeso-itc-api-v1-openapi.json
+- from: InterchangeReport
+  to: IntertieTransferReport
+  kind: has_one
+  via: BcIntertie
+  source: openapi/aeso-itc-api-v1-openapi.json
+- from: InterchangeReport
+  to: FlowGateTransferReport
+  kind: has_one
+  via: BcMatlFlowgate
+  source: openapi/aeso-itc-api-v1-openapi.json
+- from: InterchangeReport
+  to: IntertieTransferReport
+  kind: has_one
+  via: MatlIntertie
+  source: openapi/aeso-itc-api-v1-openapi.json
+- from: InterchangeReport
+  to: IntertieTransferReport
+  kind: has_one
+  via: SkIntertie
+  source: openapi/aeso-itc-api-v1-openapi.json
+- from: InterchangeReport
+  to: FlowGateTransferReport
+  kind: has_one
+  via: SystemlFlowgate
+  source: openapi/aeso-itc-api-v1-openapi.json
+- from: IntertieData
+  to: ITCExportReport
+  kind: has_one
+  via: export
+  source: openapi/aeso-itc-api-v1-openapi.json
+- from: IntertieData
+  to: ITCImportReport
+  kind: has_one
+  via: import
+  source: openapi/aeso-itc-api-v1-openapi.json
+- from: IntertieTransferReport
+  to: IntertieData
+  kind: has_many
+  via: Allocations
+  source: openapi/aeso-itc-api-v1-openapi.json
+- from: LoadOutageVO
+  to: LoadOutagePerHourVO
+  kind: has_many
+  via: loadOutagePerHourVO
+  source: openapi/aeso-loadoutageforecast-api-v1-openapi.json
+- from: MarketPriceDemandDataReport
+  to: MarketPriceDemandDataVO
+  kind: has_many
+  via: Pool Price Report
+  source: openapi/aeso-poolprice-api-v1-1-openapi.json
+- from: MeritOrderData
+  to: EnergyBlocks
+  kind: has_many
+  via: energy_blocks
+  source: openapi/aeso-energymeritorder-api-v1-openapi.json
+- from: MeteredVolumeReport
+  to: AssetList
+  kind: has_many
+  via: asset_list
+  source: openapi/aeso-meteredvolume-api-v1-openapi.json
+- from: OperatingReserveOfferControlReport
+  to: OperatingReserveOfferControlVO
+  kind: has_many
+  via: Operating Reserve Trade Merit Order
+  source: openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json
+- from: OperatingReserveOfferControlVO
+  to: OperatingReserverOfferControlCoreDataVO
+  kind: has_many
+  via: operating_reserve_blocks
+  source: openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json
+- from: OutageReport
+  to: OutageVO
+  kind: has_many
+  via: Outage
+  source: openapi/aeso-itc-api-v1-openapi.json
+- from: OutagesReport
+  to: OutageReport
+  kind: has_one
+  via: Outages
+  source: openapi/aeso-itc-api-v1-openapi.json
+- from: PoolParticipantVO
+  to: AgentsInfo
+  kind: has_many
+  via: agent_list
+  source: openapi/aeso-poolparticipant-api-v1-openapi.json
+- from: SystemMarginalPriceDataReport
+  to: SystemMarginalPriceDataVO
+  kind: has_many
+  via: System Marginal Price Report
+  source: openapi/aeso-systemmarginalprice-api-v1-1-openapi.json
+- from: UnitCommitmentDataV2Report
+  to: UnitCommitmentDataV2VO
+  kind: has_many
+  via: unit_commitment
+  source: openapi/aeso-unitcommitmentdata-api-v2-openapi.json

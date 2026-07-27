@@ -1,0 +1,117 @@
+arazzo: 1.0.1
+info:
+  title: AESO price formation trace
+  summary: Reconstruct why Alberta's price cleared where it did — the offer stack, the units directed
+    online, the outages that removed supply, and the resulting system marginal and pool prices.
+  version: 1.0.0
+sourceDescriptions:
+- name: energymeritorder
+  url: ../openapi/aeso-energymeritorder-api-v1-openapi.json
+  type: openapi
+- name: unitcommitmentdata-v2
+  url: ../openapi/aeso-unitcommitmentdata-api-v2-openapi.json
+  type: openapi
+- name: aiesgencapacity
+  url: ../openapi/aeso-aiesgencapacity-api-v1-openapi.json
+  type: openapi
+- name: systemmarginalprice
+  url: ../openapi/aeso-systemmarginalprice-api-v1-1-openapi.json
+  type: openapi
+- name: poolprice
+  url: ../openapi/aeso-poolprice-api-v1-1-openapi.json
+  type: openapi
+workflows:
+- workflowId: aeso-price-formation
+  summary: Merit order, unit commitment and outages against the realised price series.
+  description: >-
+    Note that unit commitment directives publish 60 days after the Unit Commitment End Time, so this
+    workflow is retrospective for that step. Requires a free API-KEY subscription key.
+  inputs:
+    type: object
+    required:
+    - startDate
+    properties:
+      startDate:
+        type: string
+        description: The trading day to trace, in yyyy-MM-dd.
+        example: '2026-05-01'
+      endDate:
+        type: string
+        description: Optional last day of the price window, in yyyy-MM-dd. Range reports return at most
+          one year per request.
+        example: '2026-05-07'
+  steps:
+  - stepId: read-merit-order
+    description: The stacked energy offers that determine which generation is dispatched and where the
+      price clears.
+    operationId: getMeritOrderReport
+    parameters:
+    - name: startDate
+      in: query
+      value: $inputs.startDate
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      meritOrder: $response.body
+  - stepId: read-unit-commitment
+    description: Directives that brought generating units online ahead of dispatch.
+    operationId: getUnitCommitmentDataReportV11ForDateRange
+    parameters:
+    - name: startDate
+      in: query
+      value: $inputs.startDate
+    - name: endDate
+      in: query
+      value: $inputs.endDate
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      unitCommitment: $response.body
+  - stepId: read-generation-outages
+    description: Generation capacity and generator outages that removed supply from the stack.
+    operationId: getAIESControlReport
+    parameters:
+    - name: startDate
+      in: query
+      value: $inputs.startDate
+    - name: endDate
+      in: query
+      value: $inputs.endDate
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      genCapacity: $response.body
+  - stepId: read-system-marginal-price
+    description: The realised real-time price signal across the window.
+    operationId: getSystemMarginalPriceReportForDateRange
+    parameters:
+    - name: startDate
+      in: query
+      value: $inputs.startDate
+    - name: endDate
+      in: query
+      value: $inputs.endDate
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      systemMarginalPrice: $response.body
+  - stepId: read-pool-price
+    description: The settled hourly pool price to compare against the offer stack.
+    operationId: getPoolPriceDateRangeReport
+    parameters:
+    - name: startDate
+      in: query
+      value: $inputs.startDate
+    - name: endDate
+      in: query
+      value: $inputs.endDate
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      poolPrice: $response.body
+  outputs:
+    meritOrder: $steps.read-merit-order.outputs.meritOrder
+    unitCommitment: $steps.read-unit-commitment.outputs.unitCommitment
+    genCapacity: $steps.read-generation-outages.outputs.genCapacity
+    systemMarginalPrice: $steps.read-system-marginal-price.outputs.systemMarginalPrice
+    poolPrice: $steps.read-pool-price.outputs.poolPrice

@@ -1,0 +1,180 @@
+generated: '2026-07-27'
+method: generated
+source: openapi/aeso-actualforecast-api-v1-openapi.json, openapi/aeso-aiesgencapacity-api-v1-openapi.json,
+  openapi/aeso-assetlist-api-v1-openapi.json, openapi/aeso-currentsupplydemand-api-v1-openapi.json,
+  openapi/aeso-currentsupplydemand-api-v2-openapi.json, openapi/aeso-energymeritorder-api-v1-openapi.json,
+  openapi/aeso-itc-api-v1-openapi.json, openapi/aeso-loadoutageforecast-api-v1-openapi.json,
+  openapi/aeso-meteredvolume-api-v1-openapi.json, openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json,
+  openapi/aeso-poolparticipant-api-v1-openapi.json, openapi/aeso-poolprice-api-v1-1-openapi.json,
+  openapi/aeso-systemmarginalprice-api-v1-1-openapi.json, openapi/aeso-unitcommitmentdata-api-v2-openapi.json
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 16
+  by_action_class:
+    connected: 16
+  by_consequence:
+    read: 16
+  human_in_the_loop_required: 0
+operations:
+- path: /load/albertaInternalLoad
+  method: get
+  operationId: getActualForecastReport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /AIESGenCapacity
+  method: get
+  operationId: getAIESControlReport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /assetlist
+  method: get
+  operationId: getAssetListData
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /csd/generation/assets/current
+  method: get
+  operationId: getCSDReportByAsset
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /csd/summary/current
+  method: get
+  operationId: getCSDSummaryDataReportv2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /meritOrder/energy
+  method: get
+  operationId: getMeritOrderReport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /outage
+  method: get
+  operationId: getOutages
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /interchange
+  method: get
+  operationId: getReportByRange
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /loadOutageReport
+  method: get
+  operationId: getLoadOutageRangeReport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /meteredvolume/details
+  method: get
+  operationId: getMeteredVolumeReport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /operatingReserveOfferControl
+  method: get
+  operationId: getOperatingReserveOfferControlReport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /poolparticipantlist
+  method: get
+  operationId: getPoolParticipantListData
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /price/poolPrice
+  method: get
+  operationId: getPoolPriceDateRangeReport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /price/systemMarginalPrice
+  method: get
+  operationId: getSystemMarginalPriceReportForDateRange
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /price/systemMarginalPrice/current
+  method: get
+  operationId: getCurrentSystemMarginalPriceReport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /unitCommitment
+  method: get
+  operationId: getUnitCommitmentDataReportV11ForDateRange
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

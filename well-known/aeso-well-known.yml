@@ -1,0 +1,99 @@
+generated: '2026-07-27'
+method: probed
+source: live probes of the AESO website, developer portal and API gateway hosts
+summary: >-
+  AESO publishes no /.well-known/ discovery documents on any host. Every probed path returned 404
+  (or, on www.aeso.ca, a 301 to a trailing-slash URL that then 404s). Absence is valid recorded data —
+  there is no security.txt, no OIDC discovery, no OAuth authorization-server metadata, no RFC 9727
+  api-catalog and no ai-plugin.json anywhere in the aeso.ca estate. No llms.txt and no robots.txt
+  either.
+found: 0
+hosts:
+- host: https://apimgw.aeso.ca
+  role: production API gateway (Azure API Management)
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /robots.txt
+    status: 404
+- host: https://gateway-apim.aeso.ca
+  role: secondary gateway host declared in every OpenAPI servers[]
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /robots.txt
+    status: 404
+- host: https://developer-apim.aeso.ca
+  role: developer portal
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /robots.txt
+    status: 404
+- host: https://www.aeso.ca
+  role: corporate website
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 301
+    note: redirect to trailing-slash URL, which does not serve a document
+  - path: /.well-known/oauth-authorization-server
+    status: 301
+    note: redirect to trailing-slash URL, which does not serve a document
+  - path: /.well-known/api-catalog
+    status: 301
+    note: redirect to trailing-slash URL, which does not serve a document
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /robots.txt
+    status: 404
+documents: []
+discovery_that_does_exist:
+  note: >-
+    AESO's real machine-readable discovery surface is not /.well-known/ but the Azure APIM developer
+    portal data API, which is served ANONYMOUSLY and is how the 14 OpenAPI documents in openapi/ were
+    harvested.
+  endpoints:
+  - url: https://developer-apim.aeso.ca/developer/apis?api-version=2022-04-01-preview
+    status: 200
+    returns: the list of all 14 published APIs
+  - url: https://developer-apim.aeso.ca/developer/products?api-version=2022-04-01-preview
+    status: 200
+    returns: the single "AESO Public API" product record
+  - url: https://developer-apim.aeso.ca/developer/apis/{api}/operations?api-version=2022-04-01-preview
+    status: 200
+    returns: per-API operation list
+  - url: https://developer-apim.aeso.ca/developer/apis/{api}?export=true&format=openapi%2Bjson&api-version=2022-04-01-preview
+    status: 200
+    returns: >-
+      AESO's own OpenAPI export — valid document, but with an EMPTY paths object, which is why the
+      specs in openapi/ were reassembled from the operations/ and schemas/ endpoints instead.

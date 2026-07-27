@@ -1,0 +1,136 @@
+generated: '2026-07-27'
+method: searched
+source: https://www.aeso.ca/market/market-updates
+docs: https://www.aeso.ca/market/market-updates
+summary: >-
+  AESO publishes no dedicated API changelog or release-notes page. API changes are announced as
+  dated posts in the general Market Updates stream at https://www.aeso.ca/market/market-updates,
+  mixed in with generator asset notices, maximum-capability changes and market advisories. The
+  Azure APIM developer portal at https://developer-apim.aeso.ca/ carries no release-notes page.
+  The entries below are the API-affecting Market Updates found on 2026-07-27, captured verbatim
+  from their published text. No AESO API change was announced during 2026 as of this capture.
+scheme: uri-path
+scheme_note: >-
+  Version lives in the gateway path segment (…/public/<api>/v1, /v1.1, /v2). Two APIs have shipped a
+  second major version: Current Supply Demand (v1 asset detail, v2 summary) and Unit Commitment Data
+  (v2 only; v1 retired). No version header, no date-based versioning, no version negotiation.
+current_versions:
+- api: Pool Price Report
+  version: v1.1
+- api: System Marginal Price Report
+  version: v1.1
+- api: Current Supply Demand
+  version: v2 (summary) / v1 (per-asset generation)
+- api: Unit Commitment Data
+  version: v2
+- api: Actual Forecast Report
+  version: v1
+- api: AIES Gen Capacity
+  version: v1
+- api: Asset List
+  version: v1
+- api: Energy Merit Order Report
+  version: v1
+- api: Intertie Public Reports (ITC)
+  version: v1
+- api: Load Outage Forecast
+  version: v1
+- api: Metered Volume Report
+  version: v1
+- api: Operating Reserve Offer Control Report
+  version: v1
+- api: Pool Participant
+  version: v1
+entries:
+- title: New Version - Current Supply Demand API
+  url: https://www.aeso.ca/market/market-updates/2025/supply-demand-api-proposed-changes/
+  year: '2025'
+  effective: '2025-07-30'
+  breaking: true
+  additions:
+  - Current Supply Demand API new version published with label changes in the last_updated_datetime
+    field in the response.
+  removals:
+  - Current Supply Demand - v1 unavailable after 2025-09-30.
+  - Unit Commitment Data API - v1 no longer available effective 2025-07-30; v2 is the only accessible
+    version.
+  highlights: >-
+    "Effective July 30, 2025 the Current Supply Demand API will have a new version with label changes
+    in the last_updated_datetime field in the response. The original version, Current Supply Demand -
+    v1 will be unavailable after September 30, 2025." The same notice confirms the Unit Commitment
+    Data API v1 retirement.
+- title: Reminder - API Changes
+  url: https://www.aeso.ca/market/market-updates/2025/reminder-api-changes/
+  year: '2025'
+  effective: '2025-03-31'
+  breaking: true
+  removals:
+  - Legacy Swagger API Gateway decommissioned; no longer accessible.
+  additions:
+  - All public report APIs served from the Azure APIM API Gateway (apimgw.aeso.ca) behind a
+    self-serve subscription key.
+  highlights: >-
+    "The transition from the Swagger Application Programming Interfaces (API) Gateway to the Azure
+    Gateway is complete. As of March 31, public reports accessed through API must align with the
+    updated Azure APIM API Gateway infrastructure, as the old Swagger API Gateway is no longer
+    accessible. This change was implemented as part of a technology modernization initiative."
+- title: Notification of API Changes
+  url: https://www.aeso.ca/market/market-updates/2025/notification-of-api-changes/
+  year: '2025'
+  breaking: true
+  additions:
+  - Advance notice of the twelve public report APIs migrating to the Azure APIM Gateway (Interchange
+    Outage Report, Interchange Capability Report, Pool Price Report, System Marginal Price Report,
+    Pool Participant API, Operating Reserve Offer Control Report, Metered Volume Report, Energy Merit
+    Order Report, Actual Forecast Report, Current Supply Demand, Asset List API, Unit Commitment Data
+    API).
+  highlights: >-
+    The pre-announcement of the gateway migration completed on 2025-03-31, listing every API moving
+    to Azure APIM and pointing at https://developer-apim.aeso.ca/ plus the APIM API Gateway
+    Instructions PDF.
+- title: Energy Trading System (ETS) - Unit Commitment Directives Report Update
+  url: https://www.aeso.ca/market/market-updates/2025/energy-trading-system-ets-unit-commitment-directives-report-update/
+  year: '2025'
+  effective: '2025-04-16'
+  breaking: true
+  additions:
+  - Current Unit Commitment Directive report added alongside the historical report.
+  - Report and API columns are Asset ID, Issued Time, Begin Time, Operation Start Time, Operation End
+    Time.
+  removals:
+  - Columns "Unit Commitment Start Time" and "Unit Commitment End Time" replaced by "Operation Start
+    Time" and "Operation End Time".
+  highlights: >-
+    Implemented in accordance with the Alberta Utilities Commission's final approval of Section 206.2
+    of the ISO rules. "APIs associated with the reports will be updated to reflect" the new columns.
+- title: Energy Trading System (ETS) - Reports and APIs Updated to Remove Coal and Dual Fuel
+  url: https://www.aeso.ca/market/market-updates/2024/energy-trading-system-ets-reports-and-apis-updated-to-remove-coal-and-dual-fuel/
+  year: '2024'
+  effective: '2024-11-18'
+  breaking: true
+  removals:
+  - CSD Summary API (current endpoint) no longer returns Dual Fuel or Coal.
+  - AIES Gen Capacity API no longer returns Dual Fuel or Coal fuel types.
+  additions:
+  - CSD Summary API Gas summary split out into its fuel subtypes.
+  highlights: >-
+    "Effective Nov. 18, the AESO has removed the now-unused Coal and Dual Fuel categories from the
+    Current Supply and Demand (CSD), Monthly Outage, Daily Outage, and 7 Days Hourly Available
+    Capability public reports... Concurrent to the ETS report changes, the supporting APIs have
+    changed."
+- title: Energy Trading System (ETS) - New Unit Commitment Directives Report
+  url: https://www.aeso.ca/market/market-updates/2024/energy-trading-system-ets-new-unit-commitment-directives-report/
+  year: '2024'
+  effective: '2024-11-18'
+  breaking: false
+  additions:
+  - New public Unit Commitment Directives report in ETS (no digital certificate required).
+  - New Unit Commitment Directives API, deployed a few hours after the ETS report release.
+  highlights: >-
+    "Will also be accessible through a new Unit Commitment Directives API." Directives are published
+    60 days after the Unit Commitment End Time.
+gaps:
+- No API-only changelog feed, RSS or release-notes page; API changes must be found inside the general
+  Market Updates stream.
+- Market Update posts do not carry a machine-readable published date in the page body; dates below
+  are the effective/cutover dates stated in the text and the year path segment of the URL.

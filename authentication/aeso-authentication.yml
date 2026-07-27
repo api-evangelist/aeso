@@ -1,0 +1,54 @@
+generated: '2026-07-27'
+method: derived
+source: openapi/aeso-actualforecast-api-v1-openapi.json, openapi/aeso-aiesgencapacity-api-v1-openapi.json,
+  openapi/aeso-assetlist-api-v1-openapi.json, openapi/aeso-currentsupplydemand-api-v1-openapi.json,
+  openapi/aeso-currentsupplydemand-api-v2-openapi.json, openapi/aeso-energymeritorder-api-v1-openapi.json,
+  openapi/aeso-itc-api-v1-openapi.json, openapi/aeso-loadoutageforecast-api-v1-openapi.json,
+  openapi/aeso-meteredvolume-api-v1-openapi.json, openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json,
+  openapi/aeso-poolparticipant-api-v1-openapi.json, openapi/aeso-poolprice-api-v1-1-openapi.json
+  ...
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  - query
+schemes:
+- name: apiKeyHeader
+  type: apiKey
+  in: header
+  parameter: API-KEY
+  sources:
+  - openapi/aeso-actualforecast-api-v1-openapi.json
+  - openapi/aeso-aiesgencapacity-api-v1-openapi.json
+  - openapi/aeso-assetlist-api-v1-openapi.json
+  - openapi/aeso-currentsupplydemand-api-v1-openapi.json
+  - openapi/aeso-currentsupplydemand-api-v2-openapi.json
+  - openapi/aeso-energymeritorder-api-v1-openapi.json
+  - openapi/aeso-itc-api-v1-openapi.json
+  - openapi/aeso-loadoutageforecast-api-v1-openapi.json
+  - openapi/aeso-meteredvolume-api-v1-openapi.json
+  - openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json
+  - openapi/aeso-poolparticipant-api-v1-openapi.json
+  - openapi/aeso-poolprice-api-v1-1-openapi.json
+  - openapi/aeso-systemmarginalprice-api-v1-1-openapi.json
+  - openapi/aeso-unitcommitmentdata-api-v2-openapi.json
+- name: apiKeyQuery
+  type: apiKey
+  in: query
+  parameter: subscription-key
+  sources:
+  - openapi/aeso-actualforecast-api-v1-openapi.json
+  - openapi/aeso-aiesgencapacity-api-v1-openapi.json
+  - openapi/aeso-assetlist-api-v1-openapi.json
+  - openapi/aeso-currentsupplydemand-api-v1-openapi.json
+  - openapi/aeso-currentsupplydemand-api-v2-openapi.json
+  - openapi/aeso-energymeritorder-api-v1-openapi.json
+  - openapi/aeso-itc-api-v1-openapi.json
+  - openapi/aeso-loadoutageforecast-api-v1-openapi.json
+  - openapi/aeso-meteredvolume-api-v1-openapi.json
+  - openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json
+  - openapi/aeso-poolparticipant-api-v1-openapi.json
+  - openapi/aeso-poolprice-api-v1-1-openapi.json
+  - openapi/aeso-systemmarginalprice-api-v1-1-openapi.json
+  - openapi/aeso-unitcommitmentdata-api-v2-openapi.json

@@ -1,0 +1,617 @@
+generated: '2026-07-27'
+method: derived
+source: openapi/*.json (responses[].content[].examples)
+summary:
+  operations: 16
+  operations_with_examples: 16
+  examples: 18
+notes:
+- Every AESO operation ships an in-spec response example harvested verbatim from the AESO Azure APIM developer
+  portal. The example values are field-shape placeholders ("string") published by AESO, not live data.
+examples:
+- operationId: getActualForecastReport
+  path: /load/albertaInternalLoad
+  method: GET
+  status: '200'
+  media_type: application/json
+  example_name: default
+  source: openapi/aeso-actualforecast-api-v1-openapi.json
+  value:
+    Actual Forecast Report:
+    - begin_datetime_utc: string
+      begin_datetime_mpt: string
+      alberta_internal_load: string
+      forecast_alberta_internal_load: string
+- operationId: getAIESControlReport
+  path: /AIESGenCapacity
+  method: GET
+  status: '200'
+  media_type: application/json
+  example_name: default
+  source: openapi/aeso-aiesgencapacity-api-v1-openapi.json
+  value:
+    fuel_type: string
+    sub_fuel_type: string
+    Hours:
+    - begin_datetime_utc: string
+      begin_datetime_mpt: string
+      outage_grouping:
+        MC: 0
+        MBO OUT: 0
+        OP OUT: 0
+        AC: 0
+- operationId: getAssetListData
+  path: /assetlist
+  method: GET
+  status: '200'
+  media_type: application/json
+  example_name: default
+  source: openapi/aeso-assetlist-api-v1-openapi.json
+  value:
+    asset_name: string
+    asset_ID: string
+    asset_type: string
+    operating_status: string
+    pool_participant_name: string
+    pool_participant_ID: string
+    net_to_grid_asset_flag: string
+    asset_incl_storage_flag: string
+- operationId: getCSDReportByAsset
+  path: /csd/generation/assets/current
+  method: GET
+  status: '200'
+  media_type: application/json
+  example_name: default
+  source: openapi/aeso-currentsupplydemand-api-v1-openapi.json
+  value:
+    last_updated_datetime_utc: 2022-03-18 10:20
+    last_updated_datetime_mpt: 2022-03-18 16:20
+    asset_list:
+    - asset: string
+      fuel_type: string
+      sub_fuel_type: string
+      maximum_capability: 0
+      net_generation: 0
+      dispatched_contingency_reserve: 0
+- operationId: getCSDSummaryDataReportv2
+  path: /csd/summary/current
+  method: GET
+  status: '200'
+  media_type: application/json
+  example_name: default
+  source: openapi/aeso-currentsupplydemand-api-v2-openapi.json
+  value:
+    effective_datetime_utc: 2022-03-18 10:20
+    effective_datetime_mpt: 2022-03-18 16:20
+    total_max_generation_capability: 0
+    total_net_generation: 0
+    net_to_grid_generation: 0
+    net_actual_interchange: 0
+    alberta_internal_load: 0
+    contingency_reserve_required: 0
+    dispatched_contigency_reserve_total: 0
+    dispatched_contingency_reserve_gen: 0
+    dispatched_contingency_reserve_other: 0
+    ffr_armed_dispatch: 0
+    ffr_offered_volume: 0
+    long_lead_time_volume: 0
+    generation_data_list:
+    - fuel_type: string
+      aggregated_maximum_capability: 0
+      aggregated_net_generation: 0
+      aggregated_dispatched_contingency_reserve: 0
+    interchange_list:
+    - path: string
+      actual_flow: 0
+- operationId: getMeritOrderReport
+  path: /meritOrder/energy
+  method: GET
+  status: '200'
+  media_type: application/json
+  example_name: default
+  source: openapi/aeso-energymeritorder-api-v1-openapi.json
+  value:
+    data:
+    - begin_dateTime_utc: string
+      begin_dateTime_mpt: string
+      energy_blocks:
+      - import_or_export: string
+        asset_ID: string
+        block_number: 0
+        block_price: 0
+        from_MW: 0
+        to_MW: 0
+        block_size: 0
+        available_MW: 0
+        dispatched?: string
+        dispatched_MW: 0
+        flexible?: string
+        offer_control: string
+- operationId: getOutages
+  path: /outage
+  method: GET
+  status: '200'
+  media_type: application/json
+  example_name: default
+  source: openapi/aeso-itc-api-v1-openapi.json
+  value:
+    Outages:
+      Outage:
+      - element: string
+        affectedIntertieOrFlowgate:
+        - BC
+        toInLocalTime: string
+        fromInLocalTime: string
+- operationId: getOutages
+  path: /outage
+  method: GET
+  status: '200'
+  media_type: application/xml
+  example_name: default
+  source: openapi/aeso-itc-api-v1-openapi.json
+  value: "<OutagesReport>\r\n  <Outages>\r\n    <Outage>\r\n      <element>string</element>\r\n      <affectedIntertieOrFlowgate>BC</affectedIntertieOrFlowgate>\r\
+    \n      <toInLocalTime>string</toInLocalTime>\r\n      <fromInLocalTime>string</fromInLocalTime>\r\
+    \n    </Outage>\r\n  </Outages>\r\n</OutagesReport>"
+- operationId: getReportByRange
+  path: /interchange
+  method: GET
+  status: '200'
+  media_type: application/json
+  example_name: default
+  source: openapi/aeso-itc-api-v1-openapi.json
+  value:
+    BcIntertie:
+      Allocations:
+      - flowgate: true
+        date: string
+        he: string
+        import:
+          transferType: string
+          reason: string
+          atc: 0
+          trmTotal: 0
+          ttc: 0
+          trmSystem: 0
+          trmAllocation: 0
+          grossOffer: 0
+          version:
+          - reason: string
+            atc: 0
+            trmTotal: 0
+            ttc: 0
+            trmSystem: 0
+            trmAllocation: 0
+            grossOffer: 0
+            versionUpdatedLocaltime: string
+          updatedLocalTime: string
+          effectiveLocalTime: string
+        export:
+          transferType: string
+          reason: string
+          atc: 0
+          trmTotal: 0
+          ttc: 0
+          trmSystem: 0
+          trmAllocation: 0
+          grossOffer: 0
+          version:
+          - reason: string
+            atc: 0
+            trmTotal: 0
+            ttc: 0
+            trmSystem: 0
+            trmAllocation: 0
+            grossOffer: 0
+            versionUpdatedLocaltime: string
+          updatedLocalTime: string
+          effectiveLocalTime: string
+    MatlIntertie:
+      Allocations:
+      - flowgate: true
+        date: string
+        he: string
+        import:
+          transferType: string
+          reason: string
+          atc: 0
+          trmTotal: 0
+          ttc: 0
+          trmSystem: 0
+          trmAllocation: 0
+          grossOffer: 0
+          version:
+          - reason: string
+            atc: 0
+            trmTotal: 0
+            ttc: 0
+            trmSystem: 0
+            trmAllocation: 0
+            grossOffer: 0
+            versionUpdatedLocaltime: string
+          updatedLocalTime: string
+          effectiveLocalTime: string
+        export:
+          transferType: string
+          reason: string
+          atc: 0
+          trmTotal: 0
+          ttc: 0
+          trmSystem: 0
+          trmAllocation: 0
+          grossOffer: 0
+          version:
+          - reason: string
+            atc: 0
+            trmTotal: 0
+            ttc: 0
+            trmSystem: 0
+            trmAllocation: 0
+            grossOffer: 0
+            versionUpdatedLocaltime: string
+          updatedLocalTime: string
+          effectiveLocalTime: string
+    SkIntertie:
+      Allocations:
+      - flowgate: true
+        date: string
+        he: string
+        import:
+          transferType: string
+          reason: string
+          atc: 0
+          trmTotal: 0
+          ttc: 0
+          trmSystem: 0
+          trmAllocation: 0
+          grossOffer: 0
+          version:
+          - reason: string
+            atc: 0
+            trmTotal: 0
+            ttc: 0
+            trmSystem: 0
+            trmAllocation: 0
+            grossOffer: 0
+            versionUpdatedLocaltime: string
+          updatedLocalTime: string
+          effectiveLocalTime: string
+        export:
+          transferType: string
+          reason: string
+          atc: 0
+          trmTotal: 0
+          ttc: 0
+          trmSystem: 0
+          trmAllocation: 0
+          grossOffer: 0
+          version:
+          - reason: string
+            atc: 0
+            trmTotal: 0
+            ttc: 0
+            trmSystem: 0
+            trmAllocation: 0
+            grossOffer: 0
+            versionUpdatedLocaltime: string
+          updatedLocalTime: string
+          effectiveLocalTime: string
+    BcMatlFlowgate:
+      links:
+      - rel: string
+        href: string
+        hreflang: string
+        media: string
+        title: string
+        type: string
+        deprecation: string
+      Allocations:
+      - flowgate: true
+        date: string
+        he: string
+        import:
+          transferType: string
+          reason: string
+          atc: 0
+          trmTotal: 0
+          ttc: 0
+          trmSystem: 0
+          trmAllocation: 0
+          grossOffer: 0
+          version:
+          - reason: string
+            atc: 0
+            trmTotal: 0
+            ttc: 0
+            trmSystem: 0
+            trmAllocation: 0
+            grossOffer: 0
+            versionUpdatedLocaltime: string
+          updatedLocalTime: string
+          effectiveLocalTime: string
+        export:
+          transferType: string
+          reason: string
+          atc: 0
+          trmTotal: 0
+          ttc: 0
+          trmSystem: 0
+          trmAllocation: 0
+          grossOffer: 0
+          version:
+          - reason: string
+            atc: 0
+            trmTotal: 0
+            ttc: 0
+            trmSystem: 0
+            trmAllocation: 0
+            grossOffer: 0
+            versionUpdatedLocaltime: string
+          updatedLocalTime: string
+          effectiveLocalTime: string
+    SystemlFlowgate:
+      links:
+      - rel: string
+        href: string
+        hreflang: string
+        media: string
+        title: string
+        type: string
+        deprecation: string
+      Allocations:
+      - flowgate: true
+        date: string
+        he: string
+        import:
+          transferType: string
+          reason: string
+          atc: 0
+          trmTotal: 0
+          ttc: 0
+          trmSystem: 0
+          trmAllocation: 0
+          grossOffer: 0
+          version:
+          - reason: string
+            atc: 0
+            trmTotal: 0
+            ttc: 0
+            trmSystem: 0
+            trmAllocation: 0
+            grossOffer: 0
+            versionUpdatedLocaltime: string
+          updatedLocalTime: string
+          effectiveLocalTime: string
+        export:
+          transferType: string
+          reason: string
+          atc: 0
+          trmTotal: 0
+          ttc: 0
+          trmSystem: 0
+          trmAllocation: 0
+          grossOffer: 0
+          version:
+          - reason: string
+            atc: 0
+            trmTotal: 0
+            ttc: 0
+            trmSystem: 0
+            trmAllocation: 0
+            grossOffer: 0
+            versionUpdatedLocaltime: string
+          updatedLocalTime: string
+          effectiveLocalTime: string
+- operationId: getReportByRange
+  path: /interchange
+  method: GET
+  status: '200'
+  media_type: application/xml
+  example_name: default
+  source: openapi/aeso-itc-api-v1-openapi.json
+  value: "<InterchangeReport>\r\n  <BcIntertie>\r\n    <Allocations>\r\n      <flowgate>true</flowgate>\r\
+    \n      <date>string</date>\r\n      <he>string</he>\r\n      <import>\r\n        <transferType>string</transferType>\r\
+    \n        <reason>string</reason>\r\n        <atc>0</atc>\r\n        <trmTotal>0</trmTotal>\r\n  \
+    \      <ttc>0</ttc>\r\n        <trmSystem>0</trmSystem>\r\n        <trmAllocation>0</trmAllocation>\r\
+    \n        <grossOffer>0</grossOffer>\r\n        <version>\r\n          <reason>string</reason>\r\n\
+    \          <atc>0</atc>\r\n          <trmTotal>0</trmTotal>\r\n          <ttc>0</ttc>\r\n        \
+    \  <trmSystem>0</trmSystem>\r\n          <trmAllocation>0</trmAllocation>\r\n          <grossOffer>0</grossOffer>\r\
+    \n          <versionUpdatedLocaltime>string</versionUpdatedLocaltime>\r\n        </version>\r\n  \
+    \      <updatedLocalTime>string</updatedLocalTime>\r\n        <effectiveLocalTime>string</effectiveLocalTime>\r\
+    \n      </import>\r\n      <export>\r\n        <transferType>string</transferType>\r\n        <reason>string</reason>\r\
+    \n        <atc>0</atc>\r\n        <trmTotal>0</trmTotal>\r\n        <ttc>0</ttc>\r\n        <trmSystem>0</trmSystem>\r\
+    \n        <trmAllocation>0</trmAllocation>\r\n        <grossOffer>0</grossOffer>\r\n        <version>\r\
+    \n          <reason>string</reason>\r\n          <atc>0</atc>\r\n          <trmTotal>0</trmTotal>\r\
+    \n          <ttc>0</ttc>\r\n          <trmSystem>0</trmSystem>\r\n          <trmAllocation>0</trmAllocation>\r\
+    \n          <grossOffer>0</grossOffer>\r\n          <versionUpdatedLocaltime>string</versionUpdatedLocaltime>\r\
+    \n        </version>\r\n        <updatedLocalTime>string</updatedLocalTime>\r\n        <effectiveLocalTime>string</effectiveLocalTime>\r\
+    \n      </export>\r\n    </Allocations>\r\n  </BcIntertie>\r\n  <MatlIntertie>\r\n    <Allocations>\r\
+    \n      <flowgate>true</flowgate>\r\n      <date>string</date>\r\n      <he>string</he>\r\n      <import>\r\
+    \n        <transferType>string</transferType>\r\n        <reason>string</reason>\r\n        <atc>0</atc>\r\
+    \n        <trmTotal>0</trmTotal>\r\n        <ttc>0</ttc>\r\n        <trmSystem>0</trmSystem>\r\n \
+    \       <trmAllocation>0</trmAllocation>\r\n        <grossOffer>0</grossOffer>\r\n        <version>\r\
+    \n          <reason>string</reason>\r\n          <atc>0</atc>\r\n          <trmTotal>0</trmTotal>\r\
+    \n          <ttc>0</ttc>\r\n          <trmSystem>0</trmSystem>\r\n          <trmAllocation>0</trmAllocation>\r\
+    \n          <grossOffer>0</grossOffer>\r\n          <versionUpdatedLocaltime>string</versionUpdatedLocaltime>\r\
+    \n        </version>\r\n        <updatedLocalTime>string</updatedLocalTime>\r\n        <effectiveLocalTime>string</effectiveLocalTime>\r\
+    \n      </import>\r\n      <export>\r\n        <transferType>string</transferType>\r\n        <reason>string</reason>\r\
+    \n        <atc>0</atc>\r\n        <trmTotal>0</trmTotal>\r\n        <ttc>0</ttc>\r\n        <trmSystem>0</trmSystem>\r\
+    \n        <trmAllocation>0</trmAllocation>\r\n        <grossOffer>0</grossOffer>\r\n        <version>\r\
+    \n          <reason>string</reason>\r\n          <atc>0</atc>\r\n          <trmTotal>0</trmTotal>\r\
+    \n          <ttc>0</ttc>\r\n          <trmSystem>0</trmSystem>\r\n          <trmAllocation>0</trmAllocation>\r\
+    \n          <grossOffer>0</grossOffer>\r\n          <versionUpdatedLocaltime>string</versionUpdatedLocaltime>\r\
+    \n        </version>\r\n        <updatedLocalTime>string</updatedLocalTime>\r\n        <effectiveLocalTime>string</effectiveLocalTime>\r\
+    \n      </export>\r\n    </Allocations>\r\n  </MatlIntertie>\r\n  <SkIntertie>\r\n    <Allocations>\r\
+    \n      <flowgate>true</flowgate>\r\n      <date>string</date>\r\n      <he>string</he>\r\n      <import>\r\
+    \n        <transferType>string</transferType>\r\n        <reason>string</reason>\r\n        <atc>0</atc>\r\
+    \n        <trmTotal>0</trmTotal>\r\n        <ttc>0</ttc>\r\n        <trmSystem>0</trmSystem>\r\n \
+    \       <trmAllocation>0</trmAllocation>\r\n        <grossOffer>0</grossOffer>\r\n        <version>\r\
+    \n          <reason>string</reason>\r\n          <atc>0</atc>\r\n          <trmTotal>0</trmTotal>\r\
+    \n          <ttc>0</ttc>\r\n          <trmSystem>0</trmSystem>\r\n          <trmAllocation>0</trmAllocation>\r\
+    \n          <grossOffer>0</grossOffer>\r\n          <versionUpdatedLocaltime>string</versionUpdatedLocaltime>\r\
+    \n        </version>\r\n        <updatedLocalTime>string</updatedLocalTime>\r\n        <effectiveLocalTime>string</effectiveLocalTime>\r\
+    \n      </import>\r\n      <export>\r\n        <transferType>string</transferType>\r\n        <reason>string</reason>\r\
+    \n        <atc>0</atc>\r\n        <trmTotal>0</trmTotal>\r\n        <ttc>0</ttc>\r\n        <trmSystem>0</trmSystem>\r\
+    \n        <trmAllocation>0</trmAllocation>\r\n        <grossOffer>0</grossOffer>\r\n        <version>\r\
+    \n          <reason>string</reason>\r\n          <atc>0</atc>\r\n          <trmTotal>0</trmTotal>\r\
+    \n          <ttc>0</ttc>\r\n          <trmSystem>0</trmSystem>\r\n          <trmAllocation>0</trmAllocation>\r\
+    \n          <grossOffer>0</grossOffer>\r\n          <versionUpdatedLocaltime>string</versionUpdatedLocaltime>\r\
+    \n        </version>\r\n        <updatedLocalTime>string</updatedLocalTime>\r\n        <effectiveLocalTime>string</effectiveLocalTime>\r\
+    \n      </export>\r\n    </Allocations>\r\n  </SkIntertie>\r\n  <BcMatlFlowgate>\r\n    <link rel=\"\
+    string\" href=\"string\" hreflang=\"string\" media=\"string\" title=\"string\" type=\"string\" deprecation=\"\
+    string\" />\r\n    <Allocations>\r\n      <flowgate>true</flowgate>\r\n      <date>string</date>\r\
+    \n      <he>string</he>\r\n      <import>\r\n        <transferType>string</transferType>\r\n     \
+    \   <reason>string</reason>\r\n        <atc>0</atc>\r\n        <trmTotal>0</trmTotal>\r\n        <ttc>0</ttc>\r\
+    \n        <trmSystem>0</trmSystem>\r\n        <trmAllocation>0</trmAllocation>\r\n        <grossOffer>0</grossOffer>\r\
+    \n        <version>\r\n          <reason>string</reason>\r\n          <atc>0</atc>\r\n          <trmTotal>0</trmTotal>\r\
+    \n          <ttc>0</ttc>\r\n          <trmSystem>0</trmSystem>\r\n          <trmAllocation>0</trmAllocation>\r\
+    \n          <grossOffer>0</grossOffer>\r\n          <versionUpdatedLocaltime>string</versionUpdatedLocaltime>\r\
+    \n        </version>\r\n        <updatedLocalTime>string</updatedLocalTime>\r\n        <effectiveLocalTime>string</effectiveLocalTime>\r\
+    \n      </import>\r\n      <export>\r\n        <transferType>string</transferType>\r\n        <reason>string</reason>\r\
+    \n        <atc>0</atc>\r\n        <trmTotal>0</trmTotal>\r\n        <ttc>0</ttc>\r\n        <trmSystem>0</trmSystem>\r\
+    \n        <trmAllocation>0</trmAllocation>\r\n        <grossOffer>0</grossOffer>\r\n        <version>\r\
+    \n          <reason>string</reason>\r\n          <atc>0</atc>\r\n          <trmTotal>0</trmTotal>\r\
+    \n          <ttc>0</ttc>\r\n          <trmSystem>0</trmSystem>\r\n          <trmAllocation>0</trmAllocation>\r\
+    \n          <grossOffer>0</grossOffer>\r\n          <versionUpdatedLocaltime>string</versionUpdatedLocaltime>\r\
+    \n        </version>\r\n        <updatedLocalTime>string</updatedLocalTime>\r\n        <effectiveLocalTime>string</effectiveLocalTime>\r\
+    \n      </export>\r\n    </Allocations>\r\n  </BcMatlFlowgate>\r\n  <SystemlFlowgate>\r\n    <link\
+    \ rel=\"string\" href=\"string\" hreflang=\"string\" media=\"string\" title=\"string\" type=\"string\"\
+    \ deprecation=\"string\" />\r\n    <Allocations>\r\n      <flowgate>true</flowgate>\r\n      <date>string</date>\r\
+    \n      <he>string</he>\r\n      <import>\r\n        <transferType>string</transferType>\r\n     \
+    \   <reason>string</reason>\r\n        <atc>0</atc>\r\n        <trmTotal>0</trmTotal>\r\n        <ttc>0</ttc>\r\
+    \n        <trmSystem>0</trmSystem>\r\n        <trmAllocation>0</trmAllocation>\r\n        <grossOffer>0</grossOffer>\r\
+    \n        <version>\r\n          <reason>string</reason>\r\n          <atc>0</atc>\r\n          <trmTotal>0</trmTotal>\r\
+    \n          <ttc>0</ttc>\r\n          <trmSystem>0</trmSystem>\r\n          <trmAllocation>0</trmAllocation>\r\
+    \n          <grossOffer>0</grossOffer>\r\n          <versionUpdatedLocaltime>string</versionUpdatedLocaltime>\r\
+    \n        </version>\r\n        <updatedLocalTime>string</updatedLocalTime>\r\n        <effectiveLocalTime>string</effectiveLocalTime>\r\
+    \n      </import>\r\n      <export>\r\n        <transferType>string</transferType>\r\n        <reason>string</reason>\r\
+    \n        <atc>0</atc>\r\n        <trmTotal>0</trmTotal>\r\n        <ttc>0</ttc>\r\n        <trmSystem>0</trmSystem>\r\
+    \n        <trmAllocation>0</trmAllocation>\r\n        <grossOffer>0</grossOffer>\r\n        <version>\r\
+    \n          <reason>string</reason>\r\n          <atc>0</atc>\r\n          <trmTotal>0</trmTotal>\r\
+    \n          <ttc>0</ttc>\r\n          <trmSystem>0</trmSystem>\r\n          <trmAllocation>0</trmAllocation>\r\
+    \n          <grossOffer>0</grossOffer>\r\n          <versionUpdatedLocaltime>string</versionUpdatedLocaltime>\r\
+    \n        </version>\r\n        <updatedLocalTime>string</updatedLocalTime>\r\n        <effectiveLocalTime>string</effectiveLocalTime>\r\
+    \n      </export>\r\n    </Allocations>\r\n  </SystemlFlowgate>\r\n</InterchangeReport>"
+- operationId: getLoadOutageRangeReport
+  path: /loadOutageReport
+  method: GET
+  status: '200'
+  media_type: application/json
+  example_name: default
+  source: openapi/aeso-loadoutageforecast-api-v1-openapi.json
+  value:
+    loadOutagePerHourVO:
+    - begin_datetime_utc: string
+      begin_datetime_mpt: string
+      load_outage_forecast (in MW): 0
+- operationId: getMeteredVolumeReport
+  path: /meteredvolume/details
+  method: GET
+  status: '200'
+  media_type: application/json
+  example_name: default
+  source: openapi/aeso-meteredvolume-api-v1-openapi.json
+  value:
+    pool_participant_ID: string
+    asset_list:
+    - asset_ID: string
+      asset_class: string
+      metered_volume_list:
+      - begin_date_utc: string
+        begin_date_mpt: string
+        metered_volume: string
+- operationId: getOperatingReserveOfferControlReport
+  path: /operatingReserveOfferControl
+  method: GET
+  status: '200'
+  media_type: application/json
+  example_name: default
+  source: openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json
+  value:
+    Operating Reserve Trade Merit Order:
+    - begin_datetime_utc: string
+      begin_datetime_mpt: string
+      operating_reserve_blocks:
+      - commodity: string
+        product: string
+        asset_ID: string
+        volume: string
+        active_price: 0
+        premium_price: 0
+        activation_price: 0
+        offer_control: string
+- operationId: getPoolParticipantListData
+  path: /poolparticipantlist
+  method: GET
+  status: '200'
+  media_type: application/json
+  example_name: default
+  source: openapi/aeso-poolparticipant-api-v1-openapi.json
+  value:
+    pool_participant_name: string
+    pool_participant_ID: string
+    corporate_contact: string
+    agent_list:
+    - agent_ID: string
+      agent_name: string
+- operationId: getPoolPriceDateRangeReport
+  path: /price/poolPrice
+  method: GET
+  status: '200'
+  media_type: application/json
+  example_name: default
+  source: openapi/aeso-poolprice-api-v1-1-openapi.json
+  value:
+    Pool Price Report:
+    - begin_datetime_utc: string
+      begin_datetime_mpt: string
+      pool_price: string
+      forecast_pool_price: string
+      rolling_30day_avg: string
+- operationId: getSystemMarginalPriceReportForDateRange
+  path: /price/systemMarginalPrice
+  method: GET
+  status: '200'
+  media_type: application/json
+  example_name: default
+  source: openapi/aeso-systemmarginalprice-api-v1-1-openapi.json
+  value:
+    System Marginal Price Report:
+    - begin_datetime_utc: string
+      end_datetime_utc: string
+      begin_datetime_mpt: string
+      end_datetime_mpt: string
+      system_marginal_price: 0
+      volume: string
+- operationId: getCurrentSystemMarginalPriceReport
+  path: /price/systemMarginalPrice/current
+  method: GET
+  status: '200'
+  media_type: application/json
+  example_name: default
+  source: openapi/aeso-systemmarginalprice-api-v1-1-openapi.json
+  value:
+    System Marginal Price Report:
+    - begin_datetime_utc: string
+      end_datetime_utc: string
+      begin_datetime_mpt: string
+      end_datetime_mpt: string
+      system_marginal_price: 0
+      volume: string
+- operationId: getUnitCommitmentDataReportV11ForDateRange
+  path: /unitCommitment
+  method: GET
+  status: '200'
+  media_type: application/json
+  example_name: default
+  source: openapi/aeso-unitcommitmentdata-api-v2-openapi.json
+  value:
+    unit_commitment:
+    - asset_ID: string
+      issued_time_utc: string
+      issued_time_mpt: string
+      begin_time_utc: string
+      begin_time_mpt: string
+      operation_start_time_utc: string
+      operation_start_time_mpt: string
+      operation_end_time_utc: string
+      operation_end_time_mpt: string

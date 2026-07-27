@@ -1,0 +1,58 @@
+generated: '2026-07-27'
+method: searched
+source: https://developer-apim.aeso.ca/developer/products?api-version=2022-04-01-preview
+docs: https://developer-apim.aeso.ca/products
+summary: >-
+  AESO's Azure API Management instance publishes exactly one product, "AESO Public API", and it is
+  free. There is no paid tier, no metered pricing, no usage quota published, and no approval step —
+  the product record itself declares approvalRequired false and subscriptionsLimit 1. The only
+  gating is legal, not commercial: subscribing requires agreeing to AESO's site terms, which permit
+  non-commercial, personal or educational use only.
+plans:
+- name: AESO Public API
+  id: aeso-public-api-product
+  price: 0
+  currency: CAD
+  billing: none
+  free: true
+  subscription_required: true
+  approval_required: false
+  subscriptions_limit: 1
+  description: Subscribers can access the AESO public data through these APIs.
+  terms: https://www.aeso.ca/legal/
+  terms_summary: >-
+    Material may be used and copied for non-commercial, personal or educational purposes provided it is
+    not modified and copyright notices are not deleted. Any other use requires AESO's written permission.
+  includes:
+  - Actual Forecast Report API
+  - AIES Gen Capacity API
+  - Asset List API
+  - Current Supply Demand API (v1 and v2)
+  - Energy Merit Order Report API
+  - Intertie Public Reports API
+  - Load Outage Forecast API
+  - Metered Volume Report API
+  - Operating Reserve Offer Control Report API
+  - Pool Participant API
+  - Pool Price Report API
+  - System Marginal Price Report API
+  - Unit Commitment Data API
+  signup: https://developer-apim.aeso.ca/signup
+quotas:
+  published: false
+  note: >-
+    No call quota, rate limit or throttling policy is published on the product, in the developer portal,
+    in the APIM API Gateway Instructions PDF or in any OpenAPI document. No X-RateLimit / Retry-After
+    headers were observed on live gateway responses (probed 2026-07-27). Per-request result size is
+    bounded instead by documented date-range caps — e.g. the Pool Price Report returns "a maximum of
+    1 year at a time".
+free_alternative:
+  name: AESO Energy Trading System (ETS) public reports
+  price: 0
+  key_required: false
+  account_required: false
+  base: http://ets.aeso.ca/ets_web/ip/Market/Reports
+  note: >-
+    The same market data is available as CSV with no key and no account from AESO's long-running ETS
+    report servlets. This is why AESO's market data counts as genuinely open regardless of the key on
+    the newer gateway.

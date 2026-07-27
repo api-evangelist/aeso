@@ -1,0 +1,95 @@
+arazzo: 1.0.1
+info:
+  title: AESO asset drilldown
+  summary: Resolve a pool participant into its fleet, read what those assets are generating right now,
+    and pull their settlement-grade metered volumes.
+  version: 1.0.0
+sourceDescriptions:
+- name: poolparticipant
+  url: ../openapi/aeso-poolparticipant-api-v1-openapi.json
+  type: openapi
+- name: assetlist
+  url: ../openapi/aeso-assetlist-api-v1-openapi.json
+  type: openapi
+- name: currentsupplydemand-v1
+  url: ../openapi/aeso-currentsupplydemand-api-v1-openapi.json
+  type: openapi
+- name: meteredvolume
+  url: ../openapi/aeso-meteredvolume-api-v1-openapi.json
+  type: openapi
+workflows:
+- workflowId: aeso-asset-drilldown
+  summary: Participant registry to asset registry to live generation to metered volumes.
+  description: >-
+    Walks AESO's two reference registries into its operational feeds using the shared join keys
+    pool_participant_ID and asset_ID. Requires a free API-KEY subscription key.
+  inputs:
+    type: object
+    required:
+    - poolParticipantId
+    - startDate
+    properties:
+      poolParticipantId:
+        type: string
+        description: A pool participant identifier from the Pool Participant API.
+      startDate:
+        type: string
+        description: First settlement day for the metered volume pull, in yyyy-MM-dd.
+        example: '2026-07-01'
+      endDate:
+        type: string
+        description: Optional last settlement day for the metered volume pull, in yyyy-MM-dd.
+        example: '2026-07-27'
+  steps:
+  - stepId: resolve-participant
+    description: Confirm the participant exists and pick up its name.
+    operationId: getPoolParticipantListData
+    parameters:
+    - name: pool_participant_ID
+      in: query
+      value: $inputs.poolParticipantId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      participant: $response.body
+  - stepId: list-participant-assets
+    description: Every market asset registered to that participant.
+    operationId: getAssetListData
+    parameters:
+    - name: pool_participant_ID
+      in: query
+      value: $inputs.poolParticipantId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      assets: $response.body
+  - stepId: read-current-generation
+    description: Current output for the generating assets on the system, to be filtered to the fleet
+      resolved above.
+    operationId: getCSDReportByAsset
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      generation: $response.body
+  - stepId: read-metered-volumes
+    description: Settlement-grade metered volumes for the participant over the requested range.
+    operationId: getMeteredVolumeReport
+    parameters:
+    - name: startDate
+      in: query
+      value: $inputs.startDate
+    - name: endDate
+      in: query
+      value: $inputs.endDate
+    - name: pool_participant_ID
+      in: query
+      value: $inputs.poolParticipantId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      meteredVolumes: $response.body
+  outputs:
+    participant: $steps.resolve-participant.outputs.participant
+    assets: $steps.list-participant-assets.outputs.assets
+    generation: $steps.read-current-generation.outputs.generation
+    meteredVolumes: $steps.read-metered-volumes.outputs.meteredVolumes

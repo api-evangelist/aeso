@@ -1,0 +1,158 @@
+generated: '2026-07-27'
+method: derived
+source: mcp/aeso-mcp.yml + openapi/*.json
+summary: AESO publishes no MCP server and no GraphQL surface; REST over the Azure APIM gateway is the
+  only machine-readable contract. This crosswalk binds every CANDIDATE MCP tool in mcp/aeso-mcp.yml to
+  its backing OpenAPI operationId, so any MCP server built over AESO inherits real input schemas instead
+  of guessed ones.
+surfaces:
+  openapi:
+    path: openapi/*.json
+    specs: 14
+    operations: 16
+    gated: false
+  graphql:
+    endpoint: null
+    present: false
+  mcp:
+    url: null
+    present: false
+    status: candidate
+    gated: null
+coverage:
+  tools_named: 16
+  tools_bound: 16
+  mcp_only: 0
+  rest_operations_total: 16
+  rest_operations_with_tool: 16
+crosswalk:
+- tool: get_alberta_internal_load
+  category: load
+  rest:
+  - getActualForecastReport
+  binding: rest
+  confidence: high
+  note: 1:1 derived binding — the candidate tool is generated directly from this operation, and inherits
+    its query parameters verbatim as its inputSchema.
+- tool: get_generation_capacity_and_outages
+  category: capacity
+  rest:
+  - getAIESControlReport
+  binding: rest
+  confidence: high
+  note: 1:1 derived binding — the candidate tool is generated directly from this operation, and inherits
+    its query parameters verbatim as its inputSchema.
+- tool: list_assets
+  category: reference-data
+  rest:
+  - getAssetListData
+  binding: rest
+  confidence: high
+  note: 1:1 derived binding — the candidate tool is generated directly from this operation, and inherits
+    its query parameters verbatim as its inputSchema.
+- tool: get_current_generation_by_asset
+  category: supply-demand
+  rest:
+  - getCSDReportByAsset
+  binding: rest
+  confidence: high
+  note: 1:1 derived binding — the candidate tool is generated directly from this operation, and inherits
+    its query parameters verbatim as its inputSchema.
+- tool: get_current_supply_demand_summary
+  category: supply-demand
+  rest:
+  - getCSDSummaryDataReportv2
+  binding: rest
+  confidence: high
+  note: 1:1 derived binding — the candidate tool is generated directly from this operation, and inherits
+    its query parameters verbatim as its inputSchema.
+- tool: get_energy_merit_order
+  category: market
+  rest:
+  - getMeritOrderReport
+  binding: rest
+  confidence: high
+  note: 1:1 derived binding — the candidate tool is generated directly from this operation, and inherits
+    its query parameters verbatim as its inputSchema.
+- tool: get_intertie_outages
+  category: interties
+  rest:
+  - getOutages
+  binding: rest
+  confidence: high
+  note: 1:1 derived binding — the candidate tool is generated directly from this operation, and inherits
+    its query parameters verbatim as its inputSchema.
+- tool: get_intertie_interchange
+  category: interties
+  rest:
+  - getReportByRange
+  binding: rest
+  confidence: high
+  note: 1:1 derived binding — the candidate tool is generated directly from this operation, and inherits
+    its query parameters verbatim as its inputSchema.
+- tool: get_load_outages
+  category: capacity
+  rest:
+  - getLoadOutageRangeReport
+  binding: rest
+  confidence: high
+  note: 1:1 derived binding — the candidate tool is generated directly from this operation, and inherits
+    its query parameters verbatim as its inputSchema.
+- tool: get_metered_volumes
+  category: settlement
+  rest:
+  - getMeteredVolumeReport
+  binding: rest
+  confidence: high
+  note: 1:1 derived binding — the candidate tool is generated directly from this operation, and inherits
+    its query parameters verbatim as its inputSchema.
+- tool: get_operating_reserve_offer_control
+  category: market
+  rest:
+  - getOperatingReserveOfferControlReport
+  binding: rest
+  confidence: high
+  note: 1:1 derived binding — the candidate tool is generated directly from this operation, and inherits
+    its query parameters verbatim as its inputSchema.
+- tool: list_pool_participants
+  category: reference-data
+  rest:
+  - getPoolParticipantListData
+  binding: rest
+  confidence: high
+  note: 1:1 derived binding — the candidate tool is generated directly from this operation, and inherits
+    its query parameters verbatim as its inputSchema.
+- tool: get_pool_price
+  category: prices
+  rest:
+  - getPoolPriceDateRangeReport
+  binding: rest
+  confidence: high
+  note: 1:1 derived binding — the candidate tool is generated directly from this operation, and inherits
+    its query parameters verbatim as its inputSchema.
+- tool: get_system_marginal_price
+  category: prices
+  rest:
+  - getSystemMarginalPriceReportForDateRange
+  binding: rest
+  confidence: high
+  note: 1:1 derived binding — the candidate tool is generated directly from this operation, and inherits
+    its query parameters verbatim as its inputSchema.
+- tool: get_current_system_marginal_price
+  category: prices
+  rest:
+  - getCurrentSystemMarginalPriceReport
+  binding: rest
+  confidence: high
+  note: 1:1 derived binding — the candidate tool is generated directly from this operation, and inherits
+    its query parameters verbatim as its inputSchema.
+- tool: get_unit_commitment_directives
+  category: dispatch
+  rest:
+  - getUnitCommitmentDataReportV11ForDateRange
+  binding: rest
+  confidence: high
+  note: 1:1 derived binding — the candidate tool is generated directly from this operation, and inherits
+    its query parameters verbatim as its inputSchema.
+mcp_only: []
+rest_only: []

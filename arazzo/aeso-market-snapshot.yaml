@@ -1,0 +1,65 @@
+arazzo: 1.0.1
+info:
+  title: AESO live market snapshot
+  summary: Take one coherent reading of the Alberta market — supply and demand balance, live system
+    marginal price, and today's completed settlement-hour pool prices.
+  version: 1.0.0
+sourceDescriptions:
+- name: currentsupplydemand-v2
+  url: ../openapi/aeso-currentsupplydemand-api-v2-openapi.json
+  type: openapi
+- name: systemmarginalprice
+  url: ../openapi/aeso-systemmarginalprice-api-v1-1-openapi.json
+  type: openapi
+- name: poolprice
+  url: ../openapi/aeso-poolprice-api-v1-1-openapi.json
+  type: openapi
+workflows:
+- workflowId: aeso-market-snapshot
+  summary: Read grid balance, live price and settled prices in one pass.
+  description: >-
+    Every step is an anonymous-schema GET on the AESO Azure APIM gateway and needs the API-KEY request
+    header, which is a free self-serve subscription key from https://developer-apim.aeso.ca/signup.
+    Use of the data is limited to non-commercial, personal or educational purposes under
+    https://www.aeso.ca/legal/.
+  inputs:
+    type: object
+    required:
+    - today
+    properties:
+      today:
+        type: string
+        description: The date to settle prices for, in yyyy-MM-dd. Only completed settlement hours are
+          returned.
+        example: '2026-07-27'
+  steps:
+  - stepId: read-supply-demand
+    description: Alberta Total Net Generation, Net Actual Interchange, Alberta Internal Load,
+      contingency reserve and the generation mix by fuel type.
+    operationId: getCSDSummaryDataReportv2
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      supplyDemand: $response.body
+  - stepId: read-current-smp
+    description: The live System Marginal Price that is setting the current settlement hour.
+    operationId: getCurrentSystemMarginalPriceReport
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      currentSmp: $response.body
+  - stepId: read-todays-pool-price
+    description: Today's completed settlement hours, with forecast price and 30-day rolling average.
+    operationId: getPoolPriceDateRangeReport
+    parameters:
+    - name: startDate
+      in: query
+      value: $inputs.today
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      poolPrice: $response.body
+  outputs:
+    supplyDemand: $steps.read-supply-demand.outputs.supplyDemand
+    currentSmp: $steps.read-current-smp.outputs.currentSmp
+    poolPrice: $steps.read-todays-pool-price.outputs.poolPrice

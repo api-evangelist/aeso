@@ -1,0 +1,84 @@
+generated: '2026-07-27'
+method: searched
+source: npm, PyPI, RubyGems, CRAN, Packagist, crates.io, pkg.go.dev, GitHub search (probed 2026-07-27)
+summary: >-
+  AESO ships NO first-party client libraries in any language, and has no GitHub organization
+  (https://api.github.com/orgs/aeso returns 404). The APIM API Gateway Instructions PDF tells
+  developers to download the OpenAPI 3 definition from the developer portal and import it into their
+  own API tool (Postman is the worked example) — code generation from the spec is the sanctioned path,
+  not an SDK. Registry searches on npm, PyPI, RubyGems, CRAN, Packagist and crates.io found no official
+  AESO package. What exists is a thin layer of independent community clients, recorded below as
+  official: false so the distinction is never lost.
+official_sdk_count: 0
+official_note: >-
+  No package below is published or endorsed by AESO. Do NOT treat this artifact as evidence of an SDK
+  program.
+packages:
+- language: python
+  registry: pypi
+  name: pyaeso
+  url: https://pypi.org/project/pyaeso/
+  install: pip install pyaeso
+  version_seen: '0.7'
+  official: false
+  author: Keegan Callin
+  homepage: http://bitbucket.org/kc/pyaeso/wiki/Home
+  description: >-
+    Pythonic access to the Alberta (Canada) Electric System Operator (AESO) Energy Trading System (ETS).
+  targets: ETS report servlets (ets.aeso.ca), not the Azure APIM gateway
+  status: stale — third-party, last published version 0.7, predates the 2025 Azure APIM migration
+- language: php
+  registry: github
+  name: aeso-api-client
+  url: https://github.com/ap-rose/aeso-api-client
+  official: false
+  description: A class providing methods to interact with the AESO API.
+  targets: Azure APIM gateway
+  status: community, unreleased to Packagist
+- language: python
+  registry: github
+  name: AlbertaEnergySources
+  url: https://github.com/garrettj403/AlbertaEnergySources
+  official: false
+  description: Get grid data from Alberta Electric System Operator (AESO).
+  targets: AESO public data
+  status: community, unreleased to PyPI
+- language: java
+  registry: github
+  name: AesoPublicReportClient
+  url: https://github.com/r24mille/AesoPublicReportClient
+  official: false
+  description: Java client to the Alberta Electric System Operator (AESO) .csv reports.
+  targets: ETS report servlets (ets.aeso.ca)
+  status: community, unreleased to Maven Central
+registries_probed:
+- registry: npm
+  result: no AESO package
+- registry: pypi
+  result: pyaeso only (third-party); no official AESO package
+- registry: rubygems
+  result: no AESO package
+- registry: cran
+  result: no AESO package
+- registry: packagist
+  result: no AESO package
+- registry: crates.io
+  result: no AESO package
+- registry: pkg.go.dev
+  result: no AESO package
+- registry: maven-central
+  result: no AESO package
+- registry: nuget
+  result: no AESO package
+github_organization:
+  present: false
+  probed: https://api.github.com/orgs/aeso
+  status: 404
+sanctioned_path:
+  approach: generate-from-spec
+  detail: >-
+    "To import AESO API to your choice of API tool you will need to first download the AESO API
+    definition from developer portal. We recommend - Open API 3 (YAML) or (JSON) format." Every one of
+    the 14 OpenAPI documents in openapi/ was harvested from that same portal export surface and can be
+    fed to any generator.
+  source: https://www.aeso.ca/assets/downloads/external/api/API-Access-Instructions-APIM-API-Gateway.pdf

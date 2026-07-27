@@ -73,6 +73,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/aeso-poolprice-api-v1-1-openapi.json
+  - type: Overlay
+    url: overlays/aeso-poolprice-api-v1-1-overlay.yaml
   - type: Documentation
     url: https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
   - type: APIReference
@@ -98,6 +100,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/aeso-systemmarginalprice-api-v1-1-openapi.json
+  - type: Overlay
+    url: overlays/aeso-systemmarginalprice-api-v1-1-overlay.yaml
   - type: Documentation
     url: https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
   - type: APIReference
@@ -121,6 +125,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/aeso-currentsupplydemand-api-v2-openapi.json
+  - type: Overlay
+    url: overlays/aeso-currentsupplydemand-api-v2-overlay.yaml
   - type: Documentation
     url: https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
   - type: APIReference
@@ -142,6 +148,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/aeso-currentsupplydemand-api-v1-openapi.json
+  - type: Overlay
+    url: overlays/aeso-currentsupplydemand-api-v1-overlay.yaml
   - type: Documentation
     url: https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
   - type: APIReference
@@ -163,6 +171,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/aeso-actualforecast-api-v1-openapi.json
+  - type: Overlay
+    url: overlays/aeso-actualforecast-api-v1-overlay.yaml
   - type: Documentation
     url: https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
   - type: APIReference
@@ -182,6 +192,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/aeso-aiesgencapacity-api-v1-openapi.json
+  - type: Overlay
+    url: overlays/aeso-aiesgencapacity-api-v1-overlay.yaml
   - type: Documentation
     url: https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
   - type: APIReference
@@ -203,6 +215,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/aeso-loadoutageforecast-api-v1-openapi.json
+  - type: Overlay
+    url: overlays/aeso-loadoutageforecast-api-v1-overlay.yaml
   - type: Documentation
     url: https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
   - type: APIReference
@@ -225,6 +239,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/aeso-itc-api-v1-openapi.json
+  - type: Overlay
+    url: overlays/aeso-itc-api-v1-overlay.yaml
   - type: Documentation
     url: https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
   - type: APIReference
@@ -247,6 +263,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/aeso-energymeritorder-api-v1-openapi.json
+  - type: Overlay
+    url: overlays/aeso-energymeritorder-api-v1-overlay.yaml
   - type: Documentation
     url: https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
   - type: APIReference
@@ -268,6 +286,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/aeso-meteredvolume-api-v1-openapi.json
+  - type: Overlay
+    url: overlays/aeso-meteredvolume-api-v1-overlay.yaml
   - type: Documentation
     url: https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
   - type: APIReference
@@ -288,6 +308,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json
+  - type: Overlay
+    url: overlays/aeso-operatingreserveoffercontrol-api-v1-overlay.yaml
   - type: Documentation
     url: https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
   - type: APIReference
@@ -309,6 +331,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/aeso-assetlist-api-v1-openapi.json
+  - type: Overlay
+    url: overlays/aeso-assetlist-api-v1-overlay.yaml
   - type: Documentation
     url: https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
   - type: APIReference
@@ -330,6 +354,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/aeso-poolparticipant-api-v1-openapi.json
+  - type: Overlay
+    url: overlays/aeso-poolparticipant-api-v1-overlay.yaml
   - type: Documentation
     url: https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
   - type: APIReference
@@ -350,6 +376,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/aeso-unitcommitmentdata-api-v2-openapi.json
+  - type: Overlay
+    url: overlays/aeso-unitcommitmentdata-api-v2-overlay.yaml
   - type: Documentation
     url: https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
   - type: APIReference
@@ -389,6 +417,12 @@ apis:
   - type: Website
     url: http://ets.aeso.ca/
 common:
+- type: AgenticAccess
+  url: agentic-access/aeso-agentic-access.yml
+- type: DomainSecurity
+  url: security/aeso-domain-security.yml
+- type: Authentication
+  url: authentication/aeso-authentication.yml
 - type: Website
   url: https://www.aeso.ca/
 - type: DeveloperPortal
@@ -404,7 +438,7 @@ common:
 - type: Plans
   url: https://developer-apim.aeso.ca/products
 - type: TermsOfService
-  url: https://www.aeso.ca/legal
+  url: https://www.aeso.ca/legal/
 - type: Support
   url: mailto:info@aeso.ca
 - type: Blog
@@ -413,6 +447,47 @@ common:
   url: https://www.linkedin.com/company/25743
 - type: Twitter
   url: https://twitter.com/theaeso
+- type: APIReference
+  url: https://developer-apim.aeso.ca/apis
+- type: GettingStarted
+  url: https://www.aeso.ca/assets/downloads/external/api/API-Access-Instructions-APIM-API-Gateway.pdf
+- type: PrivacyPolicy
+  url: https://www.aeso.ca/privacy/
+- type: Plans
+  url: plans/aeso-plans.yml
+- type: ChangeLog
+  url: changelog/aeso-changelog.yml
+- type: Lifecycle
+  url: lifecycle/aeso-lifecycle.yml
+- type: Conventions
+  url: conventions/aeso-conventions.yml
+- type: ErrorCatalog
+  url: errors/aeso-problem-types.yml
+- type: Conformance
+  url: conformance/aeso-conformance.yml
+- type: DataModel
+  url: data-model/aeso-data-model.yml
+- type: Examples
+  url: examples/aeso-examples.yml
+- type: Packages
+  url: packages/aeso-packages.yml
+- type: Sandbox
+  url: sandbox/aeso-sandbox.yml
+- type: ToolCrosswalk
+  url: mcp/aeso-tool-crosswalk.yml
+- type: LLMsTxt
+  url: llms/aeso-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Arazzo
+  url: arazzo/aeso-market-snapshot.yaml
+  name: AESO live market snapshot
+- type: Arazzo
+  url: arazzo/aeso-asset-drilldown.yaml
+  name: AESO asset drilldown
+- type: Arazzo
+  url: arazzo/aeso-price-formation.yaml
+  name: AESO price formation trace
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

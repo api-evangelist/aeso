@@ -1,0 +1,315 @@
+generated: '2026-07-27'
+method: derived
+source: openapi/*.json
+status: candidate
+summary: No official hosted, remote or local Model Context Protocol (MCP) server was found for AESO. Probes
+  on 2026-07-27 of apimgw.aeso.ca, gateway-apim.aeso.ca and developer-apim.aeso.ca returned 404 for /.well-known/*,
+  and no AESO package exists on npm, PyPI or any MCP registry. The tool set below is DERIVED from the
+  16 documented AESO Azure APIM operations as a proposal for an agent-facing surface. It is not published
+  by AESO.
+server: null
+transport: null
+auth:
+  type: apiKey
+  header: API-KEY
+  alternate:
+    in: query
+    name: subscription-key
+  onboarding: https://developer-apim.aeso.ca/signup
+candidate_tools:
+- name: get_alberta_internal_load
+  category: load
+  description: Fetch Actual Forecast data for a day or date range.
+  maps_to: GET /load/albertaInternalLoad
+  source_operation: openapi/aeso-actualforecast-api-v1-openapi.json#getActualForecastReport
+  input_schema_source: openapi/aeso-actualforecast-api-v1-openapi.json -> paths['/load/albertaInternalLoad'].get.parameters
+  parameters:
+  - name: startDate
+    in: query
+    required: true
+    description: 'Any date between 2000-01-01 and current date. (format: yyyy-MM-dd).'
+  - name: endDate
+    in: query
+    required: false
+    description: 'Any date up to current date but after startDate. If left blank, only data for startDate
+      will be returned. (format: yyyy-MM-dd).'
+- name: get_generation_capacity_and_outages
+  category: capacity
+  description: Fetch AIES generation capacity and outages
+  maps_to: GET /AIESGenCapacity
+  source_operation: openapi/aeso-aiesgencapacity-api-v1-openapi.json#getAIESControlReport
+  input_schema_source: openapi/aeso-aiesgencapacity-api-v1-openapi.json -> paths['/AIESGenCapacity'].get.parameters
+  parameters:
+  - name: startDate
+    in: query
+    required: true
+    description: 'Any date between 2011-01-01 and the end of the 24th month from current date in future.
+      (format: yyyy-MM-dd)'
+  - name: endDate
+    in: query
+    required: false
+    description: 'Any date after startDate up to the 1st of the 25th month from current date in future.
+      If left blank, only data for startDate will be returned. (format: yyyy-MM-dd)'
+- name: list_assets
+  category: reference-data
+  description: Fetch the latest list of assets connected to AIES.
+  maps_to: GET /assetlist
+  source_operation: openapi/aeso-assetlist-api-v1-openapi.json#getAssetListData
+  input_schema_source: openapi/aeso-assetlist-api-v1-openapi.json -> paths['/assetlist'].get.parameters
+  parameters:
+  - name: asset_ID
+    in: query
+    required: false
+    description: This parameter can contain up to 20 comma-separated Asset IDs.
+  - name: pool_participant_ID
+    in: query
+    required: false
+    description: This parameter can contain up to 20 comma-separated Pool Participant IDs.
+  - name: operating_status
+    in: query
+    required: false
+    description: The allowed values are ACTIVE, RETIRED, SUSPENDED, INACTIVE
+  - name: asset_type
+    in: query
+    required: false
+    description: The allowed values are SOURCE, SINK
+- name: get_current_generation_by_asset
+  category: supply-demand
+  description: Fetch the latest generation data for all AIES assets greater than 5 MW.
+  maps_to: GET /csd/generation/assets/current
+  source_operation: openapi/aeso-currentsupplydemand-api-v1-openapi.json#getCSDReportByAsset
+  input_schema_source: openapi/aeso-currentsupplydemand-api-v1-openapi.json -> paths['/csd/generation/assets/current'].get.parameters
+  parameters:
+  - name: assetIds
+    in: query
+    required: false
+    description: This parameter can contain up to 20 comma-separated Asset IDs.
+- name: get_current_supply_demand_summary
+  category: supply-demand
+  description: Fetch the AIES's latest supply & demand summary data.
+  maps_to: GET /csd/summary/current
+  source_operation: openapi/aeso-currentsupplydemand-api-v2-openapi.json#getCSDSummaryDataReportv2
+  input_schema_source: openapi/aeso-currentsupplydemand-api-v2-openapi.json -> paths['/csd/summary/current'].get.parameters
+  parameters: []
+- name: get_energy_merit_order
+  category: market
+  description: Fetch Energy Merit Order snapshot data for a given date that is 60 days prior to current
+    date.
+  maps_to: GET /meritOrder/energy
+  source_operation: openapi/aeso-energymeritorder-api-v1-openapi.json#getMeritOrderReport
+  input_schema_source: openapi/aeso-energymeritorder-api-v1-openapi.json -> paths['/meritOrder/energy'].get.parameters
+  parameters:
+  - name: startDate
+    in: query
+    required: true
+    description: 'Any date between 2009-09-01 and 60 days prior to current date (format: yyyy-MM-dd).'
+- name: get_intertie_outages
+  category: interties
+  description: Fetch all the outages affecting TTCs on interties/flowgates
+  maps_to: GET /outage
+  source_operation: openapi/aeso-itc-api-v1-openapi.json#getOutages
+  input_schema_source: openapi/aeso-itc-api-v1-openapi.json -> paths['/outage'].get.parameters
+  parameters:
+  - name: startDate
+    in: query
+    required: true
+    description: 'Pass any date in history or future with format: yyyyMMdd e.g. 12Aug2020 will be 20200812.
+      Fetches 13 months of data at a time. The data is available after 09 Nov 2020.'
+  - name: endDate
+    in: query
+    required: true
+    description: 'Pass any date equal to or after startDate with format: yyyyMMdd e.g. 12Aug2020 will
+      be 20200812. Fetches 13 months of data at a time. The data is available after 09 Nov 2020.'
+  - name: affectedIntertieOrFlowgate
+    in: query
+    required: false
+    description: "Pass one value. No selection or '--' will select all interties and flowgates by default.\
+      \ \n\n_Available values_: BC, MATL, SK, BC_MATL"
+- name: get_intertie_interchange
+  category: interties
+  description: Fetch Interchange Capability Report
+  maps_to: GET /interchange
+  source_operation: openapi/aeso-itc-api-v1-openapi.json#getReportByRange
+  input_schema_source: openapi/aeso-itc-api-v1-openapi.json -> paths['/interchange'].get.parameters
+  parameters:
+  - name: startDate
+    in: query
+    required: true
+    description: 'Pass any date in history or future with format: yyyyMMdd e.g. 12Aug2020 will be 20200812.
+      Fetches 100 days of data at a time.'
+  - name: endDate
+    in: query
+    required: true
+    description: 'Pass any date equal to or after startDate with format: yyyyMMdd e.g. 12Aug2020 will
+      be 20200812. Fetches 100 days of data at a time.'
+  - name: startHE
+    in: query
+    required: true
+    description: "Pass Hour Ending for start of the data \n\n_Available values_ : 1, 2, 3, 4, 5, 6, 7,\
+      \ 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24\n\n_Default value_ : 1"
+  - name: endHE
+    in: query
+    required: true
+    description: 'Pass HE equal to or more than Start HE
+
+
+      _Available values_ : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+      22, 23, 24
+
+
+      _Default value_ : 24'
+  - name: version
+    in: query
+    required: true
+    description: 'Pass true, to fetch all the data version changes made since 60mins before the start
+      of the hour till the end of the hour. E.g. For HE11, when Version = true, it will fetch all versions
+      of data from 9am till 11am.<br/>Pass false, to fetch only the latest version of the data at the
+      end of the hour. Data could be Gross Offer, TTC, ATC, TRM_Total, TRM_System, TRM_Allocation or All,
+      based on the selected dataType.
+
+
+      _Default value_ : false'
+  - name: dataType
+    in: query
+    required: false
+    description: 'Pass one value. No selection or ''--'' will select all data types by default.
+
+
+      _Available values_ : ATC, TTC, GROSS_OFFER, TRM_SYSTEM, TRM_ALLOCATION, TRM_TOTAL'
+  - name: intertieOrFlowgate
+    in: query
+    required: false
+    description: 'Pass one value. No selection or ''--'' will select all interties and flowgates by default.
+
+
+      _Available values_ :  BC, SK, MATL, BC_MATL, SYSTEM'
+  - name: transferType
+    in: query
+    required: false
+    description: 'Pass one value. No selection or ''--'' will select both transfer types by default.
+
+
+      _Available values_ : IMPORT, EXPORT'
+- name: get_load_outages
+  category: capacity
+  description: Fetch hourly load outages submitted to AESO
+  maps_to: GET /loadOutageReport
+  source_operation: openapi/aeso-loadoutageforecast-api-v1-openapi.json#getLoadOutageRangeReport
+  input_schema_source: openapi/aeso-loadoutageforecast-api-v1-openapi.json -> paths['/loadOutageReport'].get.parameters
+  parameters:
+  - name: startDate
+    in: query
+    required: true
+    description: Date (yyyy-mm-dd) from 2013-09-22, and up to 24 months in the future.
+  - name: endDate
+    in: query
+    required: false
+    description: Date (yyyy-mm-dd) equal or after startDate, and up to 24 months in the future. If blank,
+      data for the startDate will be returned.
+- name: get_metered_volumes
+  category: settlement
+  description: Fetch AIES Metered Volume data
+  maps_to: GET /meteredvolume/details
+  source_operation: openapi/aeso-meteredvolume-api-v1-openapi.json#getMeteredVolumeReport
+  input_schema_source: openapi/aeso-meteredvolume-api-v1-openapi.json -> paths['/meteredvolume/details'].get.parameters
+  parameters:
+  - name: startDate
+    in: query
+    required: true
+    description: 'Any date between 2000-01-01 and current date (format: yyyy-MM-dd).'
+  - name: endDate
+    in: query
+    required: false
+    description: 'Any date up to current date but after startDate. If left blank, only data for startDate
+      will be returned (format: yyyy-MM-dd).'
+  - name: asset_ID
+    in: query
+    required: false
+    description: This parameter can contain up to 20 comma-separated Asset IDs.
+  - name: pool_participant_ID
+    in: query
+    required: false
+    description: This parameter can contain up to 20 comma-separated Pool Participant IDs.
+- name: get_operating_reserve_offer_control
+  category: market
+  description: Fetch Operating Reserve Offer Control data for a given date that is 60 days prior to current
+    date.
+  maps_to: GET /operatingReserveOfferControl
+  source_operation: openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json#getOperatingReserveOfferControlReport
+  input_schema_source: openapi/aeso-operatingreserveoffercontrol-api-v1-openapi.json -> paths['/operatingReserveOfferControl'].get.parameters
+  parameters:
+  - name: startDate
+    in: query
+    required: true
+    description: 'Any date between 2012-10-04 and current date (format: yyyy-MM-dd).'
+- name: list_pool_participants
+  category: reference-data
+  description: Fetch the latest list of pool participants operating in AIES.
+  maps_to: GET /poolparticipantlist
+  source_operation: openapi/aeso-poolparticipant-api-v1-openapi.json#getPoolParticipantListData
+  input_schema_source: openapi/aeso-poolparticipant-api-v1-openapi.json -> paths['/poolparticipantlist'].get.parameters
+  parameters:
+  - name: pool_participant_ID
+    in: query
+    required: false
+    description: This parameter can contain up to 20 comma-separated Pool Participant IDs.
+  - name: pool_participant_name
+    in: query
+    required: false
+    description: All names that contain the provided string will be returned. The search is case-sensitive.
+- name: get_pool_price
+  category: prices
+  description: Fetch pool price report for a given date range
+  maps_to: GET /price/poolPrice
+  source_operation: openapi/aeso-poolprice-api-v1-1-openapi.json#getPoolPriceDateRangeReport
+  input_schema_source: openapi/aeso-poolprice-api-v1-1-openapi.json -> paths['/price/poolPrice'].get.parameters
+  parameters:
+  - name: startDate
+    in: query
+    required: true
+    description: 'Any date between 2000-01-01 and current date.  (format: yyyy-MM-dd).'
+  - name: endDate
+    in: query
+    required: false
+    description: 'Any date up to current date but after startDate. If left blank, only data for startDate
+      will be returned. (format: yyyy-MM-dd).'
+- name: get_system_marginal_price
+  category: prices
+  description: Fetch system marginal price report for a given date range
+  maps_to: GET /price/systemMarginalPrice
+  source_operation: openapi/aeso-systemmarginalprice-api-v1-1-openapi.json#getSystemMarginalPriceReportForDateRange
+  input_schema_source: openapi/aeso-systemmarginalprice-api-v1-1-openapi.json -> paths['/price/systemMarginalPrice'].get.parameters
+  parameters:
+  - name: startDate
+    in: query
+    required: true
+    description: 'Any date between 2000-01-01 and current date. (format: yyyy-MM-dd).)'
+  - name: endDate
+    in: query
+    required: false
+    description: 'Any date up to current date but after startDate. If left blank, only data for startDate
+      will be returned. (format: yyyy-MM-dd).)'
+- name: get_current_system_marginal_price
+  category: prices
+  description: Fetch the active system marginal price.
+  maps_to: GET /price/systemMarginalPrice/current
+  source_operation: openapi/aeso-systemmarginalprice-api-v1-1-openapi.json#getCurrentSystemMarginalPriceReport
+  input_schema_source: openapi/aeso-systemmarginalprice-api-v1-1-openapi.json -> paths['/price/systemMarginalPrice/current'].get.parameters
+  parameters: []
+- name: get_unit_commitment_directives
+  category: dispatch
+  description: Fetch Unit Commitment Directive Data
+  maps_to: GET /unitCommitment
+  source_operation: openapi/aeso-unitcommitmentdata-api-v2-openapi.json#getUnitCommitmentDataReportV11ForDateRange
+  input_schema_source: openapi/aeso-unitcommitmentdata-api-v2-openapi.json -> paths['/unitCommitment'].get.parameters
+  parameters:
+  - name: startDate
+    in: query
+    required: false
+    description: 'Unit Commitment End Date From. Any date from 2024-07-01. Default to current time if
+      left blank (format: yyyy-MM-dd).)'
+  - name: endDate
+    in: query
+    required: false
+    description: 'Unit Commitment End Date To. Any date from 2024-07-01 but after startDate. If left blank,
+      return all the data from startDate. (format: yyyy-MM-dd).)'

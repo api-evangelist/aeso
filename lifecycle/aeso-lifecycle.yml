@@ -1,0 +1,86 @@
+generated: '2026-07-27'
+method: searched
+source: https://www.aeso.ca/market/market-updates
+versioning:
+  scheme: uri-path
+  detail: >-
+    Major version is a path segment on the Azure APIM gateway — https://apimgw.aeso.ca/public/<api>/<version>
+    (v1, v1.1, v2). No version header, no media-type versioning, no date-pinned versions. Each version
+    is registered as its own API in the developer portal, so v1 and v2 of the same report appear as two
+    separate entries with separate OpenAPI documents.
+  current:
+    poolprice-api: v1.1
+    systemmarginalprice-api: v1.1
+    currentsupplydemand-api: v2 (summary) + v1 (per-asset generation)
+    unitcommitmentdata-api: v2
+    other: v1
+  docs: https://developer-apim.aeso.ca/apis
+deprecation:
+  policy_url: https://www.aeso.ca/market/market-updates
+  policy_published: false
+  mechanism: dated Market Updates announcement
+  sunset_header: false
+  deprecation_header: false
+  detail: >-
+    AESO has no written API deprecation policy and no committed notice window, but it does practice
+    dated deprecation in public: retirements are announced as Market Updates posts naming the version
+    and the date it stops working, and the announcement is repeated as a reminder before cutover.
+    There is no RFC 8594 Sunset or Deprecation response header on the gateway, and no `deprecated: true`
+    flag in any harvested OpenAPI.
+  observed_notice_windows:
+  - change: Current Supply Demand v1 retirement
+    announced_effective: '2025-07-30'
+    unavailable_after: '2025-09-30'
+    notice: roughly two months between the new version going live and v1 being switched off
+  - change: Legacy Swagger API Gateway decommissioning
+    unavailable_after: '2025-03-31'
+    notice: pre-announced in "Notification of API Changes" and repeated in "Reminder - API Changes"
+retirements:
+- api: Current Supply Demand
+  version: v1 (summary endpoint)
+  retired: '2025-09-30'
+  announcement: https://www.aeso.ca/market/market-updates/2025/supply-demand-api-proposed-changes/
+  replacement: https://apimgw.aeso.ca/public/currentsupplydemand-api/v2/csd/summary/current
+  note: >-
+    The v1 API entry retained in this repo (openapi/aeso-currentsupplydemand-api-v1-openapi.json) is the
+    per-asset generation endpoint /csd/generation/assets/current, which is still published in the AESO
+    developer portal. It is the v1 SUMMARY endpoint that was retired.
+- api: Unit Commitment Data
+  version: v1
+  retired: '2025-07-30'
+  announcement: https://www.aeso.ca/market/market-updates/2025/supply-demand-api-proposed-changes/
+  replacement: https://apimgw.aeso.ca/public/unitcommitmentdata-api/v2/unitCommitment
+- api: Legacy Swagger API Gateway (api.aeso.ca)
+  version: all
+  retired: '2025-03-31'
+  announcement: https://www.aeso.ca/market/market-updates/2025/reminder-api-changes/
+  replacement: https://apimgw.aeso.ca/
+  verified: >-
+    api.aeso.ca does not resolve as of 2026-07-27 (connection failure on every probe), confirming the
+    legacy gateway is fully decommissioned.
+deprecated_operations: []
+deprecated_operations_note: >-
+  No operation in any of the 14 harvested OpenAPI documents carries `deprecated: true`.
+sla:
+  published: false
+  uptime_target: null
+  note: >-
+    AESO publishes no SLA, uptime target or support-response commitment for the public API surface.
+    The only support channel is info@aeso.ca.
+status_page:
+  url: null
+  published: false
+  note: >-
+    No API status page. status.aeso.ca does not resolve (probed 2026-07-27). AESO publishes real-time
+    GRID condition dashboards (ets.aeso.ca current supply and demand, itc.aeso.ca intertie capability)
+    but nothing that reports the health of the APIM gateway or the developer portal. Planned system
+    maintenance and outages for market applications are announced in the Market Updates stream.
+support:
+  email: info@aeso.ca
+  page: https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
+gaps:
+- No published deprecation policy document or committed minimum notice period.
+- No Sunset / Deprecation response headers (RFC 8594).
+- No status page and no SLA for the API surface.
+- API changes are only discoverable inside the general Market Updates stream; there is no API-specific
+  feed or subscription.

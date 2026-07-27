@@ -1,0 +1,62 @@
+generated: '2026-07-27'
+method: derived
+source: openapi/*.json + https://www.aeso.ca/legal/ + https://www.aeso.ca/privacy/
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: 'All 14 harvested specs declare openapi: 3.0.1.'
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 securityScheme in any spec; authentication is a single apiKey (API-KEY header or
+    subscription-key query).
+- id: oidc
+  conforms: false
+  evidence: No openIdConnect scheme; /.well-known/openid-configuration returns 404 on every AESO host.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No 4xx/5xx response declares application/problem+json; the Azure APIM {statusCode,message}
+    envelope is used instead.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on www.aeso.ca, apimgw.aeso.ca, gateway-apim.aeso.ca
+    and developer-apim.aeso.ca (probed 2026-07-27).
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation header advertised; AESO announces retirements as dated Market Updates
+    posts instead (see lifecycle/aeso-lifecycle.yml).
+- id: json-api
+  conforms: false
+  evidence: 'Responses are bespoke report envelopes ({"<Report Name>": [ ... ]}), not JSON:API documents.'
+- id: pagination
+  conforms: false
+  evidence: No page/cursor/limit parameters in any operation; result size is bounded by date-range caps
+    (e.g. one year per Pool Price request) instead.
+- id: idempotency
+  conforms: false
+  evidence: No Idempotency-Key parameter. All 16 operations are GET, so they are safe and idempotent by
+    HTTP method, but there is no idempotency-key contract because there are no write operations.
+- id: odata
+  conforms: false
+  evidence: No OData query options; the gateway is Azure APIM but the APIs are plain REST reports.
+- id: green-button
+  conforms: false
+  evidence: Not applicable — Green Button / ESPI is a consumer-usage standard. AESO is a wholesale market
+    operator and holds no retail customer usage data.
+- id: cim-iec-61968-61970
+  conforms: false
+  evidence: No CIM/IEC 61970 profile is published for these reports; payloads are AESO-specific value
+    objects.
+- id: ferc-order-2222
+  conforms: false
+  evidence: Not applicable — AESO is an Alberta (Canada) authority, outside FERC jurisdiction.
+- id: consumer-data-right
+  conforms: false
+  evidence: Not applicable — Alberta has no Consumer Data Right or equivalent energy-data mandate; AESO's
+    API surface is voluntary.
+compliance_program:
+  published: false
+  certifications: []
+  note: AESO publishes no trust center and no SOC 2 / ISO 27001 / PCI attestation for its public API surface.
+    It does publish a Privacy Statement grounded in Alberta's Protection of Privacy Act (POP Act) at https://www.aeso.ca/privacy/,
+    and Legal Terms and Conditions at https://www.aeso.ca/legal/ that limit use of AESO material to non-commercial,
+    personal or educational purposes.

@@ -1,0 +1,74 @@
+generated: '2026-07-27'
+method: searched
+source: https://www.aeso.ca/assets/downloads/external/api/API-Access-Instructions-APIM-API-Gateway.pdf
+docs: https://developer-apim.aeso.ca/apis
+summary: >-
+  AESO publishes NO sandbox or test environment — there is one environment, production, and the data
+  it returns is the real Alberta market. What it does publish is an interactive API console: the Azure
+  API Management developer portal ships a per-operation "Try it" experience that executes a live call
+  against apimgw.aeso.ca with your own subscription key and renders a copyable request in the language
+  of your choice. That console is the only hands-on surface, and it is the reason a developer can
+  exercise every operation before writing code.
+console:
+  present: true
+  type: interactive-api-console
+  vendor: Azure API Management developer portal
+  url: https://developer-apim.aeso.ca/apis
+  auth_required: true
+  auth_note: >-
+    The reference, operations, schemas and OpenAPI export can all be read ANONYMOUSLY, but executing a
+    call from the console requires a subscription key, which means signing up. Sign-up is self-serve
+    with no approval step.
+  code_generation:
+    available: true
+    detail: >-
+      "To invoke the API in the language of your choice, click 'Try it' button on the developer portal.
+      Select the request type from the drop-down menu. E.g. If you use Curl, select Curl and copy the
+      command using 'Copy' button." (APIM API Gateway Instructions, page 7)
+  evidence:
+  - source: https://www.aeso.ca/assets/downloads/external/api/API-Access-Instructions-APIM-API-Gateway.pdf
+    steps: 17-18
+    quote: To invoke the API in the language of your choice, click 'Try it' button on the developer portal.
+test_environment:
+  present: false
+  note: >-
+    There is no test/staging host, no test-vs-live key prefix, no test mode, no simulated market and no
+    fixture/trigger tooling. apimgw.aeso.ca and gateway-apim.aeso.ca are both production servers
+    declared in every OpenAPI document.
+test_values:
+  present: false
+  note: >-
+    AESO publishes no magic test identifiers. Because every operation is a read-only GET against real
+    market data, there is nothing to simulate — but it also means there are no safe placeholder asset
+    IDs or participant IDs documented anywhere. The published in-spec response examples use the literal
+    placeholder "string" for every field rather than realistic sample values (see examples/aeso-examples.yml).
+anonymous_alternative:
+  present: true
+  surface: AESO Energy Trading System (ETS) public report servlets
+  base: http://ets.aeso.ca/ets_web/ip/Market/Reports
+  note: >-
+    The practical stand-in for a sandbox is the legacy ETS report servlet surface, which returns the
+    same market data as real CSV with contentType=csv and requires NO key, NO account and NO licence
+    click-through. It is the fastest way to see AESO's actual data shapes before subscribing, and it was
+    confirmed live and anonymous on 2026-07-27.
+  examples:
+  - report: Current Supply Demand
+    url: http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet
+  - report: Pool Price / System Marginal Price
+    url: http://ets.aeso.ca/ets_web/ip/Market/Reports/SMPriceReportServlet
+  - report: Daily Average Pool Price
+    url: http://ets.aeso.ca/ets_web/ip/Market/Reports/DailyAveragePoolPriceReportServlet
+onboarding:
+  self_service: true
+  approval_required: false
+  steps:
+  - Go to https://developer-apim.aeso.ca/signup and sign up with your preferred email.
+  - Confirm the email from the link in the notification email.
+  - Sign in, open the Products page, and select the "AESO Public API" product.
+  - Name your subscription, agree to the terms of use, and click Subscribe.
+  - Primary and secondary keys are generated instantly and appear on the Profile page.
+  caveat: >-
+    "In rare scenarios, if a product is dropped and recreated, then the user will need to regenerate
+    their key to access the APIs again. The user will get 'Invalid Key' error if they continue to use
+    the old key."
+  source: https://www.aeso.ca/assets/downloads/external/api/API-Access-Instructions-APIM-API-Gateway.pdf

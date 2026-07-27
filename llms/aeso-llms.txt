@@ -1,0 +1,86 @@
+# AESO — Alberta Electric System Operator
+
+> The independent, not-for-profit system and market operator for Alberta's electricity system. AESO
+> dispatches generation, operates the Alberta Interconnected Electric System, plans transmission, and
+> runs Alberta's energy-only wholesale market including Pool Price settlement. It publishes fourteen
+> JSON market-data APIs through an Azure API Management gateway, plus a fully anonymous legacy CSV
+> report surface. Authentication is a single API-KEY header; keys are self-serve and free. Use of
+> AESO material is restricted by its site terms to non-commercial, personal or educational purposes.
+
+Generated: 2026-07-27 · method: generated · source: apis.yml + repo artifacts
+(AESO publishes no llms.txt of its own; /llms.txt returned 404 on www.aeso.ca and
+developer-apim.aeso.ca on 2026-07-27.)
+
+## Getting started
+
+- [AESO API overview](https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/): the canonical list of available APIs and the contact for questions.
+- [APIM API Gateway Instructions (PDF)](https://www.aeso.ca/assets/downloads/external/api/API-Access-Instructions-APIM-API-Gateway.pdf): step-by-step sign-up, subscription and key generation, plus how to import the OpenAPI into Postman.
+- [Developer portal](https://developer-apim.aeso.ca/): browse APIs, read operations and schemas anonymously, export OpenAPI, and use the interactive "Try it" console.
+- [Sign up](https://developer-apim.aeso.ca/signup): self-serve, email confirmation, no approval step.
+- [API products](https://developer-apim.aeso.ca/products): one product, "AESO Public API", free.
+
+## Authentication
+
+- Send your subscription key as the `API-KEY` request header, or as the `subscription-key` query parameter.
+- Anonymous calls return HTTP 401 `{"statusCode": 401, "message": "Access denied due to missing subscription key..."}`.
+- Base URL pattern: `https://apimgw.aeso.ca/public/{api}/{version}{path}` (secondary host `gateway-apim.aeso.ca`).
+
+## APIs
+
+- [Pool Price Report](https://developer-apim.aeso.ca/api-details#api=poolprice-api-v1-1): hourly Alberta Pool Price, forecast pool price and 30-day rolling average for a date range back to 2000-01-01 (max one year per request). `GET /price/poolPrice`
+- [System Marginal Price Report](https://developer-apim.aeso.ca/api-details#api=systemmarginalprice-api-v1-1): the real-time price signal that sets the pool price, as a range report and as a current value. `GET /price/systemMarginalPrice`, `GET /price/systemMarginalPrice/current`
+- [Current Supply Demand v2](https://developer-apim.aeso.ca/api-details#api=currentsupplydemand-api-v2): Alberta Total Net Generation, Net Actual Interchange, Alberta Internal Load, contingency reserve and generation mix by fuel type. `GET /csd/summary/current`
+- [Current Supply Demand v1](https://developer-apim.aeso.ca/api-details#api=currentsupplydemand-api-v1): per-asset current generation. `GET /csd/generation/assets/current`
+- [Actual Forecast Report](https://developer-apim.aeso.ca/api-details#api=actualforecast-api-v1): actual and forecast Alberta Internal Load for a date range. `GET /load/albertaInternalLoad`
+- [AIES Gen Capacity](https://developer-apim.aeso.ca/api-details#api=aiesgencapacity-api-v1): generation capacity and generator outages submitted to AESO. `GET /AIESGenCapacity`
+- [Load Outage Forecast](https://developer-apim.aeso.ca/api-details#api=loadoutageforecast-api-v1): load outages submitted to AESO. `GET /loadOutageReport`
+- [Intertie Public Reports](https://developer-apim.aeso.ca/api-details#api=itc-api-v1): intertie interchange capability and flow, and intertie outages. `GET /interchange`, `GET /outage`
+- [Energy Merit Order Report](https://developer-apim.aeso.ca/api-details#api=energymeritorder-api-v1): the stacked offers that determine dispatch and where price clears. `GET /meritOrder/energy`
+- [Metered Volume Report](https://developer-apim.aeso.ca/api-details#api=meteredvolume-api-v1): settlement-grade metered volumes at market-asset granularity. `GET /meteredvolume/details`
+- [Operating Reserve Offer Control Report](https://developer-apim.aeso.ca/api-details#api=operatingreserveoffercontrol-api-v1): who controls offers for Alberta's ancillary-services reserve products. `GET /operatingReserveOfferControl`
+- [Asset List](https://developer-apim.aeso.ca/api-details#api=assetlist-api-v1): the registry of market assets — the reference data behind every asset_ID in every other feed. `GET /assetlist`
+- [Pool Participant](https://developer-apim.aeso.ca/api-details#api=poolparticipant-api-v1): the market-participant registry behind the asset list. `GET /poolparticipantlist`
+- [Unit Commitment Data v2](https://developer-apim.aeso.ca/api-details#api=unitcommitmentdata-api-v2): unit commitment directives issued by AESO. `GET /unitCommitment`
+
+## Anonymous CSV surface (no key required)
+
+- [Market and System Reporting](https://www.aeso.ca/market/market-and-system-reporting/): the ETS report index.
+- `http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet` — Current Supply Demand
+- `http://ets.aeso.ca/ets_web/ip/Market/Reports/SMPriceReportServlet` — hourly Pool Price / System Marginal Price
+- `http://ets.aeso.ca/ets_web/ip/Market/Reports/DailyAveragePoolPriceReportServlet` — daily on-peak / off-peak averages
+- Append `contentType=csv` for machine-readable CSV. No key, no account, no licence click-through.
+
+## Specs
+
+- [OpenAPI documents (14)](https://github.com/api-evangelist/aeso/tree/main/openapi): OpenAPI 3.0.1, one per published API, harvested verbatim from the AESO developer portal.
+- [Overlays](https://github.com/api-evangelist/aeso/tree/main/overlays): OpenAPI Overlay 1.0.0 documents carrying the API Evangelist enhancements (tags, contact, artifact cross-links).
+
+## Artifacts
+
+- [Authentication profile](https://github.com/api-evangelist/aeso/blob/main/authentication/aeso-authentication.yml)
+- [API conventions](https://github.com/api-evangelist/aeso/blob/main/conventions/aeso-conventions.yml)
+- [Error catalog](https://github.com/api-evangelist/aeso/blob/main/errors/aeso-problem-types.yml)
+- [Lifecycle, versioning and retirements](https://github.com/api-evangelist/aeso/blob/main/lifecycle/aeso-lifecycle.yml)
+- [Changelog](https://github.com/api-evangelist/aeso/blob/main/changelog/aeso-changelog.yml)
+- [Data model](https://github.com/api-evangelist/aeso/blob/main/data-model/aeso-data-model.yml)
+- [Plans](https://github.com/api-evangelist/aeso/blob/main/plans/aeso-plans.yml)
+- [Sandbox / console](https://github.com/api-evangelist/aeso/blob/main/sandbox/aeso-sandbox.yml)
+- [Conformance](https://github.com/api-evangelist/aeso/blob/main/conformance/aeso-conformance.yml)
+- [Agentic access contracts](https://github.com/api-evangelist/aeso/blob/main/agentic-access/aeso-agentic-access.yml)
+- [Candidate MCP tools](https://github.com/api-evangelist/aeso/blob/main/mcp/aeso-mcp.yml) and [tool crosswalk](https://github.com/api-evangelist/aeso/blob/main/mcp/aeso-tool-crosswalk.yml)
+- [Agent skills](https://github.com/api-evangelist/aeso/tree/main/skills)
+- [Arazzo workflows](https://github.com/api-evangelist/aeso/tree/main/arazzo)
+
+## Optional
+
+- [Market Updates](https://www.aeso.ca/market/market-updates): where AESO announces API changes and retirements, mixed in with market notices.
+- [Legal terms](https://www.aeso.ca/legal/): non-commercial, personal or educational use only.
+- [Privacy statement](https://www.aeso.ca/privacy/): Alberta Protection of Privacy Act (POP Act).
+- [Newsroom](https://www.aeso.ca/aeso/newsroom/)
+- Support: info@aeso.ca
+
+## What AESO does not publish
+
+No MCP server, no GraphQL, no webhooks or event stream, no AsyncAPI, no SDKs, no CLI, no
+/.well-known/ documents, no security.txt, no status page, no SLA, no rate-limit documentation, no
+written deprecation policy, and no trust center or compliance certifications.

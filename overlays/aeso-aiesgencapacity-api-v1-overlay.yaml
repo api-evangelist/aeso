@@ -1,0 +1,42 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for AESO AIES Gen Capacity API
+  version: 1.0.0
+extends: openapi/aeso-aiesgencapacity-api-v1-openapi.json
+x-generated: '2026-07-27'
+x-method: generated
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: aeso
+    x-apievangelist-provider-name: AESO (Alberta Electric System Operator)
+    x-apievangelist-artifacts:
+      authentication: authentication/aeso-authentication.yml
+      conventions: conventions/aeso-conventions.yml
+      errors: errors/aeso-problem-types.yml
+      lifecycle: lifecycle/aeso-lifecycle.yml
+      changelog: changelog/aeso-changelog.yml
+      data-model: data-model/aeso-data-model.yml
+      agentic-access: agentic-access/aeso-agentic-access.yml
+    x-apievangelist-access:
+      onboarding: self-service
+      approval-required: false
+      product: AESO Public API
+      terms: https://www.aeso.ca/legal/
+      terms-note: Non-commercial, personal or educational use only; any other use requires AESO's written
+        permission.
+- target: $.info
+  update:
+    contact:
+      name: AESO
+      email: info@aeso.ca
+      url: https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
+- target: $.paths['/AIESGenCapacity'].get
+  update:
+    tags:
+    - AIES Gen Capacity API
+- target: $
+  update:
+    tags:
+    - name: AIES Gen Capacity API
+      description: AIES generation capacity and outages submitted to the AESO.

@@ -1,0 +1,38 @@
+generated: '2026-07-27'
+method: derived
+source: arazzo/*.yaml
+summary: >-
+  Native Arazzo 1.0.1 workflows stitching AESO's own operations into real multi-step market-data use
+  cases. Every operationId is verified verbatim against the harvested OpenAPI in openapi/. All steps
+  are GET, so every workflow is safe to re-run.
+workflows:
+- file: aeso-market-snapshot.yaml
+  workflowId: aeso-market-snapshot
+  title: AESO live market snapshot
+  summary: Supply and demand balance, live system marginal price, and today's completed settlement-hour
+    pool prices in one pass.
+  operations:
+  - getCSDSummaryDataReportv2
+  - getCurrentSystemMarginalPriceReport
+  - getPoolPriceDateRangeReport
+- file: aeso-asset-drilldown.yaml
+  workflowId: aeso-asset-drilldown
+  title: AESO asset drilldown
+  summary: Participant registry to asset registry to live generation to settlement-grade metered
+    volumes, joined on pool_participant_ID and asset_ID.
+  operations:
+  - getPoolParticipantListData
+  - getAssetListData
+  - getCSDReportByAsset
+  - getMeteredVolumeReport
+- file: aeso-price-formation.yaml
+  workflowId: aeso-price-formation
+  title: AESO price formation trace
+  summary: Merit order, unit commitment directives and generation outages read against the realised
+    system marginal and pool price series.
+  operations:
+  - getMeritOrderReport
+  - getUnitCommitmentDataReportV11ForDateRange
+  - getAIESControlReport
+  - getSystemMarginalPriceReportForDateRange
+  - getPoolPriceDateRangeReport
