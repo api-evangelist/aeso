@@ -417,6 +417,8 @@ apis:
   - type: Website
     url: http://ets.aeso.ca/
 common:
+- type: MCPServer
+  url: mcp/aeso-mcp.yml
 - type: AgenticAccess
   url: agentic-access/aeso-agentic-access.yml
 - type: DomainSecurity
