@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "System Marginal Price Report",
+    "version": "v1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fetch system marginal price report for a given date range",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://apimgw.aeso.ca/public/systemmarginalprice-api/price/systemMarginalPrice",
+        "params": [
+          {
+            "name": "startDate",
+            "value": "",
+            "type": "query",
+            "description": "Any date between 2000-01-01 and current date. (format: yyyy-MM-dd).)"
+          },
+          {
+            "name": "endDate",
+            "value": "",
+            "type": "query",
+            "description": "Any date up to current date but after startDate. If left blank, only data for startDate will be returned. (format: yyyy-MM-dd).)"
+          }
+        ]
+      },
+      "docs": "Fetch system marginal price report for the date range: startDate (yyyy-MM-dd) to endDate (yyyy-MM-dd). The endDate is optional. If omitted, fetched data will include all data up to the last completed SMP value for the startDate. The API will return a maximum of 4,392 hours (i.e. 183 days).\n\n\n**Please note:** This API does not provide the active System Marginal Price (SMP). To obtain the active SMP, please use the 'Fetch the active system marginal price' API in the lefthand pane."
+    },
+    {
+      "info": {
+        "name": "Fetch the active system marginal price.",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://apimgw.aeso.ca/public/systemmarginalprice-api/price/systemMarginalPrice/current"
+      },
+      "docs": "Fetch the active system marginal price."
+    }
+  ],
+  "bundled": true
+}

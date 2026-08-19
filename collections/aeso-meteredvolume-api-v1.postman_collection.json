@@ -1,0 +1,467 @@
+{
+  "item": [
+    {
+      "id": "4f8c7c27-48cc-4368-b4c0-3207f02817d4",
+      "name": "Fetch AIES Metered Volume data",
+      "request": {
+        "name": "Fetch AIES Metered Volume data",
+        "description": {
+          "content": "Fetch AIES Metered Volume for a given date or date range. \n\nIf only the startDate is provided, data will only be provided for that day. \r\n\n\nOptional parameters asset_ID and pool_participant_ID can be provided to limit the data returned. The asset_ID and pool_participant_ID parameters are comma separated lists. At most, one of the two parameters can be passed in an API call.\r\n\n\nIf no asset_ID or pool_participant_ID is provided, then the API with fetch data for all assets, which will be limited to 16 days in a single fetch.\r\n\n\nIf asset_ID or pool_participant_ID is provided, the API with fetch data specific to those parameters. The results will be limited to approximately 100K records in a single fetch. For example, a single asset will return 24 records for 1 day. Please restrict your query accordingly. \n\n",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "meteredvolume",
+            "details"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "startDate",
+              "value": "<string>",
+              "description": "(Required) Any date between 2000-01-01 and current date (format: yyyy-MM-dd)."
+            },
+            {
+              "disabled": false,
+              "key": "endDate",
+              "value": "<string>",
+              "description": "Any date up to current date but after startDate. If left blank, only data for startDate will be returned (format: yyyy-MM-dd)."
+            },
+            {
+              "disabled": false,
+              "key": "asset_ID",
+              "value": "<string>",
+              "description": "This parameter can contain up to 20 comma-separated Asset IDs."
+            },
+            {
+              "disabled": false,
+              "key": "pool_participant_ID",
+              "value": "<string>",
+              "description": "This parameter can contain up to 20 comma-separated Pool Participant IDs."
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "c28dd135-c026-4631-8b0c-8adafa2c070f",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "meteredvolume",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "asset_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"pool_participant_ID\": \"string\",\n  \"asset_list\": [\n    {\n      \"asset_ID\": \"string\",\n      \"asset_class\": \"string\",\n      \"metered_volume_list\": [\n        {\n          \"begin_date_utc\": \"string\",\n          \"begin_date_mpt\": \"string\",\n          \"metered_volume\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "0945dad0-8ab8-46a6-8f99-e8bc8664378d",
+          "name": "Bad Request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "meteredvolume",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "asset_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "f352ddfd-f93e-4a5d-8c36-34a5fc7d3423",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "meteredvolume",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "asset_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "6c578056-7bcd-4735-bc73-072cbb9a38bd",
+          "name": "Forbidden",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "meteredvolume",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "asset_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "00f6ff5e-db3d-4835-8ce5-3b565f0bd5fa",
+          "name": "Not Found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "meteredvolume",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "asset_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "f852ff82-0625-4c81-bd44-7d38b131f8fe",
+          "name": "Invalid method",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "meteredvolume",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "asset_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Method Not Allowed",
+          "code": 405,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "d7349809-fa8d-4900-850b-a92d451b90d0",
+          "name": "Internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "meteredvolume",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "asset_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "6d2edae7-fd8c-48d3-a29a-38ea606d0925",
+          "name": "Service unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "meteredvolume",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "asset_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apimgw.aeso.ca/public/meteredvolume-api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "646b6604-2233-4939-a9c8-7382b7d7e1bf",
+    "name": "Metered Volume Report",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fetch AIES Metered Volume data",
+      "type": "text/plain"
+    }
+  }
+}

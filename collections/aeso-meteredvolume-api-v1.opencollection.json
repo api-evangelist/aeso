@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Metered Volume Report",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fetch AIES Metered Volume data",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://apimgw.aeso.ca/public/meteredvolume-api/meteredvolume/details",
+        "params": [
+          {
+            "name": "startDate",
+            "value": "",
+            "type": "query",
+            "description": "Any date between 2000-01-01 and current date (format: yyyy-MM-dd)."
+          },
+          {
+            "name": "endDate",
+            "value": "",
+            "type": "query",
+            "description": "Any date up to current date but after startDate. If left blank, only data for startDate will be returned (format: yyyy-MM-dd)."
+          },
+          {
+            "name": "asset_ID",
+            "value": "",
+            "type": "query",
+            "description": "This parameter can contain up to 20 comma-separated Asset IDs."
+          },
+          {
+            "name": "pool_participant_ID",
+            "value": "",
+            "type": "query",
+            "description": "This parameter can contain up to 20 comma-separated Pool Participant IDs."
+          }
+        ]
+      },
+      "docs": "Fetch AIES Metered Volume for a given date or date range. \n\nIf only the startDate is provided, data will only be provided for that day. \r\n\n\nOptional parameters asset_ID and pool_participant_ID can be provided to limit the data returned. The asset_ID and pool_participant_ID parameters are comma separated lists. At most, one of the two parameters can be passed in an API call.\r\n\n\nIf no asset_ID or pool_participant_ID is provided, then the API with fetch data for all assets, which will be limited to"
+    }
+  ],
+  "bundled": true
+}

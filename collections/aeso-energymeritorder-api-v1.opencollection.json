@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Energy Merit Order Report",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fetch Energy Merit Order snapshot data for a given date that is 60 days prior to current date.",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://apimgw.aeso.ca/public/energymeritorder-api/meritOrder/energy",
+        "params": [
+          {
+            "name": "startDate",
+            "value": "",
+            "type": "query",
+            "description": "Any date between 2009-09-01 and 60 days prior to current date (format: yyyy-MM-dd)."
+          }
+        ]
+      },
+      "docs": "Fetch Energy Merit Order snapshot data for Date(startDate (yyyy-MM-dd)) \n\nThe EMMO snapshot data is available 60 days after the date of the snapshot, first available from September 1, 2009. \n\nThe data from 1-Sep-2009 to 1-Sep-2014 is the Merit Order at the 30th min. of the settlement interval. \n\nThe data after 1-Sep-2014 is the last Merit Order of the settlement interval.\r\n"
+    }
+  ],
+  "bundled": true
+}

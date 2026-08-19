@@ -1,0 +1,382 @@
+{
+  "item": [
+    {
+      "id": "ee4ab3b3-6dc6-40f5-9147-d2f0192c72df",
+      "name": "Fetch the latest list of pool participants operating in AIES. ",
+      "request": {
+        "name": "Fetch the latest list of pool participants operating in AIES. ",
+        "description": {
+          "content": "Fetch the latest list of pool participants operating in AIES",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "poolparticipantlist"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "pool_participant_ID",
+              "value": "<string>",
+              "description": "This parameter can contain up to 20 comma-separated Pool Participant IDs."
+            },
+            {
+              "disabled": false,
+              "key": "pool_participant_name",
+              "value": "",
+              "description": "All names that contain the provided string will be returned. The search is case-sensitive."
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "d81cc6a2-9c3f-4ce9-a0ce-785887d0482e",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "poolparticipantlist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_name",
+                  "value": ""
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"pool_participant_name\": \"string\",\n  \"pool_participant_ID\": \"string\",\n  \"corporate_contact\": \"string\",\n  \"agent_list\": [\n    {\n      \"agent_ID\": \"string\",\n      \"agent_name\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "76d031b5-5eff-45c8-bc65-982139114b30",
+          "name": "Bad Request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "poolparticipantlist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_name",
+                  "value": ""
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "306264f7-56e8-471b-bd78-01e53402a3c9",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "poolparticipantlist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_name",
+                  "value": ""
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "de6aeed0-e6a4-4b92-b7b3-18c661c91cfb",
+          "name": "Forbidden",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "poolparticipantlist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_name",
+                  "value": ""
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "2b68d093-cb1a-457d-af5a-39e39fa93849",
+          "name": "Not Found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "poolparticipantlist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_name",
+                  "value": ""
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "ae722f71-5ce5-407a-935d-d8d5346a34b8",
+          "name": "Invalid method",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "poolparticipantlist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_name",
+                  "value": ""
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Method Not Allowed",
+          "code": 405,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "11fc8623-8aec-4824-9030-84c76344e9aa",
+          "name": "Internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "poolparticipantlist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_name",
+                  "value": ""
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "40e29347-68c5-4b29-848c-38f371cf2170",
+          "name": "Service unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "poolparticipantlist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_name",
+                  "value": ""
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apimgw.aeso.ca/public/PoolParticipant-api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "cdbb9544-1ed9-434f-a94d-7bf8cd4032cf",
+    "name": "Pool Participant API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fetch the latest list of pool participants operating in AIES",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,391 @@
+{
+  "item": [
+    {
+      "id": "81689702-454d-462f-898b-dfdd5616d493",
+      "name": "Fetch pool price report for a given date range",
+      "request": {
+        "name": "Fetch pool price report for a given date range",
+        "description": {
+          "content": "Fetch pool price report for the date range: startDate (yyyy-mm-dd) to endDate (yyyy-mm-dd). The endDate is optional. If endDate is omitted, fetched data will include the pool price values for all the completed settlement hours of the day specified by startDate.\r\n\r\nTo fetch the latest pool price, include the date of that hour in your query.\r\n\r\n \r\n\r\nThe API will return data for a maximum of 1 year at a time.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "price",
+            "poolPrice"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "startDate",
+              "value": "<string>",
+              "description": "(Required) Any date between 2000-01-01 and current date.  (format: yyyy-MM-dd)."
+            },
+            {
+              "disabled": false,
+              "key": "endDate",
+              "value": "<string>",
+              "description": "Any date up to current date but after startDate. If left blank, only data for startDate will be returned. (format: yyyy-MM-dd)."
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "c2717d04-68cf-4ea6-a708-4fd02818f4d5",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "poolPrice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"Pool Price Report\": [\n    {\n      \"begin_datetime_utc\": \"string\",\n      \"begin_datetime_mpt\": \"string\",\n      \"pool_price\": \"string\",\n      \"forecast_pool_price\": \"string\",\n      \"rolling_30day_avg\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "f2d3e1c5-65a4-4ed5-a104-5d3f0b577e0a",
+          "name": "Bad Request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "poolPrice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "1055fc80-eaf5-4636-867f-ceb4e5541558",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "poolPrice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "a00abe05-5fc6-4f0e-93b2-3258d013d584",
+          "name": "Forbidden",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "poolPrice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "3d039e92-8530-4a6a-9bbc-707bd765c231",
+          "name": "Not Found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "poolPrice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "7ae4f1df-3aec-4a38-9bc2-9c4e6a518fe4",
+          "name": "Invalid method",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "poolPrice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Method Not Allowed",
+          "code": 405,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "6d2d4e69-fc79-43a6-8fcd-6eed000fc22d",
+          "name": "Internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "poolPrice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "b2a23759-ce3b-4819-bf5c-8d4df86f889b",
+          "name": "Service unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "poolPrice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apimgw.aeso.ca/public/poolprice-api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "4ba6c23c-393c-40bc-9ee1-9018112c069e",
+    "name": "Pool Price Report",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Pool Price report data",
+      "type": "text/plain"
+    }
+  }
+}

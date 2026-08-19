@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Intertie Public Reports",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fetch all the outages affecting TTCs on interties/flowgates",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://apimgw.aeso.ca/public/itc/outage",
+        "params": [
+          {
+            "name": "startDate",
+            "value": "",
+            "type": "query",
+            "description": "Pass any date in history or future with format: yyyyMMdd e.g. 12Aug2020 will be 20200812. Fetches 13 months of data at a time. The data is available after 09 Nov 2020."
+          },
+          {
+            "name": "endDate",
+            "value": "",
+            "type": "query",
+            "description": "Pass any date equal to or after startDate with format: yyyyMMdd e.g. 12Aug2020 will be 20200812. Fetches 13 months of data at a time. The data is available after 09 Nov 2020."
+          },
+          {
+            "name": "affectedIntertieOrFlowgate",
+            "value": "",
+            "type": "query",
+            "description": "Pass one value. No selection or '--' will select all interties and flowgates by default. \n\n_Available values_: BC, MATL, SK, BC_MATL"
+          }
+        ]
+      },
+      "docs": "Fetches 13 months of data at a time. The data is available after 09 Nov 2020."
+    },
+    {
+      "info": {
+        "name": "Fetch Interchange Capability Report",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://apimgw.aeso.ca/public/itc/interchange",
+        "params": [
+          {
+            "name": "startDate",
+            "value": "",
+            "type": "query",
+            "description": "Pass any date in history or future with format: yyyyMMdd e.g. 12Aug2020 will be 20200812. Fetches 100 days of data at a time."
+          },
+          {
+            "name": "endDate",
+            "value": "",
+            "type": "query",
+            "description": "Pass any date equal to or after startDate with format: yyyyMMdd e.g. 12Aug2020 will be 20200812. Fetches 100 days of data at a time."
+          },
+          {
+            "name": "startHE",
+            "value": "",
+            "type": "query",
+            "description": "Pass Hour Ending for start of the data \n\n_Available values_ : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24\n\n_Default value_ : 1"
+          },
+          {
+            "name": "endHE",
+            "value": "",
+            "type": "query",
+            "description": "Pass HE equal to or more than Start HE\n\n_Available values_ : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24\n\n_Default value_ : 24"
+          },
+          {
+            "name": "version",
+            "value": "",
+            "type": "query",
+            "description": "Pass true, to fetch all the data version changes made since 60mins before the start of the hour till the end of the hour. E.g. For HE11, when Version = true, it will fetch all versions of data from 9am till 11am.<br/>Pass false, to fetch only the latest version of the data at the end of the hour. Data could be Gross Offer, TTC, ATC, TRM_Total, TRM_System, TRM_Allocation or All, based on the selected dataType.\n\n_Default value_ : false"
+          },
+          {
+            "name": "dataType",
+            "value": "",
+            "type": "query",
+            "description": "Pass one value. No selection or '--' will select all data types by default.\n\n_Available values_ : ATC, TTC, GROSS_OFFER, TRM_SYSTEM, TRM_ALLOCATION, TRM_TOTAL"
+          },
+          {
+            "name": "intertieOrFlowgate",
+            "value": "",
+            "type": "query",
+            "description": "Pass one value. No selection or '--' will select all interties and flowgates by default.\n\n_Available values_ :  BC, SK, MATL, BC_MATL, SYSTEM"
+          },
+          {
+            "name": "transferType",
+            "value": "",
+            "type": "query",
+            "description": "Pass one value. No selection or '--' will select both transfer types by default.\n\n_Available values_ : IMPORT, EXPORT"
+          }
+        ]
+      },
+      "docs": "For all the intertie related data, fetches 100 days of data at a time."
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Actual Forecast Report",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fetch Actual Forecast data for a day or date range.",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://apimgw.aeso.ca/public/actualforecast-api/load/albertaInternalLoad",
+        "params": [
+          {
+            "name": "startDate",
+            "value": "",
+            "type": "query",
+            "description": "Any date between 2000-01-01 and current date. (format: yyyy-MM-dd)."
+          },
+          {
+            "name": "endDate",
+            "value": "",
+            "type": "query",
+            "description": "Any date up to current date but after startDate. If left blank, only data for startDate will be returned. (format: yyyy-MM-dd)."
+          }
+        ]
+      },
+      "docs": "Fetch Actual Forecast data for a day or date range"
+    }
+  ],
+  "bundled": true
+}

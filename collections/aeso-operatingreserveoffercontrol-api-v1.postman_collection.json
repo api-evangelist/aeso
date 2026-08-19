@@ -1,0 +1,344 @@
+{
+  "item": [
+    {
+      "id": "08e2a773-bb14-43a0-994c-ea84939d0a2d",
+      "name": "Fetch Operating Reserve Offer Control data for a given date that is 60 days prior to current date.",
+      "request": {
+        "name": "Fetch Operating Reserve Offer Control data for a given date that is 60 days prior to current date.",
+        "description": {
+          "content": "Fetch Operating Reserve Offer Control data for Date(startDate (yyyy-MM-dd))\n\nThe Operating Reserve Offer Control data is available 60 days after the date of the report, first available from October 4, 2012.\n\n",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "operatingReserveOfferControl"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "startDate",
+              "value": "<string>",
+              "description": "(Required) Any date between 2012-10-04 and current date (format: yyyy-MM-dd)."
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "baadfd24-8639-41e1-83e4-bad36700f870",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "operatingReserveOfferControl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"Operating Reserve Trade Merit Order\": [\n    {\n      \"begin_datetime_utc\": \"string\",\n      \"begin_datetime_mpt\": \"string\",\n      \"operating_reserve_blocks\": [\n        {\n          \"commodity\": \"string\",\n          \"product\": \"string\",\n          \"asset_ID\": \"string\",\n          \"volume\": \"string\",\n          \"active_price\": 0,\n          \"premium_price\": 0,\n          \"activation_price\": 0,\n          \"offer_control\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "638ca648-f237-44be-bd17-e46d4ee3ac53",
+          "name": "Bad Request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "operatingReserveOfferControl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "82573fcf-7933-46ef-8085-d81b1e269429",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "operatingReserveOfferControl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "c17db3c1-c2c2-447f-a8ea-065cb882a420",
+          "name": "Forbidden",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "operatingReserveOfferControl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "81d7d696-e4d8-4d55-bbec-81291f8654c9",
+          "name": "Not Found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "operatingReserveOfferControl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "1ea433f6-f8a8-4851-a218-919db3b7cbc1",
+          "name": "Invalid method",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "operatingReserveOfferControl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Method Not Allowed",
+          "code": 405,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "12a0bd57-202c-4917-bfa9-5a6058643e3f",
+          "name": "Internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "operatingReserveOfferControl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "382e164a-b673-45e9-99c5-30fff710035f",
+          "name": "Service unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "operatingReserveOfferControl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apimgw.aeso.ca/public/operatingreserveoffercontrol-api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "1c67e218-8aa5-4152-a574-c58a3ece7a42",
+    "name": "Operating Reserve Offer Control Report",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fetch Operating Reserve Offer Control data",
+      "type": "text/plain"
+    }
+  }
+}

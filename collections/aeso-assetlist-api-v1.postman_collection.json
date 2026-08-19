@@ -1,0 +1,458 @@
+{
+  "item": [
+    {
+      "id": "352c4bea-9cd0-4d6b-8d3f-1f7590b5db1f",
+      "name": "Fetch the latest list of assets connected to AIES.",
+      "request": {
+        "name": "Fetch the latest list of assets connected to AIES.",
+        "description": {
+          "content": " The asset_ID and pool_participant_ID parameters are comma separated lists. At most, one of the two parameters can be passed in an API call.\n\nNote: The Operating Status, Pool Participant Name and ID for an asset can change overtime.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "assetlist"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "asset_ID",
+              "value": "<string>",
+              "description": "This parameter can contain up to 20 comma-separated Asset IDs."
+            },
+            {
+              "disabled": false,
+              "key": "pool_participant_ID",
+              "value": "<string>",
+              "description": "This parameter can contain up to 20 comma-separated Pool Participant IDs."
+            },
+            {
+              "disabled": false,
+              "key": "operating_status",
+              "value": "ALL",
+              "description": "The allowed values are ACTIVE, RETIRED, SUSPENDED, INACTIVE"
+            },
+            {
+              "disabled": false,
+              "key": "asset_type",
+              "value": "ALL",
+              "description": "The allowed values are SOURCE, SINK"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "9a065a4c-7aaf-43f1-860e-e85e63c8cff1",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "assetlist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "asset_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "operating_status",
+                  "value": "ALL"
+                },
+                {
+                  "key": "asset_type",
+                  "value": "ALL"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"asset_name\": \"string\",\n  \"asset_ID\": \"string\",\n  \"asset_type\": \"string\",\n  \"operating_status\": \"string\",\n  \"pool_participant_name\": \"string\",\n  \"pool_participant_ID\": \"string\",\n  \"net_to_grid_asset_flag\": \"string\",\n  \"asset_incl_storage_flag\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "995a4fb0-4619-4a0c-8955-9dbcfeccd784",
+          "name": "Bad Request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "assetlist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "asset_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "operating_status",
+                  "value": "ALL"
+                },
+                {
+                  "key": "asset_type",
+                  "value": "ALL"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "6cd26d4b-6615-411b-944e-c0c5dca2da3d",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "assetlist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "asset_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "operating_status",
+                  "value": "ALL"
+                },
+                {
+                  "key": "asset_type",
+                  "value": "ALL"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "5de07de6-754e-4a26-9005-1aad6e77f680",
+          "name": "Forbidden",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "assetlist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "asset_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "operating_status",
+                  "value": "ALL"
+                },
+                {
+                  "key": "asset_type",
+                  "value": "ALL"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "ecafc546-5642-4ab2-918e-0524d8a39412",
+          "name": "Not Found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "assetlist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "asset_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "operating_status",
+                  "value": "ALL"
+                },
+                {
+                  "key": "asset_type",
+                  "value": "ALL"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "b48ffc03-62a4-4e0e-83e0-d2e5f757c13b",
+          "name": "Invalid method",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "assetlist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "asset_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "operating_status",
+                  "value": "ALL"
+                },
+                {
+                  "key": "asset_type",
+                  "value": "ALL"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Method Not Allowed",
+          "code": 405,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "420fed34-52fa-4340-b728-c776d63962c2",
+          "name": "Internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "assetlist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "asset_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "operating_status",
+                  "value": "ALL"
+                },
+                {
+                  "key": "asset_type",
+                  "value": "ALL"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "ba23add8-2539-49f6-b814-af52ce03e8df",
+          "name": "Service unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "assetlist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "asset_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "pool_participant_ID",
+                  "value": "<string>"
+                },
+                {
+                  "key": "operating_status",
+                  "value": "ALL"
+                },
+                {
+                  "key": "asset_type",
+                  "value": "ALL"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apimgw.aeso.ca/public/assetlist-api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "f6a39301-06f8-49dd-bb83-4ddde5029faf",
+    "name": "Asset List API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Get Asset List Report",
+      "type": "text/plain"
+    }
+  }
+}

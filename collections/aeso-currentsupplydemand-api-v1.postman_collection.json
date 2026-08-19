@@ -1,0 +1,371 @@
+{
+  "item": [
+    {
+      "id": "5058df4b-81ba-44ef-a002-618b34683cfa",
+      "name": "Fetch the latest generation data for all AIES assets greater than 5 MW.",
+      "request": {
+        "name": "Fetch the latest generation data for all AIES assets greater than 5 MW.",
+        "description": {
+          "content": "Users have option to pass upto 20, comma seperated, specific Asset ID(s) to fetch data for those specific asset(s). If the AssetID is incorrect or retired then no data is returned for that AssetID.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "csd",
+            "generation",
+            "assets",
+            "current"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "assetIds",
+              "value": "<string>",
+              "description": "This parameter can contain up to 20 comma-separated Asset IDs."
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "215537a1-2788-4822-a809-3dfbeeb9f21e",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "csd",
+                "generation",
+                "assets",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "assetIds",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"last_updated_datetime_utc\": \"2022-03-18 10:20\",\n  \"last_updated_datetime_mpt\": \"2022-03-18 16:20\",\n  \"asset_list\": [\n    {\n      \"asset\": \"string\",\n      \"fuel_type\": \"string\",\n      \"sub_fuel_type\": \"string\",\n      \"maximum_capability\": 0,\n      \"net_generation\": 0,\n      \"dispatched_contingency_reserve\": 0\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "d7664415-5480-430e-8c74-152d00d7f083",
+          "name": "Bad Request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "csd",
+                "generation",
+                "assets",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "assetIds",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "a0667452-9f6e-41a0-9918-3e4263fbf421",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "csd",
+                "generation",
+                "assets",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "assetIds",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "af51f9cc-02a9-46ad-82d2-10607a4a80a1",
+          "name": "Forbidden",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "csd",
+                "generation",
+                "assets",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "assetIds",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "2724c5c4-7306-454c-a8ec-e2c03dd758fa",
+          "name": "Not Found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "csd",
+                "generation",
+                "assets",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "assetIds",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "b975bacf-22f8-4b99-bf5e-4a9e44cc4ec9",
+          "name": "Invalid method",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "csd",
+                "generation",
+                "assets",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "assetIds",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Method Not Allowed",
+          "code": 405,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "a52603cc-787a-4bcb-b86a-49167f1d4a3e",
+          "name": "Internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "csd",
+                "generation",
+                "assets",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "assetIds",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "57e59498-4d46-4a89-af84-ff779070cb9a",
+          "name": "Service unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "csd",
+                "generation",
+                "assets",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "assetIds",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apimgw.aeso.ca/public/currentsupplydemand-api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "434425bc-d9d2-45fc-bf24-f0c61b13174d",
+    "name": "Current Supply Demand",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Get Current Supply Demand Report",
+      "type": "text/plain"
+    }
+  }
+}

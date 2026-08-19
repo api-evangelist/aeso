@@ -1,0 +1,382 @@
+{
+  "item": [
+    {
+      "id": "4f9a258e-accd-4221-a1e5-63b31b3cd5ea",
+      "name": "Fetch Unit Commitment Directive Data",
+      "request": {
+        "name": "Fetch Unit Commitment Directive Data",
+        "description": {
+          "content": "Fetch generating unit commitment directive data for a date range",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "unitCommitment"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "startDate",
+              "value": "<string>",
+              "description": "Unit Commitment End Date From. Any date from 2024-07-01. Default to current time if left blank (format: yyyy-MM-dd).)"
+            },
+            {
+              "disabled": false,
+              "key": "endDate",
+              "value": "<string>",
+              "description": "Unit Commitment End Date To. Any date from 2024-07-01 but after startDate. If left blank, return all the data from startDate. (format: yyyy-MM-dd).)"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "b1ab7f11-64a9-450e-8b73-bb49dac80f97",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "unitCommitment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"unit_commitment\": [\n    {\n      \"asset_ID\": \"string\",\n      \"issued_time_utc\": \"string\",\n      \"issued_time_mpt\": \"string\",\n      \"begin_time_utc\": \"string\",\n      \"begin_time_mpt\": \"string\",\n      \"operation_start_time_utc\": \"string\",\n      \"operation_start_time_mpt\": \"string\",\n      \"operation_end_time_utc\": \"string\",\n      \"operation_end_time_mpt\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "eddb179a-d13d-4563-ba6a-3a2faec34f08",
+          "name": "Bad Request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "unitCommitment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "39968fb1-2e8e-4cb1-8c04-5aa0b282e7e8",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "unitCommitment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "32434531-ed75-474c-8a65-459a1f3ae892",
+          "name": "Forbidden",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "unitCommitment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "87472e9f-428a-4327-9bdc-7ba8312d42bd",
+          "name": "Not Found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "unitCommitment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "eeb43ae7-55e9-4cf0-99fa-7f36fda36a84",
+          "name": "Invalid method",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "unitCommitment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Method Not Allowed",
+          "code": 405,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "90475747-a3aa-4f38-990b-bda2fb7e634f",
+          "name": "Internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "unitCommitment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "64a98604-b5bb-421d-873a-a3dd0bbb7089",
+          "name": "Service unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "unitCommitment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apimgw.aeso.ca/public/unitcommitmentdata-api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "d0989fb2-0fbc-4105-a87c-7d15b506b852",
+    "name": "Unit Commitment Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Get Unit Commitment Directives report data",
+      "type": "text/plain"
+    }
+  }
+}

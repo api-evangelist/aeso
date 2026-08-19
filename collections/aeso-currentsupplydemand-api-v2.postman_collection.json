@@ -1,0 +1,315 @@
+{
+  "item": [
+    {
+      "id": "8b30c1e7-b8e7-4010-83ff-2beaf26096b9",
+      "name": "Fetch the AIES's latest supply & demand summary data.\r\n",
+      "request": {
+        "name": "Fetch the AIES's latest supply & demand summary data.\r\n",
+        "description": {
+          "content": "Fetch the AIES's latest supply & demand summary data with generation data aggregated by fuel type and flows on each interchange path..\r\n",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "csd",
+            "summary",
+            "current"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "8749b4d9-6a29-4726-9f7e-422e268ce411",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "csd",
+                "summary",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"effective_datetime_utc\": \"2022-03-18 10:20\",\n  \"effective_datetime_mpt\": \"2022-03-18 16:20\",\n  \"total_max_generation_capability\": 0,\n  \"total_net_generation\": 0,\n  \"net_to_grid_generation\": 0,\n  \"net_actual_interchange\": 0,\n  \"alberta_internal_load\": 0,\n  \"contingency_reserve_required\": 0,\n  \"dispatched_contigency_reserve_total\": 0,\n  \"dispatched_contingency_reserve_gen\": 0,\n  \"dispatched_contingency_reserve_other\": 0,\n  \"ffr_armed_dispatch\": 0,\n  \"ffr_offered_volume\": 0,\n  \"long_lead_time_volume\": 0,\n  \"generation_data_list\": [\n    {\n      \"fuel_type\": \"string\",\n      \"aggregated_maximum_capability\": 0,\n      \"aggregated_net_generation\": 0,\n      \"aggregated_dispatched_contingency_reserve\": 0\n    }\n  ],\n  \"interchange_list\": [\n    {\n      \"path\": \"string\",\n      \"actual_flow\": 0\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "096e98cb-7855-4056-b124-3af067bf87ff",
+          "name": "Bad Request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "csd",
+                "summary",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "52acfa03-e451-4dcf-8834-7604fa15e9ba",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "csd",
+                "summary",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "0c7b1711-9cdc-426c-be2c-b7e542fe3b1a",
+          "name": "Forbidden",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "csd",
+                "summary",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "bacc178c-685f-4a44-8b1b-461210dca804",
+          "name": "Not Found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "csd",
+                "summary",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "542fe199-247a-445b-8c02-7ac9e1e01b91",
+          "name": "Invalid method",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "csd",
+                "summary",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Method Not Allowed",
+          "code": 405,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "ac7af3a0-9a32-431b-a52d-c7ca932ba4c1",
+          "name": "Internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "csd",
+                "summary",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "f8a48a61-ec4e-4f94-8d51-a9f0b8ba63ef",
+          "name": "Service unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "csd",
+                "summary",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apimgw.aeso.ca/public/currentsupplydemand-api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "d8b05b39-46f1-47d9-b13a-e1d5eb01a4da",
+    "name": "Current Supply Demand",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Get Current Supply Demand Report",
+      "type": "text/plain"
+    }
+  }
+}

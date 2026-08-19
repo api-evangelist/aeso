@@ -1,0 +1,1006 @@
+{
+  "item": [
+    {
+      "id": "0004d302-2b79-4394-bcd5-bd5d9cdc5ff5",
+      "name": "Fetch all the outages affecting TTCs on interties/flowgates",
+      "request": {
+        "name": "Fetch all the outages affecting TTCs on interties/flowgates",
+        "description": {
+          "content": "Fetches 13 months of data at a time. The data is available after 09 Nov 2020.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "outage"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "startDate",
+              "value": "<string>",
+              "description": "(Required) Pass any date in history or future with format: yyyyMMdd e.g. 12Aug2020 will be 20200812. Fetches 13 months of data at a time. The data is available after 09 Nov 2020."
+            },
+            {
+              "disabled": false,
+              "key": "endDate",
+              "value": "<string>",
+              "description": "(Required) Pass any date equal to or after startDate with format: yyyyMMdd e.g. 12Aug2020 will be 20200812. Fetches 13 months of data at a time. The data is available after 09 Nov 2020."
+            },
+            {
+              "disabled": false,
+              "key": "affectedIntertieOrFlowgate",
+              "value": "<string>",
+              "description": "Pass one value. No selection or '--' will select all interties and flowgates by default. \n\n_Available values_: BC, MATL, SK, BC_MATL"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "b7ed3110-9ab9-4209-9241-a1e3ab6dbe46",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "outage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "affectedIntertieOrFlowgate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"Outages\": {\n    \"Outage\": [\n      {\n        \"element\": \"string\",\n        \"affectedIntertieOrFlowgate\": [\n          \"BC\"\n        ],\n        \"toInLocalTime\": \"string\",\n        \"fromInLocalTime\": \"string\"\n      }\n    ]\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "57c0288a-dd56-4dde-be51-a802ad1f8bc4",
+          "name": "Bad Request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "outage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "affectedIntertieOrFlowgate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "1a5be542-8c7d-4ab9-bf41-6992ec1813a6",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "outage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "affectedIntertieOrFlowgate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "e5ab44d1-3a7e-4dd3-9588-2adb9bec4c0c",
+          "name": "Forbidden",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "outage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "affectedIntertieOrFlowgate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "0c521398-241f-4543-9545-04351391a2a5",
+          "name": "Not Found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "outage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "affectedIntertieOrFlowgate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "2b9fbd23-5de2-4e61-ab1a-ea34862a1925",
+          "name": "Invalid method",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "outage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "affectedIntertieOrFlowgate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Method Not Allowed",
+          "code": 405,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "08773401-bcac-41fb-a063-be2482cfcf70",
+          "name": "Internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "outage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "affectedIntertieOrFlowgate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "b0435f7a-6668-45b2-ad55-84c3dfb9373e",
+          "name": "Service unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "outage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "affectedIntertieOrFlowgate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "bae316f4-6f84-400f-aa04-235c5171252b",
+      "name": "Fetch Interchange Capability Report",
+      "request": {
+        "name": "Fetch Interchange Capability Report",
+        "description": {
+          "content": "For all the intertie related data, fetches 100 days of data at a time.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "interchange"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "startDate",
+              "value": "<string>",
+              "description": "(Required) Pass any date in history or future with format: yyyyMMdd e.g. 12Aug2020 will be 20200812. Fetches 100 days of data at a time."
+            },
+            {
+              "disabled": false,
+              "key": "endDate",
+              "value": "<string>",
+              "description": "(Required) Pass any date equal to or after startDate with format: yyyyMMdd e.g. 12Aug2020 will be 20200812. Fetches 100 days of data at a time."
+            },
+            {
+              "disabled": false,
+              "key": "startHE",
+              "value": "1",
+              "description": "(Required) Pass Hour Ending for start of the data \n\n_Available values_ : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24\n\n_Default value_ : 1"
+            },
+            {
+              "disabled": false,
+              "key": "endHE",
+              "value": "24",
+              "description": "(Required) Pass HE equal to or more than Start HE\n\n_Available values_ : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24\n\n_Default value_ : 24"
+            },
+            {
+              "disabled": false,
+              "key": "version",
+              "value": "false",
+              "description": "(Required) Pass true, to fetch all the data version changes made since 60mins before the start of the hour till the end of the hour. E.g. For HE11, when Version = true, it will fetch all versions of data from 9am till 11am.<br/>Pass false, to fetch only the latest version of the data at the end of the hour. Data could be Gross Offer, TTC, ATC, TRM_Total, TRM_System, TRM_Allocation or All, based on the selected dataType.\n\n_Default value_ : false"
+            },
+            {
+              "disabled": false,
+              "key": "dataType",
+              "value": "<string>",
+              "description": "Pass one value. No selection or '--' will select all data types by default.\n\n_Available values_ : ATC, TTC, GROSS_OFFER, TRM_SYSTEM, TRM_ALLOCATION, TRM_TOTAL"
+            },
+            {
+              "disabled": false,
+              "key": "intertieOrFlowgate",
+              "value": "<string>",
+              "description": "Pass one value. No selection or '--' will select all interties and flowgates by default.\n\n_Available values_ :  BC, SK, MATL, BC_MATL, SYSTEM"
+            },
+            {
+              "disabled": false,
+              "key": "transferType",
+              "value": "<string>",
+              "description": "Pass one value. No selection or '--' will select both transfer types by default.\n\n_Available values_ : IMPORT, EXPORT"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "ddd6ff50-8bdd-47f0-bd28-3142aa1cf806",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "interchange"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "startHE",
+                  "value": "1"
+                },
+                {
+                  "key": "endHE",
+                  "value": "24"
+                },
+                {
+                  "key": "version",
+                  "value": "false"
+                },
+                {
+                  "key": "dataType",
+                  "value": "<string>"
+                },
+                {
+                  "key": "intertieOrFlowgate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "transferType",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"BcIntertie\": {\n    \"Allocations\": [\n      {\n        \"flowgate\": true,\n        \"date\": \"string\",\n        \"he\": \"string\",\n        \"import\": {\n          \"transferType\": \"string\",\n          \"reason\": \"string\",\n          \"atc\": 0,\n          \"trmTotal\": 0,\n          \"ttc\": 0,\n          \"trmSystem\": 0,\n          \"trmAllocation\": 0,\n          \"grossOffer\": 0,\n          \"version\": [\n            {\n              \"reason\": \"string\",\n              \"atc\": 0,\n              \"trmTotal\": 0,\n              \"ttc\": 0,\n              \"trmSystem\": 0,\n              \"trmAllocation\": 0,\n              \"grossOffer\": 0,\n              \"versionUpdatedLocaltime\": \"string\"\n            }\n          ],\n          \"updatedLocalTime\": \"string\",\n          \"effectiveLocalTime\": \"string\"\n        },\n        \"export\": {\n          \"transferType\": \"string\",\n          \"reason\": \"string\",\n          \"atc\": 0,\n          \"trmTotal\": 0,\n          \"ttc\": 0,\n          \"trmSystem\": 0,\n          \"trmAllocation\": 0,\n          \"grossOffer\": 0,\n          \"version\": [\n            {\n              \"reason\": \"string\",\n              \"atc\": 0,\n              \"trmTotal\": 0,\n              \"ttc\": 0,\n              \"trmSystem\": 0,\n              \"trmAllocation\": 0,\n              \"grossOffer\": 0,\n              \"versionUpdatedLocaltime\": \"string\"\n            }\n          ],\n          \"updatedLocalTime\": \"string\",\n          \"effectiveLocalTime\": \"string\"\n        }\n      }\n    ]\n  },\n  \"MatlIntertie\": {\n    \"Allocations\": [\n      {\n        \"flowgate\": true,\n        \"date\": \"string\",\n        \"he\": \"string\",\n        \"import\": {\n          \"transferType\": \"string\",\n          \"reason\": \"string\",\n          \"atc\": 0,\n          \"trmTotal\": 0,\n          \"ttc\": 0,\n          \"trmSystem\": 0,\n          \"trmAllocation\": 0,\n          \"grossOffer\": 0,\n          \"version\": [\n            {\n              \"reason\": \"string\",\n              \"atc\": 0,\n              \"trmTotal\": 0,\n              \"ttc\": 0,\n              \"trmSystem\": 0,\n              \"trmAllocation\": 0,\n              \"grossOffer\": 0,\n              \"versionUpdatedLocaltime\": \"string\"\n            }\n          ],\n          \"updatedLocalTime\": \"string\",\n          \"effectiveLocalTime\": \"string\"\n        },\n        \"export\": {\n          \"transferType\": \"string\",\n          \"reason\": \"string\",\n          \"atc\": 0,\n          \"trmTotal\": 0,\n          \"ttc\": 0,\n          \"trmSystem\": 0,\n          \"trmAllocation\": 0,\n          \"grossOffer\": 0,\n          \"version\": [\n            {\n              \"reason\": \"string\",\n              \"atc\": 0,\n              \"trmTotal\": 0,\n              \"ttc\": 0,\n              \"trmSystem\": 0,\n              \"trmAllocation\": 0,\n              \"grossOffer\": 0,\n              \"versionUpdatedLocaltime\": \"string\"\n            }\n          ],\n          \"updatedLocalTime\": \"string\",\n          \"effectiveLocalTime\": \"string\"\n        }\n      }\n    ]\n  },\n  \"SkIntertie\": {\n    \"Allocations\": [\n      {\n        \"flowgate\": true,\n        \"date\": \"string\",\n        \"he\": \"string\",\n        \"import\": {\n          \"transferType\": \"string\",\n          \"reason\": \"string\",\n          \"atc\": 0,\n          \"trmTotal\": 0,\n          \"ttc\": 0,\n          \"trmSystem\": 0,\n          \"trmAllocation\": 0,\n          \"grossOffer\": 0,\n          \"version\": [\n            {\n              \"reason\": \"string\",\n              \"atc\": 0,\n              \"trmTotal\": 0,\n              \"ttc\": 0,\n              \"trmSystem\": 0,\n              \"trmAllocation\": 0,\n              \"grossOffer\": 0,\n              \"versionUpdatedLocaltime\": \"string\"\n            }\n          ],\n          \"updatedLocalTime\": \"string\",\n          \"effectiveLocalTime\": \"string\"\n        },\n        \"export\": {\n          \"transferType\": \"string\",\n          \"reason\": \"string\",\n          \"atc\": 0,\n          \"trmTotal\": 0,\n          \"ttc\": 0,\n          \"trmSystem\": 0,\n          \"trmAllocation\": 0,\n          \"grossOffer\": 0,\n          \"version\": [\n            {\n              \"reason\": \"string\",\n              \"atc\": 0,\n              \"trmTotal\": 0,\n              \"ttc\": 0,\n              \"trmSystem\": 0,\n              \"trmAllocation\": 0,\n              \"grossOffer\": 0,\n              \"versionUpdatedLocaltime\": \"string\"\n            }\n          ],\n          \"updatedLocalTime\": \"string\",\n          \"effectiveLocalTime\": \"string\"\n        }\n      }\n    ]\n  },\n  \"BcMatlFlowgate\": {\n    \"links\": [\n      {\n        \"rel\": \"string\",\n        \"href\": \"string\",\n        \"hreflang\": \"string\",\n        \"media\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"string\",\n        \"deprecation\": \"string\"\n      }\n    ],\n    \"Allocations\": [\n      {\n        \"flowgate\": true,\n        \"date\": \"string\",\n        \"he\": \"string\",\n        \"import\": {\n          \"transferType\": \"string\",\n          \"reason\": \"string\",\n          \"atc\": 0,\n          \"trmTotal\": 0,\n          \"ttc\": 0,\n          \"trmSystem\": 0,\n          \"trmAllocation\": 0,\n          \"grossOffer\": 0,\n          \"version\": [\n            {\n              \"reason\": \"string\",\n              \"atc\": 0,\n              \"trmTotal\": 0,\n              \"ttc\": 0,\n              \"trmSystem\": 0,\n              \"trmAllocation\": 0,\n              \"grossOffer\": 0,\n              \"versionUpdatedLocaltime\": \"string\"\n            }\n          ],\n          \"updatedLocalTime\": \"string\",\n          \"effectiveLocalTime\": \"string\"\n        },\n        \"export\": {\n          \"transferType\": \"string\",\n          \"reason\": \"string\",\n          \"atc\": 0,\n          \"trmTotal\": 0,\n          \"ttc\": 0,\n          \"trmSystem\": 0,\n          \"trmAllocation\": 0,\n          \"grossOffer\": 0,\n          \"version\": [\n            {\n              \"reason\": \"string\",\n              \"atc\": 0,\n              \"trmTotal\": 0,\n              \"ttc\": 0,\n              \"trmSystem\": 0,\n              \"trmAllocation\": 0,\n              \"grossOffer\": 0,\n              \"versionUpdatedLocaltime\": \"string\"\n            }\n          ],\n          \"updatedLocalTime\": \"string\",\n          \"effectiveLocalTime\": \"string\"\n        }\n      }\n    ]\n  },\n  \"SystemlFlowgate\": {\n    \"links\": [\n      {\n        \"rel\": \"string\",\n        \"href\": \"string\",\n        \"hreflang\": \"string\",\n        \"media\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"string\",\n        \"deprecation\": \"string\"\n      }\n    ],\n    \"Allocations\": [\n      {\n        \"flowgate\": true,\n        \"date\": \"string\",\n        \"he\": \"string\",\n        \"import\": {\n          \"transferType\": \"string\",\n          \"reason\": \"string\",\n          \"atc\": 0,\n          \"trmTotal\": 0,\n          \"ttc\": 0,\n          \"trmSystem\": 0,\n          \"trmAllocation\": 0,\n          \"grossOffer\": 0,\n          \"version\": [\n            {\n              \"reason\": \"string\",\n              \"atc\": 0,\n              \"trmTotal\": 0,\n              \"ttc\": 0,\n              \"trmSystem\": 0,\n              \"trmAllocation\": 0,\n              \"grossOffer\": 0,\n              \"versionUpdatedLocaltime\": \"string\"\n            }\n          ],\n          \"updatedLocalTime\": \"string\",\n          \"effectiveLocalTime\": \"string\"\n        },\n        \"export\": {\n          \"transferType\": \"string\",\n          \"reason\": \"string\",\n          \"atc\": 0,\n          \"trmTotal\": 0,\n          \"ttc\": 0,\n          \"trmSystem\": 0,\n          \"trmAllocation\": 0,\n          \"grossOffer\": 0,\n          \"version\": [\n            {\n              \"reason\": \"string\",\n              \"atc\": 0,\n              \"trmTotal\": 0,\n              \"ttc\": 0,\n              \"trmSystem\": 0,\n              \"trmAllocation\": 0,\n              \"grossOffer\": 0,\n              \"versionUpdatedLocaltime\": \"string\"\n            }\n          ],\n          \"updatedLocalTime\": \"string\",\n          \"effectiveLocalTime\": \"string\"\n        }\n      }\n    ]\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "1267691a-fac9-410c-b611-391d26dfb062",
+          "name": "Bad Request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "interchange"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "startHE",
+                  "value": "1"
+                },
+                {
+                  "key": "endHE",
+                  "value": "24"
+                },
+                {
+                  "key": "version",
+                  "value": "false"
+                },
+                {
+                  "key": "dataType",
+                  "value": "<string>"
+                },
+                {
+                  "key": "intertieOrFlowgate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "transferType",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "f2245708-6692-4f7c-aee7-b676bbc9796d",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "interchange"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "startHE",
+                  "value": "1"
+                },
+                {
+                  "key": "endHE",
+                  "value": "24"
+                },
+                {
+                  "key": "version",
+                  "value": "false"
+                },
+                {
+                  "key": "dataType",
+                  "value": "<string>"
+                },
+                {
+                  "key": "intertieOrFlowgate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "transferType",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "3a500739-19c1-4399-a421-3e07a25d8bbc",
+          "name": "Forbidden",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "interchange"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "startHE",
+                  "value": "1"
+                },
+                {
+                  "key": "endHE",
+                  "value": "24"
+                },
+                {
+                  "key": "version",
+                  "value": "false"
+                },
+                {
+                  "key": "dataType",
+                  "value": "<string>"
+                },
+                {
+                  "key": "intertieOrFlowgate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "transferType",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "5e7d26cb-e913-41e0-ba08-a739bc3c8424",
+          "name": "Not Found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "interchange"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "startHE",
+                  "value": "1"
+                },
+                {
+                  "key": "endHE",
+                  "value": "24"
+                },
+                {
+                  "key": "version",
+                  "value": "false"
+                },
+                {
+                  "key": "dataType",
+                  "value": "<string>"
+                },
+                {
+                  "key": "intertieOrFlowgate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "transferType",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "ca5b3525-8d4f-4626-a8d1-f9deb099c9ae",
+          "name": "Invalid method",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "interchange"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "startHE",
+                  "value": "1"
+                },
+                {
+                  "key": "endHE",
+                  "value": "24"
+                },
+                {
+                  "key": "version",
+                  "value": "false"
+                },
+                {
+                  "key": "dataType",
+                  "value": "<string>"
+                },
+                {
+                  "key": "intertieOrFlowgate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "transferType",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Method Not Allowed",
+          "code": 405,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "d3b3f348-83ba-4dd9-a6fc-8a8e0fe08427",
+          "name": "Internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "interchange"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "startHE",
+                  "value": "1"
+                },
+                {
+                  "key": "endHE",
+                  "value": "24"
+                },
+                {
+                  "key": "version",
+                  "value": "false"
+                },
+                {
+                  "key": "dataType",
+                  "value": "<string>"
+                },
+                {
+                  "key": "intertieOrFlowgate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "transferType",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "0795eee4-6b26-4698-a114-dfa428de0a7c",
+          "name": "Service unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "interchange"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "startHE",
+                  "value": "1"
+                },
+                {
+                  "key": "endHE",
+                  "value": "24"
+                },
+                {
+                  "key": "version",
+                  "value": "false"
+                },
+                {
+                  "key": "dataType",
+                  "value": "<string>"
+                },
+                {
+                  "key": "intertieOrFlowgate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "transferType",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apimgw.aeso.ca/public/itc",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "b1b9acc9-4ee7-4d82-979a-54cf1250b7c9",
+    "name": "Intertie Public Reports",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Intertie Public Reports\n\nContact Support:\n Name: ITC Support\n Email: info@aeso.ca",
+      "type": "text/plain"
+    }
+  }
+}

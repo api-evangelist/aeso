@@ -1,0 +1,353 @@
+{
+  "item": [
+    {
+      "id": "2580c467-0d75-4248-ada9-5b6326e86c39",
+      "name": "Fetch Energy Merit Order snapshot data for a given date that is 60 days prior to current date.",
+      "request": {
+        "name": "Fetch Energy Merit Order snapshot data for a given date that is 60 days prior to current date.",
+        "description": {
+          "content": "Fetch Energy Merit Order snapshot data for Date(startDate (yyyy-MM-dd)) \n\nThe EMMO snapshot data is available 60 days after the date of the snapshot, first available from September 1, 2009. \n\nThe data from 1-Sep-2009 to 1-Sep-2014 is the Merit Order at the 30th min. of the settlement interval. \n\nThe data after 1-Sep-2014 is the last Merit Order of the settlement interval.\r\n",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "meritOrder",
+            "energy"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "startDate",
+              "value": "<string>",
+              "description": "(Required) Any date between 2009-09-01 and 60 days prior to current date (format: yyyy-MM-dd)."
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "d608693f-3ac6-444c-bf60-317f2995f192",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "meritOrder",
+                "energy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": [\n    {\n      \"begin_dateTime_utc\": \"string\",\n      \"begin_dateTime_mpt\": \"string\",\n      \"energy_blocks\": [\n        {\n          \"import_or_export\": \"string\",\n          \"asset_ID\": \"string\",\n          \"block_number\": 0,\n          \"block_price\": 0,\n          \"from_MW\": 0,\n          \"to_MW\": 0,\n          \"block_size\": 0,\n          \"available_MW\": 0,\n          \"dispatched?\": \"string\",\n          \"dispatched_MW\": 0,\n          \"flexible?\": \"string\",\n          \"offer_control\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "76003881-ce90-4211-9a12-f99bf2e8a201",
+          "name": "Bad Request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "meritOrder",
+                "energy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "41797321-20be-4e9b-a2ab-dfa2ee830697",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "meritOrder",
+                "energy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "459fa85a-ce68-4125-852c-4b05b3058ce9",
+          "name": "Forbidden",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "meritOrder",
+                "energy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "e41eb3ad-18dd-4d73-8250-2304ef180a46",
+          "name": "Not Found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "meritOrder",
+                "energy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "c8be022e-ad5f-4029-baf1-7bf39f110a25",
+          "name": "Invalid method",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "meritOrder",
+                "energy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Method Not Allowed",
+          "code": 405,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "6c5a3942-f5e1-4b70-ba13-b8018deb6fe9",
+          "name": "Internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "meritOrder",
+                "energy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "fac3f946-6f1d-40c1-bb0c-63f2a6469106",
+          "name": "Service unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "meritOrder",
+                "energy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apimgw.aeso.ca/public/energymeritorder-api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "039cfafc-bfa5-445c-bd8a-cdbfe41af445",
+    "name": "Energy Merit Order Report",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fetch Energy Merit Order snapshot data",
+      "type": "text/plain"
+    }
+  }
+}

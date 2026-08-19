@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AIES Gen Capacity API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fetch AIES generation capacity and outages",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://apimgw.aeso.ca/public/aiesgencapacity-api/AIESGenCapacity",
+        "params": [
+          {
+            "name": "startDate",
+            "value": "",
+            "type": "query",
+            "description": "Any date between 2011-01-01 and the end of the 24th month from current date in future. (format: yyyy-MM-dd)"
+          },
+          {
+            "name": "endDate",
+            "value": "",
+            "type": "query",
+            "description": "Any date after startDate up to the 1st of the 25th month from current date in future. If left blank, only data for startDate will be returned. (format: yyyy-MM-dd)"
+          }
+        ]
+      },
+      "docs": "Fetch AIES generation capacity and outages grouped by fuel and sub-fuel type for a date range. The data is available from 1-Jan-2011 to 24 months in future. Note that the API cannot fetch more than 31 days of data in a single request."
+    }
+  ],
+  "bundled": true
+}

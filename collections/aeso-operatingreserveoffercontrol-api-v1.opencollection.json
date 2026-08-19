@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Operating Reserve Offer Control Report",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fetch Operating Reserve Offer Control data for a given date that is 60 days prior to current date.",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://apimgw.aeso.ca/public/operatingreserveoffercontrol-api/operatingReserveOfferControl",
+        "params": [
+          {
+            "name": "startDate",
+            "value": "",
+            "type": "query",
+            "description": "Any date between 2012-10-04 and current date (format: yyyy-MM-dd)."
+          }
+        ]
+      },
+      "docs": "Fetch Operating Reserve Offer Control data for Date(startDate (yyyy-MM-dd))\n\nThe Operating Reserve Offer Control data is available 60 days after the date of the report, first available from October 4, 2012.\n\n"
+    }
+  ],
+  "bundled": true
+}

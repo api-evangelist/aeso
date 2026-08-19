@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pool Price Report",
+    "version": "v1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fetch pool price report for a given date range",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://apimgw.aeso.ca/public/poolprice-api/price/poolPrice",
+        "params": [
+          {
+            "name": "startDate",
+            "value": "",
+            "type": "query",
+            "description": "Any date between 2000-01-01 and current date.  (format: yyyy-MM-dd)."
+          },
+          {
+            "name": "endDate",
+            "value": "",
+            "type": "query",
+            "description": "Any date up to current date but after startDate. If left blank, only data for startDate will be returned. (format: yyyy-MM-dd)."
+          }
+        ]
+      },
+      "docs": "Fetch pool price report for the date range: startDate (yyyy-mm-dd) to endDate (yyyy-mm-dd). The endDate is optional. If endDate is omitted, fetched data will include the pool price values for all the completed settlement hours of the day specified by startDate.\r\n\r\nTo fetch the latest pool price, include the date of that hour in your query.\r\n\r\n \r\n\r\nThe API will return data for a maximum of 1 year at a time."
+    }
+  ],
+  "bundled": true
+}

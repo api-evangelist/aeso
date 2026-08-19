@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Unit Commitment Data API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fetch Unit Commitment Directive Data",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://apimgw.aeso.ca/public/unitcommitmentdata-api/unitCommitment",
+        "params": [
+          {
+            "name": "startDate",
+            "value": "",
+            "type": "query",
+            "description": "Unit Commitment End Date From. Any date from 2024-07-01. Default to current time if left blank (format: yyyy-MM-dd).)"
+          },
+          {
+            "name": "endDate",
+            "value": "",
+            "type": "query",
+            "description": "Unit Commitment End Date To. Any date from 2024-07-01 but after startDate. If left blank, return all the data from startDate. (format: yyyy-MM-dd).)"
+          }
+        ]
+      },
+      "docs": "Fetch generating unit commitment directive data for a date range"
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Load Outage Forecast API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fetch hourly load outages submitted to AESO",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://apimgw.aeso.ca/public/loadoutageforecast-api/loadOutageReport",
+        "params": [
+          {
+            "name": "startDate",
+            "value": "",
+            "type": "query",
+            "description": "Date (yyyy-mm-dd) from 2013-09-22, and up to 24 months in the future."
+          },
+          {
+            "name": "endDate",
+            "value": "",
+            "type": "query",
+            "description": "Date (yyyy-mm-dd) equal or after startDate, and up to 24 months in the future. If blank, data for the startDate will be returned."
+          }
+        ]
+      },
+      "docs": "Fetch hourly load outage forecast for a given date or date range. \r\nIf only the startDate is provided, data will only be provided for that day. \r\n"
+    }
+  ],
+  "bundled": true
+}

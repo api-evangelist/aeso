@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Current Supply Demand",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fetch the latest generation data for all AIES assets greater than 5 MW.",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://apimgw.aeso.ca/public/currentsupplydemand-api/csd/generation/assets/current",
+        "params": [
+          {
+            "name": "assetIds",
+            "value": "",
+            "type": "query",
+            "description": "This parameter can contain up to 20 comma-separated Asset IDs."
+          }
+        ]
+      },
+      "docs": "Users have option to pass upto 20, comma seperated, specific Asset ID(s) to fetch data for those specific asset(s). If the AssetID is incorrect or retired then no data is returned for that AssetID."
+    }
+  ],
+  "bundled": true
+}

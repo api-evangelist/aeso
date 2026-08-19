@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pool Participant API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fetch the latest list of pool participants operating in AIES. ",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://apimgw.aeso.ca/public/PoolParticipant-api/poolparticipantlist",
+        "params": [
+          {
+            "name": "pool_participant_ID",
+            "value": "",
+            "type": "query",
+            "description": "This parameter can contain up to 20 comma-separated Pool Participant IDs."
+          },
+          {
+            "name": "pool_participant_name",
+            "value": "",
+            "type": "query",
+            "description": "All names that contain the provided string will be returned. The search is case-sensitive."
+          }
+        ]
+      },
+      "docs": "Fetch the latest list of pool participants operating in AIES"
+    }
+  ],
+  "bundled": true
+}

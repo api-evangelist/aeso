@@ -1,0 +1,391 @@
+{
+  "item": [
+    {
+      "id": "b449d86a-f517-45fd-b60b-8f9cd1c46e0f",
+      "name": "Fetch Actual Forecast data for a day or date range.",
+      "request": {
+        "name": "Fetch Actual Forecast data for a day or date range.",
+        "description": {
+          "content": "Fetch Actual Forecast data for a day or date range",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "load",
+            "albertaInternalLoad"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "startDate",
+              "value": "<string>",
+              "description": "(Required) Any date between 2000-01-01 and current date. (format: yyyy-MM-dd)."
+            },
+            {
+              "disabled": false,
+              "key": "endDate",
+              "value": "<string>",
+              "description": "Any date up to current date but after startDate. If left blank, only data for startDate will be returned. (format: yyyy-MM-dd)."
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "d0891310-da73-4164-b80f-e520f19b1ea4",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "load",
+                "albertaInternalLoad"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"Actual Forecast Report\": [\n    {\n      \"begin_datetime_utc\": \"string\",\n      \"begin_datetime_mpt\": \"string\",\n      \"alberta_internal_load\": \"string\",\n      \"forecast_alberta_internal_load\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "8066ce66-bfaf-4fbe-9a79-4d4e52256fdd",
+          "name": "Bad Request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "load",
+                "albertaInternalLoad"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "c6df3bde-18d8-431f-b338-5f0187f5384e",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "load",
+                "albertaInternalLoad"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "e0dee8cb-37b0-4a31-af8d-cecfa72c6ab7",
+          "name": "Forbidden",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "load",
+                "albertaInternalLoad"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "f4c22aeb-0dd2-4b51-95a7-3852d0ee2abe",
+          "name": "Not Found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "load",
+                "albertaInternalLoad"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "1889bd0b-c552-44d0-82c2-cf6153371789",
+          "name": "Invalid method",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "load",
+                "albertaInternalLoad"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Method Not Allowed",
+          "code": 405,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "f8deaeed-beeb-47b5-ba9c-e5f9a9d10c93",
+          "name": "Internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "load",
+                "albertaInternalLoad"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "2b1b1d2a-37f1-49c8-a859-42127ccbaba2",
+          "name": "Service unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "load",
+                "albertaInternalLoad"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apimgw.aeso.ca/public/actualforecast-api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "4f17f655-4539-427b-8921-75f2d7469a73",
+    "name": "Actual Forecast Report",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Get Actual Forecast report data for date range.",
+      "type": "text/plain"
+    }
+  }
+}

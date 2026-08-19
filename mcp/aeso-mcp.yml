@@ -313,3 +313,8 @@ candidate_tools:
     required: false
     description: 'Unit Commitment End Date To. Any date from 2024-07-01 but after startDate. If left blank,
       return all the data from startDate. (format: yyyy-MM-dd).)'
+deployment:
+  mode: none
+  verified: derived
+  checked: '2026-08-12'
+  source: catalog MCP census

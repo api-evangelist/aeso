@@ -1,0 +1,21 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Current Supply Demand",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fetch the AIES's latest supply & demand summary data.\r\n",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://apimgw.aeso.ca/public/currentsupplydemand-api/csd/summary/current"
+      },
+      "docs": "Fetch the AIES's latest supply & demand summary data with generation data aggregated by fuel type and flows on each interchange path..\r\n"
+    }
+  ],
+  "bundled": true
+}

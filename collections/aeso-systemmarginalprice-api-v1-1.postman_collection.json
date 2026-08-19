@@ -1,0 +1,682 @@
+{
+  "item": [
+    {
+      "id": "cc6b117f-ecf8-44ca-a397-401da0ce30ea",
+      "name": "Fetch system marginal price report for a given date range",
+      "request": {
+        "name": "Fetch system marginal price report for a given date range",
+        "description": {
+          "content": "Fetch system marginal price report for the date range: startDate (yyyy-MM-dd) to endDate (yyyy-MM-dd). The endDate is optional. If omitted, fetched data will include all data up to the last completed SMP value for the startDate. The API will return a maximum of 4,392 hours (i.e. 183 days).\n\n\n**Please note:** This API does not provide the active System Marginal Price (SMP). To obtain the active SMP, please use the 'Fetch the active system marginal price' API in the lefthand pane.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "price",
+            "systemMarginalPrice"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "startDate",
+              "value": "<string>",
+              "description": "(Required) Any date between 2000-01-01 and current date. (format: yyyy-MM-dd).)"
+            },
+            {
+              "disabled": false,
+              "key": "endDate",
+              "value": "<string>",
+              "description": "Any date up to current date but after startDate. If left blank, only data for startDate will be returned. (format: yyyy-MM-dd).)"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "8dfdfafc-191a-4c3e-a83f-441194e943a6",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "systemMarginalPrice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"System Marginal Price Report\": [\n    {\n      \"begin_datetime_utc\": \"string\",\n      \"end_datetime_utc\": \"string\",\n      \"begin_datetime_mpt\": \"string\",\n      \"end_datetime_mpt\": \"string\",\n      \"system_marginal_price\": 0,\n      \"volume\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "9807df0b-dfe7-4869-8b46-3d93f637701e",
+          "name": "Bad Request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "systemMarginalPrice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "c7427fb8-25d9-409d-84ca-745c2aba6ca8",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "systemMarginalPrice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "7ed97ccb-1e96-41c1-9b84-b99ee70aa334",
+          "name": "Forbidden",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "systemMarginalPrice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "addda0a5-1e0a-483d-a94c-26356a464479",
+          "name": "Not Found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "systemMarginalPrice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "00e02ab5-72eb-43bb-b792-c43a8853b076",
+          "name": "Invalid method",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "systemMarginalPrice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Method Not Allowed",
+          "code": 405,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "80a3cc48-b349-42ed-a11c-8567a0616a01",
+          "name": "Internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "systemMarginalPrice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "1dc6e0d9-1fe1-4c9c-a0ff-5da15ceeab4d",
+          "name": "Service unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "systemMarginalPrice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b11caa76-912b-4f60-8ab2-c471a5ef924c",
+      "name": "Fetch the active system marginal price.",
+      "request": {
+        "name": "Fetch the active system marginal price.",
+        "description": {
+          "content": "Fetch the active system marginal price.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "price",
+            "systemMarginalPrice",
+            "current"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "f2b5e34c-c5a8-4ba8-a8a9-95af860a9cbc",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "systemMarginalPrice",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"System Marginal Price Report\": [\n    {\n      \"begin_datetime_utc\": \"string\",\n      \"end_datetime_utc\": \"string\",\n      \"begin_datetime_mpt\": \"string\",\n      \"end_datetime_mpt\": \"string\",\n      \"system_marginal_price\": 0,\n      \"volume\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "d2cad133-4060-42fe-88f9-a19921addb87",
+          "name": "Bad Request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "systemMarginalPrice",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "7db7e4ec-261f-4989-92c4-6fd820016a61",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "systemMarginalPrice",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "d733805d-2fbe-417c-996f-3a15906f2b9d",
+          "name": "Forbidden",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "systemMarginalPrice",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "343da112-7c7e-45e6-af46-efc5569b0729",
+          "name": "Not Found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "systemMarginalPrice",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "3e5d15c8-d3ee-4ae2-b96b-ced18dc787f3",
+          "name": "Invalid method",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "systemMarginalPrice",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Method Not Allowed",
+          "code": 405,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "f8afb459-7f1b-4319-b665-e39b6b3e0992",
+          "name": "Internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "systemMarginalPrice",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "d84726b8-6a4c-41a9-a411-1e1c5d471835",
+          "name": "Service unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "price",
+                "systemMarginalPrice",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apimgw.aeso.ca/public/systemmarginalprice-api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "e456f997-4329-4a41-b37f-868c0b35dc36",
+    "name": "System Marginal Price Report",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "System Marginal Price report data",
+      "type": "text/plain"
+    }
+  }
+}

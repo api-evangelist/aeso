@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Asset List API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fetch the latest list of assets connected to AIES.",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://apimgw.aeso.ca/public/assetlist-api/assetlist",
+        "params": [
+          {
+            "name": "asset_ID",
+            "value": "",
+            "type": "query",
+            "description": "This parameter can contain up to 20 comma-separated Asset IDs."
+          },
+          {
+            "name": "pool_participant_ID",
+            "value": "",
+            "type": "query",
+            "description": "This parameter can contain up to 20 comma-separated Pool Participant IDs."
+          },
+          {
+            "name": "operating_status",
+            "value": "",
+            "type": "query",
+            "description": "The allowed values are ACTIVE, RETIRED, SUSPENDED, INACTIVE"
+          },
+          {
+            "name": "asset_type",
+            "value": "",
+            "type": "query",
+            "description": "The allowed values are SOURCE, SINK"
+          }
+        ]
+      },
+      "docs": " The asset_ID and pool_participant_ID parameters are comma separated lists. At most, one of the two parameters can be passed in an API call.\n\nNote: The Operating Status, Pool Participant Name and ID for an asset can change overtime."
+    }
+  ],
+  "bundled": true
+}

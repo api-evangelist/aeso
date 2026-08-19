@@ -1,0 +1,382 @@
+{
+  "item": [
+    {
+      "id": "8b3c3830-5019-4a71-a574-1b46fa22f229",
+      "name": "Fetch AIES generation capacity and outages",
+      "request": {
+        "name": "Fetch AIES generation capacity and outages",
+        "description": {
+          "content": "Fetch AIES generation capacity and outages grouped by fuel and sub-fuel type for a date range. The data is available from 1-Jan-2011 to 24 months in future. Note that the API cannot fetch more than 31 days of data in a single request.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "AIESGenCapacity"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "startDate",
+              "value": "<string>",
+              "description": "(Required) Any date between 2011-01-01 and the end of the 24th month from current date in future. (format: yyyy-MM-dd)"
+            },
+            {
+              "disabled": false,
+              "key": "endDate",
+              "value": "<string>",
+              "description": "Any date after startDate up to the 1st of the 25th month from current date in future. If left blank, only data for startDate will be returned. (format: yyyy-MM-dd)"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "d5455b24-57d2-465f-967a-589fa2d3fd92",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "AIESGenCapacity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"fuel_type\": \"string\",\n  \"sub_fuel_type\": \"string\",\n  \"Hours\": [\n    {\n      \"begin_datetime_utc\": \"string\",\n      \"begin_datetime_mpt\": \"string\",\n      \"outage_grouping\": {\n        \"MC\": 0,\n        \"MBO OUT\": 0,\n        \"OP OUT\": 0,\n        \"AC\": 0\n      }\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "e22dd58c-b17e-4ba1-a3b2-0e7e58ea1bb5",
+          "name": "Bad Request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "AIESGenCapacity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "5828f704-e045-442b-bd9d-d90261b99124",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "AIESGenCapacity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "10f7ffd8-94b6-4a14-bce4-62f2f6dfe4f5",
+          "name": "Forbidden",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "AIESGenCapacity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "42fc8844-40cf-4cb6-a16a-55cfc93eb31a",
+          "name": "Not Found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "AIESGenCapacity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "dff68c58-045f-421d-ae52-3db9bdd6a840",
+          "name": "Invalid method",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "AIESGenCapacity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Method Not Allowed",
+          "code": 405,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "40be3b46-ff54-4f87-8520-ddb9834eb1bc",
+          "name": "Internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "AIESGenCapacity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "703cc194-dacf-4053-a484-abe46786bcf9",
+          "name": "Service unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "AIESGenCapacity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apimgw.aeso.ca/public/aiesgencapacity-api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "8875c87f-6e53-4ffa-ac48-56d991258788",
+    "name": "AIES Gen Capacity API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "AIES generation capacity and outages submitted to the AESO.",
+      "type": "text/plain"
+    }
+  }
+}
