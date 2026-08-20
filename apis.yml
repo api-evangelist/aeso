@@ -94,6 +94,12 @@ apis:
   tags:
   - System Marginal Price
   - Prices
+  - Real-Time
+  - Energy Markets
+  - Alberta
+  tags_raw:
+  - System Marginal Price
+  - Prices
   - Real Time
   - Energy Markets
   - Alberta
@@ -119,6 +125,12 @@ apis:
   tags:
   - Supply and Demand
   - Generation Mix
+  - Real-Time
+  - Grid
+  - Alberta
+  tags_raw:
+  - Supply and Demand
+  - Generation Mix
   - Real Time
   - Grid
   - Alberta
@@ -140,6 +152,12 @@ apis:
   humanURL: https://developer-apim.aeso.ca/api-details#api=currentsupplydemand-api-v1
   baseURL: https://apimgw.aeso.ca/public/currentsupplydemand-api/v1
   tags:
+  - Supply and Demand
+  - Generation
+  - Assets
+  - Real-Time
+  - Alberta
+  tags_raw:
   - Supply and Demand
   - Generation
   - Assets
