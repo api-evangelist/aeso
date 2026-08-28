@@ -31,6 +31,18 @@ description: >-
   subscription-key query parameter). The one real friction is legal rather than
   technical: AESO's site terms permit non-commercial, personal or educational use
   only, and any other use requires written permission.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/aeso.png
 tags:
 - Energy
