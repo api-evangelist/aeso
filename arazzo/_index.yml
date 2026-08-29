@@ -1,7 +1,7 @@
-generated: '2026-07-27'
-method: derived
-source: arazzo/*.yaml
-summary: >-
+x-generated: '2026-07-27'
+x-method: derived
+x-source: arazzo/*.yaml
+x-summary: >-
   Native Arazzo 1.0.1 workflows stitching AESO's own operations into real multi-step market-data use
   cases. Every operationId is verified verbatim against the harvested OpenAPI in openapi/. All steps
   are GET, so every workflow is safe to re-run.
