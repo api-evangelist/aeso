@@ -2,15 +2,15 @@
 kin_checks:
   slug: aeso
   schema_version: 0.15.1
-  scored_at: '2026-08-27'
-  run_ts: 2026-08-27T140727
+  scored_at: '2026-08-28'
+  run_ts: 2026-08-28T221322
   note: Actionable checks only (missed + partial). earned/na are every other check
     in rubric/scoring-0.15.1.yml; counts below let you verify that.
   counts:
     total: 130
     earned: 32
-    partial: 21
-    missed: 54
+    partial: 22
+    missed: 53
     na: 23
   checks:
   - id: well_known_published
@@ -26,9 +26,6 @@ kin_checks:
     status: missed
     detail: 0 of 13 openapi documents pass
   - id: info_complete
-    status: missed
-    detail: 0 of 13 openapi documents pass
-  - id: operations_tagged
     status: missed
     detail: 0 of 13 openapi documents pass
   - id: credentials_not_in_query
@@ -149,6 +146,10 @@ kin_checks:
     status: partial
     earned: 1.5
     detail: 13 of 13 openapi documents pass
+  - id: operations_tagged
+    status: partial
+    earned: 1.0
+    detail: 13 of 13 openapi documents pass
   - id: operations_operation_ids
     status: partial
     earned: 1.0
@@ -166,8 +167,8 @@ kin_checks:
     earned: 1.0
   - id: components_reuse
     status: partial
-    earned: 0.23
-    detail: 4 of 13 openapi documents pass
+    earned: 0.4
+    detail: 7 of 13 openapi documents pass
   - id: security_schemes_defined
     status: partial
     earned: 1.0
