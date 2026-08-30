@@ -84,6 +84,14 @@ apis:
   - Open Data
   - CSV
   - Pool Price
+  - Supply & Demand
+  - Outages
+  - Anonymous Access
+  - Alberta
+  tags_raw:
+  - Open Data
+  - CSV
+  - Pool Price
   - Supply and Demand
   - Outages
   - Anonymous Access
@@ -117,6 +125,8 @@ apis:
   humanURL: https://developer-apim.aeso.ca/api-details#api=poolprice-api-v1-1
   baseURL: https://apimgw.aeso.ca/public/poolprice-api/v1.1
   tags:
+  - AssetList
+  tags_raw:
   - Assetlist
   properties:
   - type: OpenAPI
@@ -135,6 +145,8 @@ apis:
   humanURL: https://developer-apim.aeso.ca/api-details#api=poolprice-api-v1-1
   baseURL: https://apimgw.aeso.ca/public/poolprice-api/v1.1
   tags:
+  - CSD
+  tags_raw:
   - Csd
   properties:
   - type: OpenAPI
