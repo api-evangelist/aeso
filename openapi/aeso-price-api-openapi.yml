@@ -1,0 +1,277 @@
+openapi: 3.2.0
+info:
+  title: Aeso Price API
+  version: v1.1
+  description: 'Operations tagged Price across 2 of this provider''s published API definitions: aeso-poolprice-api-v1-1-openapi.json, aeso-systemmarginalprice-api-v1-1-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://apimgw.aeso.ca/public/poolprice-api
+- url: https://gateway-apim.aeso.ca/public/poolprice-api
+- url: https://apimgw.aeso.ca/public/systemmarginalprice-api
+- url: https://gateway-apim.aeso.ca/public/systemmarginalprice-api
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Price
+paths:
+  /price/poolPrice:
+    servers:
+    - url: https://apimgw.aeso.ca/public/poolprice-api
+    - url: https://gateway-apim.aeso.ca/public/poolprice-api
+    get:
+      operationId: getPoolPriceDateRangeReport
+      summary: Fetch pool price report for a given date range
+      description: "Fetch pool price report for the date range: startDate (yyyy-mm-dd) to endDate (yyyy-mm-dd). The endDate is optional. If endDate is omitted, fetched data will include the pool price values for all the completed settlement hours of the day specified by startDate.\n\nTo fetch the latest pool price, include the date of that hour in your query.\n\n \n\nThe API will return data for a maximum of 1 year at a time."
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketPriceDemandDataReport'
+              examples:
+                default:
+                  value:
+                    Pool Price Report:
+                    - begin_datetime_utc: string
+                      begin_datetime_mpt: string
+                      pool_price: string
+                      forecast_pool_price: string
+                      rolling_30day_avg: string
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Invalid method
+        '500':
+          description: Internal server error
+        '503':
+          description: Service unavailable
+      parameters:
+      - name: startDate
+        in: query
+        required: true
+        description: 'Any date between 2000-01-01 and current date.  (format: yyyy-MM-dd).'
+        schema:
+          $ref: '#/components/schemas/PricePoolPriceGetRequest'
+      - name: endDate
+        in: query
+        required: false
+        description: 'Any date up to current date but after startDate. If left blank, only data for startDate will be returned. (format: yyyy-MM-dd).'
+        schema:
+          $ref: '#/components/schemas/PricePoolPriceGetRequest-1'
+      tags:
+      - Price
+  /price/systemMarginalPrice:
+    servers:
+    - url: https://apimgw.aeso.ca/public/systemmarginalprice-api
+    - url: https://gateway-apim.aeso.ca/public/systemmarginalprice-api
+    get:
+      operationId: getSystemMarginalPriceReportForDateRange
+      summary: Fetch system marginal price report for a given date range
+      description: 'Fetch system marginal price report for the date range: startDate (yyyy-MM-dd) to endDate (yyyy-MM-dd). The endDate is optional. If omitted, fetched data will include all data up to the last completed SMP value for the startDate. The API will return a maximum of 4,392 hours (i.e. 183 days).
+
+
+
+        **Please note:** This API does not provide the active System Marginal Price (SMP). To obtain the active SMP, please use the ''Fetch the active system marginal price'' API in the lefthand pane.'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemMarginalPriceDataReport'
+              examples:
+                default:
+                  value:
+                    System Marginal Price Report:
+                    - begin_datetime_utc: string
+                      end_datetime_utc: string
+                      begin_datetime_mpt: string
+                      end_datetime_mpt: string
+                      system_marginal_price: 0
+                      volume: string
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Invalid method
+        '500':
+          description: Internal server error
+        '503':
+          description: Service unavailable
+      parameters:
+      - name: startDate
+        in: query
+        required: true
+        description: 'Any date between 2000-01-01 and current date. (format: yyyy-MM-dd).)'
+        schema:
+          $ref: '#/components/schemas/PriceSystemMarginalPriceGetRequest'
+      - name: endDate
+        in: query
+        required: false
+        description: 'Any date up to current date but after startDate. If left blank, only data for startDate will be returned. (format: yyyy-MM-dd).)'
+        schema:
+          $ref: '#/components/schemas/PriceSystemMarginalPriceGetRequest-1'
+      tags:
+      - Price
+  /price/systemMarginalPrice/current:
+    servers:
+    - url: https://apimgw.aeso.ca/public/systemmarginalprice-api
+    - url: https://gateway-apim.aeso.ca/public/systemmarginalprice-api
+    get:
+      operationId: getCurrentSystemMarginalPriceReport
+      summary: Fetch the active system marginal price.
+      description: Fetch the active system marginal price.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemMarginalPriceDataReport'
+              examples:
+                default:
+                  value:
+                    System Marginal Price Report:
+                    - begin_datetime_utc: string
+                      end_datetime_utc: string
+                      begin_datetime_mpt: string
+                      end_datetime_mpt: string
+                      system_marginal_price: 0
+                      volume: string
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Invalid method
+        '500':
+          description: Internal server error
+        '503':
+          description: Service unavailable
+      tags:
+      - Price
+components:
+  schemas:
+    MarketPriceDemandDataReport:
+      type: object
+      properties:
+        Pool Price Report:
+          type: array
+          items:
+            $ref: '#/components/schemas/MarketPriceDemandDataVO'
+    PricePoolPriceGetRequest:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
+    PriceSystemMarginalPriceGetRequest-1:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
+    MarketPriceDemandDataVO:
+      type: object
+      properties:
+        begin_datetime_utc:
+          type: string
+          description: The begin timestamp of the settlement hour, in UTC.
+        begin_datetime_mpt:
+          type: string
+          description: 'The begin timestamp of the settlement hour, in MPT (Mountain Prevailing Time) '
+        pool_price:
+          type: string
+          description: The Pool Price for the settlement hour, in CAD.
+        forecast_pool_price:
+          type: string
+          description: The Forecasted Pool Price for the settlement hour, in CAD.
+        rolling_30day_avg:
+          type: string
+          description: The 30-day rolling average price for the settlement hour, in CAD.
+    PricePoolPriceGetRequest-1:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
+    SystemMarginalPriceDataVO:
+      type: object
+      properties:
+        begin_datetime_utc:
+          type: string
+          description: The begin timestamp of when the block set the SMP, in UTC.
+        end_datetime_utc:
+          type: string
+          description: The end timestamp of when the block set the SMP, in UTC.
+        begin_datetime_mpt:
+          type: string
+          description: The begin timestamp of when the block set the SMP, in MPT (Mountain Prevailing Time).
+        end_datetime_mpt:
+          type: string
+          description: The end timestamp of when the block set the SMP, in MPT (Mountain Prevailing Time).
+        system_marginal_price:
+          type: number
+          description: The offered price of the block that set the SMP, in CAD.
+          format: double
+        volume:
+          type: string
+          description: The Available MW for the block at the time the block set the SMP.
+    PriceSystemMarginalPriceGetRequest:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
+    SystemMarginalPriceDataReport:
+      type: object
+      properties:
+        System Marginal Price Report:
+          type: array
+          items:
+            $ref: '#/components/schemas/SystemMarginalPriceDataVO'
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: API-KEY
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+x-refined-from:
+- aeso-poolprice-api-v1-1-openapi.json
+- aeso-systemmarginalprice-api-v1-1-openapi.json
+x-provenance:
+  harvestedBy: API Evangelist
+  harvestedOn: '2026-07-27'
+  sourcePortal: https://developer-apim.aeso.ca/
+  method: Assembled verbatim from the AESO Azure API Management developer-portal data API, which is served anonymously. AESO's own OpenAPI export (?export=true&format=openapi) returns a valid document with an EMPTY paths object, so paths, parameters, responses, examples and component schemas were read from the portal's operations/ and schemas/ endpoints and reassembled without alteration. Nothing was invented.
+  sources:
+  - url: https://developer-apim.aeso.ca/developer/apis/actualforecast-api-v1?api-version=2022-04-01-preview
+    status: 200
+    note: API metadata
+  - url: https://developer-apim.aeso.ca/developer/apis/actualforecast-api-v1?export=true&format=openapi%2Bjson&api-version=2022-04-01-preview
+    status: 200
+    note: AESO OpenAPI export (empty paths) - basis for info/servers/security
+  - url: https://developer-apim.aeso.ca/developer/apis/actualforecast-api-v1/operations?api-version=2022-04-01-preview
+    status: 200
+    note: operation list
+  - url: https://developer-apim.aeso.ca/developer/apis/actualforecast-api-v1/schemas?api-version=2022-04-01-preview
+    status: 200
+    note: schema list
+  - url: https://developer-apim.aeso.ca/developer/apis/actualforecast-api-v1/operations/getActualForecastReport?api-version=2022-04-01-preview
+    status: 200
+    note: operation detail
+  - url: https://developer-apim.aeso.ca/developer/apis/actualforecast-api-v1/schemas/675b1a4d3d594b1e2075ef3d?api-version=2022-04-01-preview
+    status: 200
+    note: schema document

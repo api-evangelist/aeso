@@ -1,0 +1,170 @@
+openapi: 3.2.0
+info:
+  title: Intertie Public Reports Outage API
+  description: Intertie Public Reports
+  contact:
+    name: ITC Support
+    url: http://itc.aeso.ca/
+    email: info@aeso.ca
+  version: v1
+servers:
+- url: https://apimgw.aeso.ca/public/itc
+- url: https://gateway-apim.aeso.ca/public/itc
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Outage
+paths:
+  /outage:
+    get:
+      operationId: getOutages
+      summary: Fetch all the outages affecting TTCs on interties/flowgates
+      description: Fetches 13 months of data at a time. The data is available after 09 Nov 2020.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutagesReport'
+              examples:
+                default:
+                  value:
+                    Outages:
+                      Outage:
+                      - element: string
+                        affectedIntertieOrFlowgate:
+                        - BC
+                        toInLocalTime: string
+                        fromInLocalTime: string
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OutagesReport'
+              examples:
+                default:
+                  value: "<OutagesReport>\n  <Outages>\n    <Outage>\n      <element>string</element>\n      <affectedIntertieOrFlowgate>BC</affectedIntertieOrFlowgate>\n      <toInLocalTime>string</toInLocalTime>\n      <fromInLocalTime>string</fromInLocalTime>\n    </Outage>\n  </Outages>\n</OutagesReport>"
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Invalid method
+        '500':
+          description: Internal server error
+        '503':
+          description: Service unavailable
+      parameters:
+      - name: startDate
+        in: query
+        required: true
+        description: 'Pass any date in history or future with format: yyyyMMdd e.g. 12Aug2020 will be 20200812. Fetches 13 months of data at a time. The data is available after 09 Nov 2020.'
+        schema:
+          $ref: '#/components/schemas/OutageGetRequest'
+      - name: endDate
+        in: query
+        required: true
+        description: 'Pass any date equal to or after startDate with format: yyyyMMdd e.g. 12Aug2020 will be 20200812. Fetches 13 months of data at a time. The data is available after 09 Nov 2020.'
+        schema:
+          $ref: '#/components/schemas/OutageGetRequest-1'
+      - name: affectedIntertieOrFlowgate
+        in: query
+        required: false
+        description: "Pass one value. No selection or '--' will select all interties and flowgates by default. \n\n_Available values_: BC, MATL, SK, BC_MATL"
+        schema:
+          $ref: '#/components/schemas/OutageGetRequest-2'
+      tags:
+      - Outage
+components:
+  schemas:
+    OutageGetRequest-1:
+      type: string
+      description: As Of Date
+      x-apim-inline: true
+    OutageReport:
+      type: object
+      properties:
+        Outage:
+          type: array
+          items:
+            $ref: '#/components/schemas/OutageVO'
+    OutageGetRequest-2:
+      enum:
+      - BC
+      - MATL
+      - SK
+      - BC_MATL
+      type: string
+      description: start
+      x-apim-inline: true
+    OutagesReport:
+      type: object
+      properties:
+        Outages:
+          $ref: '#/components/schemas/OutageReport'
+    OutageVO:
+      type: object
+      properties:
+        element:
+          type: string
+        affectedIntertieOrFlowgate:
+          uniqueItems: true
+          type: array
+          items:
+            enum:
+            - BC
+            - MATL
+            - BC_MATL
+            - SK
+            - SKEXP
+            - NA
+            type: string
+        toInLocalTime:
+          type: string
+        fromInLocalTime:
+          type: string
+    OutageGetRequest:
+      type: string
+      description: As Of Date
+      x-apim-inline: true
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: API-KEY
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+x-provenance:
+  harvestedBy: API Evangelist
+  harvestedOn: '2026-07-27'
+  sourcePortal: https://developer-apim.aeso.ca/
+  method: Assembled verbatim from the AESO Azure API Management developer-portal data API, which is served anonymously. AESO's own OpenAPI export (?export=true&format=openapi) returns a valid document with an EMPTY paths object, so paths, parameters, responses, examples and component schemas were read from the portal's operations/ and schemas/ endpoints and reassembled without alteration. Nothing was invented.
+  sources:
+  - url: https://developer-apim.aeso.ca/developer/apis/itc-api-v1?api-version=2022-04-01-preview
+    status: 200
+    note: API metadata
+  - url: https://developer-apim.aeso.ca/developer/apis/itc-api-v1?export=true&format=openapi%2Bjson&api-version=2022-04-01-preview
+    status: 200
+    note: AESO OpenAPI export (empty paths) - basis for info/servers/security
+  - url: https://developer-apim.aeso.ca/developer/apis/itc-api-v1/operations?api-version=2022-04-01-preview
+    status: 200
+    note: operation list
+  - url: https://developer-apim.aeso.ca/developer/apis/itc-api-v1/schemas?api-version=2022-04-01-preview
+    status: 200
+    note: schema list
+  - url: https://developer-apim.aeso.ca/developer/apis/itc-api-v1/operations/getOutages?api-version=2022-04-01-preview
+    status: 200
+    note: operation detail
+  - url: https://developer-apim.aeso.ca/developer/apis/itc-api-v1/operations/getReportByRange?api-version=2022-04-01-preview
+    status: 200
+    note: operation detail
+  - url: https://developer-apim.aeso.ca/developer/apis/itc-api-v1/schemas/675b1b263d594b1e2075ef55?api-version=2022-04-01-preview
+    status: 200
+    note: schema document

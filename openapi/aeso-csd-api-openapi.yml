@@ -1,0 +1,305 @@
+openapi: 3.2.0
+info:
+  title: Aeso Csd API
+  version: '1.0'
+  description: 'Operations tagged Csd across 2 of this provider''s published API definitions: aeso-currentsupplydemand-api-v1-openapi.json, aeso-currentsupplydemand-api-v2-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://apimgw.aeso.ca/public/currentsupplydemand-api
+- url: https://gateway-apim.aeso.ca/public/currentsupplydemand-api
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Csd
+paths:
+  /csd/generation/assets/current:
+    servers:
+    - url: https://apimgw.aeso.ca/public/currentsupplydemand-api
+    - url: https://gateway-apim.aeso.ca/public/currentsupplydemand-api
+    get:
+      operationId: getCSDReportByAsset
+      summary: Fetch the latest generation data for all AIES assets greater than 5 MW.
+      description: Users have option to pass upto 20, comma seperated, specific Asset ID(s) to fetch data for those specific asset(s). If the AssetID is incorrect or retired then no data is returned for that AssetID.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CSDAssetGenerationReport'
+              examples:
+                default:
+                  value:
+                    last_updated_datetime_utc: 2022-03-18 10:20
+                    last_updated_datetime_mpt: 2022-03-18 16:20
+                    asset_list:
+                    - asset: string
+                      fuel_type: string
+                      sub_fuel_type: string
+                      maximum_capability: 0
+                      net_generation: 0
+                      dispatched_contingency_reserve: 0
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Invalid method
+        '500':
+          description: Internal server error
+        '503':
+          description: Service unavailable
+      parameters:
+      - name: assetIds
+        in: query
+        required: false
+        description: This parameter can contain up to 20 comma-separated Asset IDs.
+        schema:
+          $ref: '#/components/schemas/CsdGenerationAssetsCurrentGetRequest'
+      tags:
+      - Csd
+  /csd/summary/current:
+    servers:
+    - url: https://apimgw.aeso.ca/public/currentsupplydemand-api
+    - url: https://gateway-apim.aeso.ca/public/currentsupplydemand-api
+    get:
+      operationId: getCSDSummaryDataReportv2
+      summary: 'Fetch the AIES''s latest supply & demand summary data.
+
+        '
+      description: 'Fetch the AIES''s latest supply & demand summary data with generation data aggregated by fuel type and flows on each interchange path..
+
+        '
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CSDSummaryDataVOv2'
+              examples:
+                default:
+                  value:
+                    effective_datetime_utc: 2022-03-18 10:20
+                    effective_datetime_mpt: 2022-03-18 16:20
+                    total_max_generation_capability: 0
+                    total_net_generation: 0
+                    net_to_grid_generation: 0
+                    net_actual_interchange: 0
+                    alberta_internal_load: 0
+                    contingency_reserve_required: 0
+                    dispatched_contigency_reserve_total: 0
+                    dispatched_contingency_reserve_gen: 0
+                    dispatched_contingency_reserve_other: 0
+                    ffr_armed_dispatch: 0
+                    ffr_offered_volume: 0
+                    long_lead_time_volume: 0
+                    generation_data_list:
+                    - fuel_type: string
+                      aggregated_maximum_capability: 0
+                      aggregated_net_generation: 0
+                      aggregated_dispatched_contingency_reserve: 0
+                    interchange_list:
+                    - path: string
+                      actual_flow: 0
+        '500':
+          description: Internal server error
+        '400':
+          description: Bad Request
+        '405':
+          description: Invalid method
+        '503':
+          description: Service unavailable
+        '404':
+          description: Not Found
+      tags:
+      - Csd
+components:
+  schemas:
+    CsdGenerationAssetsCurrentGetRequest:
+      type: string
+      x-apim-inline: true
+    CSDGenerationFuelTypeVO:
+      type: object
+      properties:
+        fuel_type:
+          type: string
+          description: Fuel Type of the asset.
+        aggregated_maximum_capability:
+          type: integer
+          description: 'Maximum capabilities (in MW) of all the generating assets, aggregated by fuel type.
+
+            Note that the Maximum Capability (MC) of coal assets is net of auxiliary load.'
+          format: int32
+        aggregated_net_generation:
+          type: integer
+          description: Net Generation (Gross Generation minus Asset service) in MW of all the generating assets, aggregated by fuel type.
+          format: int32
+        aggregated_dispatched_contingency_reserve:
+          type: integer
+          description: Dispatched (and Accepted) Contingency Reserve (in MW) of all the generating assets, aggregated by fuel type.
+          format: int32
+    CSDAssetGenerationTypeVO:
+      type: object
+      properties:
+        asset:
+          type: string
+          description: Asset's unique short name defined by 3 or 4-digit alphanumeric code. A pool asset is registered to a pool participant..
+        fuel_type:
+          type: string
+          description: Fuel Type of the asset.
+        sub_fuel_type:
+          type: string
+          description: Sub-fuel Type of asset. Only applicable for assets with fuel type = Gas. The field will be empty for other assets.
+        maximum_capability:
+          type: integer
+          description: 'Maximum quantity (in MW) that the generating asset is physically capable of providing under optimal operating conditions for the asset while complying with all applicable ISO rules and terms and conditions of the ISO tariff.
+
+            Note that the Maximum Capability (MC) of coal assets is net of auxiliary load.'
+          format: int32
+        net_generation:
+          type: integer
+          description: Net Generation (Gross Generation minus Asset service) in MW pertaining to the asset.
+          format: int32
+        dispatched_contingency_reserve:
+          type: integer
+          description: Dispatched (and Accepted) Contingency Reserve (in MW) pertaining to the asset.
+          format: int32
+    CSDInterchangeVO:
+      type: object
+      properties:
+        path:
+          type: string
+          description: AIES's interchange path name.
+        actual_flow:
+          type: integer
+          description: Flow on AIES's interchange path (in MW).
+          format: int32
+    CSDSummaryDataVOv2:
+      type: object
+      properties:
+        effective_datetime_utc:
+          type: string
+          description: The timestamp of when the data was last updated in UTC
+          example: 2022-03-18 10:20
+        effective_datetime_mpt:
+          type: string
+          description: The timestamp of when the data was last updated in MPT
+          example: 2022-03-18 16:20
+        total_max_generation_capability:
+          type: integer
+          format: int32
+        total_net_generation:
+          type: integer
+          description: Total Net Generation (Gross Generation minus Asset service) in MW of all AIES assets that are greater than 5MWs.
+          format: int32
+        net_to_grid_generation:
+          type: integer
+          description: 'Net-To-Grid Generation (in MW). is calculated as per the definition "net generation the ISO determines is delivered to the grid" in Alberta Reliability Standard BAL-002-WECC-AB-2).
+
+            Load used to calculate contingency reserves requirements, as per BAL-002-WECC-AB-2, is Net-To-Grid Generation minus Net Actual Interchange. Please see BAL-002-WECC-AB-2 for more information.'
+          format: int32
+        net_actual_interchange:
+          type: integer
+          description: Control area interchange between Alberta and British Columbia, Saskatchewan and Montana  (in MW) - Defined as Import (-) or Export (+).)
+          format: int32
+        alberta_internal_load:
+          type: integer
+          description: Calculated total Alberta demand based on all telemetered Control Area Net Generation minus Net Actual Interchange (in MW).
+          format: int32
+        contingency_reserve_required:
+          type: integer
+          description: Based on the WSCC Reserve calculation Methodology. It is the amount of Contingency reserve that should be obtained on average during the hour (in MW).
+          format: int32
+        dispatched_contigency_reserve_total:
+          type: integer
+          description: Dispatched (and Accepted) Contingency Reserve (in MW).
+          format: int32
+        dispatched_contingency_reserve_gen:
+          type: integer
+          description: Total Dispatched (and Accepted) Contingency Reserve (in MW) of all AIES generation assets that are greater than 5MWs.
+          format: int32
+        dispatched_contingency_reserve_other:
+          type: integer
+          description: Total Dispatched Contingency Reserve (in MWs) obtained from Non- Generation assets (Interconnections, Load, etc).
+          format: int32
+        ffr_armed_dispatch:
+          type: integer
+          description: The total amount of real power (in MW), armed for FFR following a Dispatch.
+          format: int32
+        ffr_offered_volume:
+          type: integer
+          description: The total amount of real power offered by FFR Service Providers (in MW).
+          format: int32
+        long_lead_time_volume:
+          type: integer
+          description: Total amount of long lead time volume not available (in MW).
+          format: int32
+        generation_data_list:
+          type: array
+          items:
+            $ref: '#/components/schemas/CSDGenerationFuelTypeVO'
+        interchange_list:
+          type: array
+          items:
+            $ref: '#/components/schemas/CSDInterchangeVO'
+    CSDAssetGenerationReport:
+      type: object
+      properties:
+        last_updated_datetime_utc:
+          type: string
+          description: The timestamp of when the data was last updated in UTC
+          example: 2022-03-18 10:20
+        last_updated_datetime_mpt:
+          type: string
+          description: The timestamp of when the data was last updated in MPT
+          example: 2022-03-18 16:20
+        asset_list:
+          type: array
+          items:
+            $ref: '#/components/schemas/CSDAssetGenerationTypeVO'
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: API-KEY
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+x-refined-from:
+- aeso-currentsupplydemand-api-v1-openapi.json
+- aeso-currentsupplydemand-api-v2-openapi.json
+x-provenance:
+  harvestedBy: API Evangelist
+  harvestedOn: '2026-07-27'
+  sourcePortal: https://developer-apim.aeso.ca/
+  method: Assembled verbatim from the AESO Azure API Management developer-portal data API, which is served anonymously. AESO's own OpenAPI export (?export=true&format=openapi) returns a valid document with an EMPTY paths object, so paths, parameters, responses, examples and component schemas were read from the portal's operations/ and schemas/ endpoints and reassembled without alteration. Nothing was invented.
+  sources:
+  - url: https://developer-apim.aeso.ca/developer/apis/actualforecast-api-v1?api-version=2022-04-01-preview
+    status: 200
+    note: API metadata
+  - url: https://developer-apim.aeso.ca/developer/apis/actualforecast-api-v1?export=true&format=openapi%2Bjson&api-version=2022-04-01-preview
+    status: 200
+    note: AESO OpenAPI export (empty paths) - basis for info/servers/security
+  - url: https://developer-apim.aeso.ca/developer/apis/actualforecast-api-v1/operations?api-version=2022-04-01-preview
+    status: 200
+    note: operation list
+  - url: https://developer-apim.aeso.ca/developer/apis/actualforecast-api-v1/schemas?api-version=2022-04-01-preview
+    status: 200
+    note: schema list
+  - url: https://developer-apim.aeso.ca/developer/apis/actualforecast-api-v1/operations/getActualForecastReport?api-version=2022-04-01-preview
+    status: 200
+    note: operation detail
+  - url: https://developer-apim.aeso.ca/developer/apis/actualforecast-api-v1/schemas/675b1a4d3d594b1e2075ef3d?api-version=2022-04-01-preview
+    status: 200
+    note: schema document
