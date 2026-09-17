@@ -134,26 +134,6 @@ apis:
   - type: Onboarding
     url: >-
       https://www.aeso.ca/assets/downloads/external/api/API-Access-Instructions-APIM-API-Gateway.pdf
-- aid: aeso:aeso-assetlist-api
-  name: AESO Assetlist API
-  description: The Assetlist API from AESO — 1 operation(s) for assetlist.
-  humanURL: https://developer-apim.aeso.ca/api-details#api=poolprice-api-v1-1
-  baseURL: https://apimgw.aeso.ca/public/poolprice-api/v1.1
-  tags:
-  - AssetList
-  tags_raw:
-  - Assetlist
-  properties:
-  - type: OpenAPI
-    url: openapi/aeso-assetlist-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
-  - type: APIReference
-    url: https://developer-apim.aeso.ca/apis
-  - type: Onboarding
-    url: >-
-      https://www.aeso.ca/assets/downloads/external/api/API-Access-Instructions-APIM-API-Gateway.pdf
 - aid: aeso:aeso-csd-api
   name: AESO Csd API
   description: The Csd API from AESO — 2 operation(s) for csd.
@@ -347,6 +327,24 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/aeso-unitcommitment-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
+  - type: APIReference
+    url: https://developer-apim.aeso.ca/apis
+  - type: Onboarding
+    url: >-
+      https://www.aeso.ca/assets/downloads/external/api/API-Access-Instructions-APIM-API-Gateway.pdf
+- aid: aeso:aeso-asset-list-api
+  name: AESO Asset List API
+  description: The Asset List API from AESO — 1 operation(s) for asset list.
+  humanURL: https://www.aeso.ca/market/market-and-system-reporting/
+  baseURL: http://ets.aeso.ca/ets_web/ip/Market/Reports
+  tags:
+  - Asset List
+  properties:
+  - type: OpenAPI
+    url: openapi/aeso-asset-list-api-openapi.yml
   - type: Documentation
     url: >-
       https://www.aeso.ca/market/market-and-system-reporting/aeso-application-programming-interface-api/
