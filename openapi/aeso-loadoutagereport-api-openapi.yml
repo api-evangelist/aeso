@@ -17,7 +17,9 @@ paths:
     get:
       operationId: getLoadOutageRangeReport
       summary: Fetch hourly load outages submitted to AESO
-      description: "Fetch hourly load outage forecast for a given date or date range. \nIf only the startDate is provided, data will only be provided for that day. \n"
+      description: 'Fetch hourly load outage forecast for a given date or date range.
+
+        If only the startDate is provided, data will only be provided for that day.'
       responses:
         '200':
           description: OK
@@ -63,6 +65,21 @@ paths:
       - LoadOutageReport
 components:
   schemas:
+    LoadOutageReportGetRequest-1:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
+    LoadOutageVO:
+      type: object
+      properties:
+        loadOutagePerHourVO:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoadOutagePerHourVO'
+    LoadOutageReportGetRequest:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
     LoadOutagePerHourVO:
       type: object
       properties:
@@ -78,21 +95,6 @@ components:
 
             '
           format: double
-    LoadOutageVO:
-      type: object
-      properties:
-        loadOutagePerHourVO:
-          type: array
-          items:
-            $ref: '#/components/schemas/LoadOutagePerHourVO'
-    LoadOutageReportGetRequest:
-      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
-      type: string
-      x-apim-inline: true
-    LoadOutageReportGetRequest-1:
-      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
-      type: string
-      x-apim-inline: true
   securitySchemes:
     apiKeyHeader:
       type: apiKey

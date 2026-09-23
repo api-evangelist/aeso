@@ -6,13 +6,13 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: currentsupplydemand-v2
-  url: ../openapi/aeso-currentsupplydemand-api-v2-openapi.json
+  url: ../openapi/_original/aeso-currentsupplydemand-api-v2-openapi.json
   type: openapi
 - name: systemmarginalprice
-  url: ../openapi/aeso-systemmarginalprice-api-v1-1-openapi.json
+  url: ../openapi/_original/aeso-systemmarginalprice-api-v1-1-openapi.json
   type: openapi
 - name: poolprice
-  url: ../openapi/aeso-poolprice-api-v1-1-openapi.json
+  url: ../openapi/_original/aeso-poolprice-api-v1-1-openapi.json
   type: openapi
 workflows:
 - workflowId: aeso-market-snapshot

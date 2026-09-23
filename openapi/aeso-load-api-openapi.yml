@@ -16,8 +16,7 @@ paths:
   /load/albertaInternalLoad:
     get:
       operationId: getActualForecastReport
-      summary: Fetch Actual Forecast data for a day or date range.
-      description: Fetch Actual Forecast data for a day or date range
+      summary: Fetch Actual Forecast data for a day or date range
       responses:
         '200':
           description: OK
@@ -72,6 +71,13 @@ components:
       pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
       type: string
       x-apim-inline: true
+    ActualForecastAILReport:
+      type: object
+      properties:
+        Actual Forecast Report:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActualForecastAILVO'
     ActualForecastAILVO:
       type: object
       properties:
@@ -83,13 +89,6 @@ components:
           type: string
         forecast_alberta_internal_load:
           type: string
-    ActualForecastAILReport:
-      type: object
-      properties:
-        Actual Forecast Report:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActualForecastAILVO'
   securitySchemes:
     apiKeyHeader:
       type: apiKey

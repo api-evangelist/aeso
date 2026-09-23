@@ -16,14 +16,11 @@ paths:
   /operatingReserveOfferControl:
     get:
       operationId: getOperatingReserveOfferControlReport
-      summary: Fetch Operating Reserve Offer Control data for a given date that is 60 days prior to current date.
+      summary: Fetch Operating Reserve Offer Control data for a given date that is 60 days…
       description: 'Fetch Operating Reserve Offer Control data for Date(startDate (yyyy-MM-dd))
 
 
-        The Operating Reserve Offer Control data is available 60 days after the date of the report, first available from October 4, 2012.
-
-
-        '
+        The Operating Reserve Offer Control data is available 60 days after the date of the report, first available from October 4, 2012.'
       responses:
         '200':
           description: OK
@@ -71,6 +68,28 @@ paths:
       - OperatingReserveOfferControl
 components:
   schemas:
+    OperatingReserveOfferControlGetRequest:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
+    OperatingReserveOfferControlVO:
+      type: object
+      properties:
+        begin_datetime_utc:
+          type: string
+        begin_datetime_mpt:
+          type: string
+        operating_reserve_blocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/OperatingReserverOfferControlCoreDataVO'
+    OperatingReserveOfferControlReport:
+      type: object
+      properties:
+        Operating Reserve Trade Merit Order:
+          type: array
+          items:
+            $ref: '#/components/schemas/OperatingReserveOfferControlVO'
     OperatingReserverOfferControlCoreDataVO:
       type: object
       properties:
@@ -93,28 +112,6 @@ components:
           format: double
         offer_control:
           type: string
-    OperatingReserveOfferControlReport:
-      type: object
-      properties:
-        Operating Reserve Trade Merit Order:
-          type: array
-          items:
-            $ref: '#/components/schemas/OperatingReserveOfferControlVO'
-    OperatingReserveOfferControlVO:
-      type: object
-      properties:
-        begin_datetime_utc:
-          type: string
-        begin_datetime_mpt:
-          type: string
-        operating_reserve_blocks:
-          type: array
-          items:
-            $ref: '#/components/schemas/OperatingReserverOfferControlCoreDataVO'
-    OperatingReserveOfferControlGetRequest:
-      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
-      type: string
-      x-apim-inline: true
   securitySchemes:
     apiKeyHeader:
       type: apiKey

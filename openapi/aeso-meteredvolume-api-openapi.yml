@@ -17,7 +17,19 @@ paths:
     get:
       operationId: getMeteredVolumeReport
       summary: Fetch AIES Metered Volume data
-      description: "Fetch AIES Metered Volume for a given date or date range. \n\nIf only the startDate is provided, data will only be provided for that day. \n\n\nOptional parameters asset_ID and pool_participant_ID can be provided to limit the data returned. The asset_ID and pool_participant_ID parameters are comma separated lists. At most, one of the two parameters can be passed in an API call.\n\n\nIf no asset_ID or pool_participant_ID is provided, then the API with fetch data for all assets, which will be limited to 16 days in a single fetch.\n\n\nIf asset_ID or pool_participant_ID is provided, the API with fetch data specific to those parameters. The results will be limited to approximately 100K records in a single fetch. For example, a single asset will return 24 records for 1 day. Please restrict your query accordingly. \n\n"
+      description: 'Fetch AIES Metered Volume for a given date or date range.
+
+
+        If only the startDate is provided, data will only be provided for that day.
+
+
+        Optional parameters asset_ID and pool_participant_ID can be provided to limit the data returned. The asset_ID and pool_participant_ID parameters are comma separated lists. At most, one of the two parameters can be passed in an API call.
+
+
+        If no asset_ID or pool_participant_ID is provided, then the API with fetch data for all assets, which will be limited to 16 days in a single fetch.
+
+
+        If asset_ID or pool_participant_ID is provided, the API with fetch data specific to those parameters. The results will be limited to approximately 100K records in a single fetch. For example, a single asset will return 24 records for 1 day. Please restrict your query accordingly.'
       responses:
         '200':
           description: OK
@@ -79,22 +91,25 @@ paths:
       - Meteredvolume
 components:
   schemas:
+    MeteredvolumeDetailsGetRequest:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
+    MeteredVolumes:
+      type: object
+      properties:
+        begin_date_utc:
+          type: string
+          description: The begin timestamp of the settlement hour, in UTC.
+        begin_date_mpt:
+          type: string
+          description: The begin timestamp of the settlement hour, in MPT (Mountain Prevailing Time).
+        metered_volume:
+          type: string
+          description: Metered Volume of the asset in the settlement hour (in MW).
     MeteredvolumeDetailsGetRequest-2:
       type: string
       x-apim-inline: true
-    MeteredvolumeDetailsGetRequest-3:
-      type: string
-      x-apim-inline: true
-    MeteredVolumeReport:
-      type: object
-      properties:
-        pool_participant_ID:
-          type: string
-          description: 'Pool Participant''s unique short name defined by 3 or 4-digit alphanumeric code. A pool participant is a market participant who is registered to transact electric energy. '
-        asset_list:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssetList'
     AssetList:
       type: object
       properties:
@@ -112,20 +127,17 @@ components:
       pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
       type: string
       x-apim-inline: true
-    MeteredVolumes:
+    MeteredVolumeReport:
       type: object
       properties:
-        begin_date_utc:
+        pool_participant_ID:
           type: string
-          description: The begin timestamp of the settlement hour, in UTC.
-        begin_date_mpt:
-          type: string
-          description: The begin timestamp of the settlement hour, in MPT (Mountain Prevailing Time).
-        metered_volume:
-          type: string
-          description: Metered Volume of the asset in the settlement hour (in MW).
-    MeteredvolumeDetailsGetRequest:
-      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+          description: 'Pool Participant''s unique short name defined by 3 or 4-digit alphanumeric code. A pool participant is a market participant who is registered to transact electric energy. '
+        asset_list:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssetList'
+    MeteredvolumeDetailsGetRequest-3:
       type: string
       x-apim-inline: true
   securitySchemes:

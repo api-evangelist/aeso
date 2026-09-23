@@ -16,8 +16,7 @@ paths:
   /poolparticipantlist:
     get:
       operationId: getPoolParticipantListData
-      summary: 'Fetch the latest list of pool participants operating in AIES. '
-      description: Fetch the latest list of pool participants operating in AIES
+      summary: Fetch the latest list of pool participants operating in AIES
       responses:
         '200':
           description: OK
@@ -65,6 +64,18 @@ paths:
       - Poolparticipantlist
 components:
   schemas:
+    AgentsInfo:
+      type: object
+      properties:
+        agent_ID:
+          type: string
+          description: Unique shortname of the agent company. It is a 3 or 4-digit alphanumeric code.
+        agent_name:
+          type: string
+          description: 'Name of the agent company - A representative of a market participant or a pool participant, as the case may be, duly appointed and authorized to act on their behalf. '
+    PoolparticipantlistGetRequest:
+      type: string
+      x-apim-inline: true
     PoolParticipantVO:
       type: object
       properties:
@@ -84,18 +95,6 @@ components:
     PoolparticipantlistGetRequest-1:
       type: string
       default: ''
-      x-apim-inline: true
-    AgentsInfo:
-      type: object
-      properties:
-        agent_ID:
-          type: string
-          description: Unique shortname of the agent company. It is a 3 or 4-digit alphanumeric code.
-        agent_name:
-          type: string
-          description: 'Name of the agent company - A representative of a market participant or a pool participant, as the case may be, duly appointed and authorized to act on their behalf. '
-    PoolparticipantlistGetRequest:
-      type: string
       x-apim-inline: true
   securitySchemes:
     apiKeyHeader:

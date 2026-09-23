@@ -11,13 +11,13 @@ security:
 - apiKeyHeader: []
 - apiKeyQuery: []
 tags:
-- name: Assetlist
+- name: Asset List
 paths:
   /assetlist:
     get:
       operationId: getAssetListData
-      summary: Fetch the latest list of assets connected to AIES.
-      description: ' The asset_ID and pool_participant_ID parameters are comma separated lists. At most, one of the two parameters can be passed in an API call.
+      summary: Fetch the latest list of assets connected to AIES
+      description: 'The asset_ID and pool_participant_ID parameters are comma separated lists. At most, one of the two parameters can be passed in an API call.
 
 
         Note: The Operating Status, Pool Participant Name and ID for an asset can change overtime.'
@@ -79,9 +79,20 @@ paths:
         schema:
           $ref: '#/components/schemas/AssetlistGetRequest-3'
       tags:
-      - Assetlist
+      - Asset List
 components:
   schemas:
+    AssetlistGetRequest-1:
+      type: string
+      x-apim-inline: true
+    AssetlistGetRequest-3:
+      type: string
+      default: ALL
+      x-apim-inline: true
+    AssetlistGetRequest-2:
+      type: string
+      default: ALL
+      x-apim-inline: true
     AssetListVO:
       type: object
       properties:
@@ -109,19 +120,8 @@ components:
         asset_incl_storage_flag:
           type: string
           description: "Boolean value 'Y' or blank \nY = This asset includes energy storage\nBlank = This asset does not include energy storage"
-    AssetlistGetRequest-1:
-      type: string
-      x-apim-inline: true
-    AssetlistGetRequest-3:
-      type: string
-      default: ALL
-      x-apim-inline: true
     AssetlistGetRequest:
       type: string
-      x-apim-inline: true
-    AssetlistGetRequest-2:
-      type: string
-      default: ALL
       x-apim-inline: true
   securitySchemes:
     apiKeyHeader:

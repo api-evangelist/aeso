@@ -16,8 +16,17 @@ paths:
   /meritOrder/energy:
     get:
       operationId: getMeritOrderReport
-      summary: Fetch Energy Merit Order snapshot data for a given date that is 60 days prior to current date.
-      description: "Fetch Energy Merit Order snapshot data for Date(startDate (yyyy-MM-dd)) \n\nThe EMMO snapshot data is available 60 days after the date of the snapshot, first available from September 1, 2009. \n\nThe data from 1-Sep-2009 to 1-Sep-2014 is the Merit Order at the 30th min. of the settlement interval. \n\nThe data after 1-Sep-2014 is the last Merit Order of the settlement interval.\n"
+      summary: Fetch Energy Merit Order snapshot data for a given date that is 60 days prior…
+      description: 'Fetch Energy Merit Order snapshot data for Date(startDate (yyyy-MM-dd))
+
+
+        The EMMO snapshot data is available 60 days after the date of the snapshot, first available from September 1, 2009.
+
+
+        The data from 1-Sep-2009 to 1-Sep-2014 is the Merit Order at the 30th min. of the settlement interval.
+
+
+        The data after 1-Sep-2014 is the last Merit Order of the settlement interval.'
       responses:
         '200':
           description: OK
@@ -69,19 +78,6 @@ paths:
       - MeritOrder
 components:
   schemas:
-    MeritOrderData:
-      type: object
-      properties:
-        begin_dateTime_utc:
-          type: string
-          description: Beginning of the settlement hour that the Energy Market Merit Order applies to, in Coordinated Universal Time (UTC) time
-        begin_dateTime_mpt:
-          type: string
-          description: Beginning of the settlement hour that the Energy Market Merit Order applies to, in Mountain prevailing time
-        energy_blocks:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnergyBlocks'
     EnergyBlocks:
       type: object
       properties:
@@ -128,6 +124,19 @@ components:
         offer_control:
           type: string
           description: Offer Control - Offer control parties separated by a semi-colon
+    MeritOrderData:
+      type: object
+      properties:
+        begin_dateTime_utc:
+          type: string
+          description: Beginning of the settlement hour that the Energy Market Merit Order applies to, in Coordinated Universal Time (UTC) time
+        begin_dateTime_mpt:
+          type: string
+          description: Beginning of the settlement hour that the Energy Market Merit Order applies to, in Mountain prevailing time
+        energy_blocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnergyBlocks'
     EnergyMeritOrderReport:
       type: object
       properties:

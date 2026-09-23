@@ -6,16 +6,16 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: poolparticipant
-  url: ../openapi/aeso-poolparticipant-api-v1-openapi.json
+  url: ../openapi/_original/aeso-poolparticipant-api-v1-openapi.json
   type: openapi
 - name: assetlist
-  url: ../openapi/aeso-assetlist-api-v1-openapi.json
+  url: ../openapi/_original/aeso-assetlist-api-v1-openapi.json
   type: openapi
 - name: currentsupplydemand-v1
-  url: ../openapi/aeso-currentsupplydemand-api-v1-openapi.json
+  url: ../openapi/_original/aeso-currentsupplydemand-api-v1-openapi.json
   type: openapi
 - name: meteredvolume
-  url: ../openapi/aeso-meteredvolume-api-v1-openapi.json
+  url: ../openapi/_original/aeso-meteredvolume-api-v1-openapi.json
   type: openapi
 workflows:
 - workflowId: aeso-asset-drilldown

@@ -6,19 +6,19 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: energymeritorder
-  url: ../openapi/aeso-energymeritorder-api-v1-openapi.json
+  url: ../openapi/_original/aeso-energymeritorder-api-v1-openapi.json
   type: openapi
 - name: unitcommitmentdata-v2
-  url: ../openapi/aeso-unitcommitmentdata-api-v2-openapi.json
+  url: ../openapi/_original/aeso-unitcommitmentdata-api-v2-openapi.json
   type: openapi
 - name: aiesgencapacity
-  url: ../openapi/aeso-aiesgencapacity-api-v1-openapi.json
+  url: ../openapi/_original/aeso-aiesgencapacity-api-v1-openapi.json
   type: openapi
 - name: systemmarginalprice
-  url: ../openapi/aeso-systemmarginalprice-api-v1-1-openapi.json
+  url: ../openapi/_original/aeso-systemmarginalprice-api-v1-1-openapi.json
   type: openapi
 - name: poolprice
-  url: ../openapi/aeso-poolprice-api-v1-1-openapi.json
+  url: ../openapi/_original/aeso-poolprice-api-v1-1-openapi.json
   type: openapi
 workflows:
 - workflowId: aeso-price-formation
