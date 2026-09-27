@@ -124,21 +124,6 @@ components:
     CsdGenerationAssetsCurrentGetRequest:
       type: string
       x-apim-inline: true
-    CSDAssetGenerationReport:
-      type: object
-      properties:
-        last_updated_datetime_utc:
-          type: string
-          description: The timestamp of when the data was last updated in UTC
-          example: 2022-03-18 10:20
-        last_updated_datetime_mpt:
-          type: string
-          description: The timestamp of when the data was last updated in MPT
-          example: 2022-03-18 16:20
-        asset_list:
-          type: array
-          items:
-            $ref: '#/components/schemas/CSDAssetGenerationTypeVO'
     CSDAssetGenerationTypeVO:
       type: object
       properties:
@@ -165,6 +150,21 @@ components:
           type: integer
           description: Dispatched (and Accepted) Contingency Reserve (in MW) pertaining to the asset.
           format: int32
+    CSDAssetGenerationReport:
+      type: object
+      properties:
+        last_updated_datetime_utc:
+          type: string
+          description: The timestamp of when the data was last updated in UTC
+          example: 2022-03-18 10:20
+        last_updated_datetime_mpt:
+          type: string
+          description: The timestamp of when the data was last updated in MPT
+          example: 2022-03-18 16:20
+        asset_list:
+          type: array
+          items:
+            $ref: '#/components/schemas/CSDAssetGenerationTypeVO'
     CSDGenerationFuelTypeVO:
       type: object
       properties:
@@ -184,6 +184,16 @@ components:
         aggregated_dispatched_contingency_reserve:
           type: integer
           description: Dispatched (and Accepted) Contingency Reserve (in MW) of all the generating assets, aggregated by fuel type.
+          format: int32
+    CSDInterchangeVO:
+      type: object
+      properties:
+        path:
+          type: string
+          description: AIES's interchange path name.
+        actual_flow:
+          type: integer
+          description: Flow on AIES's interchange path (in MW).
           format: int32
     CSDSummaryDataVOv2:
       type: object
@@ -253,16 +263,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CSDInterchangeVO'
-    CSDInterchangeVO:
-      type: object
-      properties:
-        path:
-          type: string
-          description: AIES's interchange path name.
-        actual_flow:
-          type: integer
-          description: Flow on AIES's interchange path (in MW).
-          format: int32
   securitySchemes:
     apiKeyHeader:
       type: apiKey

@@ -78,6 +78,19 @@ paths:
       - MeritOrder
 components:
   schemas:
+    MeritOrderData:
+      type: object
+      properties:
+        begin_dateTime_utc:
+          type: string
+          description: Beginning of the settlement hour that the Energy Market Merit Order applies to, in Coordinated Universal Time (UTC) time
+        begin_dateTime_mpt:
+          type: string
+          description: Beginning of the settlement hour that the Energy Market Merit Order applies to, in Mountain prevailing time
+        energy_blocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnergyBlocks'
     EnergyBlocks:
       type: object
       properties:
@@ -124,19 +137,6 @@ components:
         offer_control:
           type: string
           description: Offer Control - Offer control parties separated by a semi-colon
-    MeritOrderData:
-      type: object
-      properties:
-        begin_dateTime_utc:
-          type: string
-          description: Beginning of the settlement hour that the Energy Market Merit Order applies to, in Coordinated Universal Time (UTC) time
-        begin_dateTime_mpt:
-          type: string
-          description: Beginning of the settlement hour that the Energy Market Merit Order applies to, in Mountain prevailing time
-        energy_blocks:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnergyBlocks'
     EnergyMeritOrderReport:
       type: object
       properties:

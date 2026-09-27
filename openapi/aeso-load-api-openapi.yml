@@ -63,14 +63,6 @@ paths:
       - Load
 components:
   schemas:
-    LoadAlbertaInternalLoadGetRequest-1:
-      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
-      type: string
-      x-apim-inline: true
-    LoadAlbertaInternalLoadGetRequest:
-      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
-      type: string
-      x-apim-inline: true
     ActualForecastAILReport:
       type: object
       properties:
@@ -78,6 +70,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ActualForecastAILVO'
+    LoadAlbertaInternalLoadGetRequest:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
     ActualForecastAILVO:
       type: object
       properties:
@@ -89,6 +85,10 @@ components:
           type: string
         forecast_alberta_internal_load:
           type: string
+    LoadAlbertaInternalLoadGetRequest-1:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
   securitySchemes:
     apiKeyHeader:
       type: apiKey

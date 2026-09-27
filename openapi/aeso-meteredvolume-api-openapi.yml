@@ -91,6 +91,36 @@ paths:
       - Meteredvolume
 components:
   schemas:
+    MeteredvolumeDetailsGetRequest-1:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
+    AssetList:
+      type: object
+      properties:
+        asset_ID:
+          type: string
+          description: Asset's unique short name defined by 3 or 4-digit alphanumeric code. A pool asset is registered to a pool participant.
+        asset_class:
+          type: string
+          description: Asset classification for Sink and Source assets.
+        metered_volume_list:
+          type: array
+          items:
+            $ref: '#/components/schemas/MeteredVolumes'
+    MeteredvolumeDetailsGetRequest-2:
+      type: string
+      x-apim-inline: true
+    MeteredVolumeReport:
+      type: object
+      properties:
+        pool_participant_ID:
+          type: string
+          description: 'Pool Participant''s unique short name defined by 3 or 4-digit alphanumeric code. A pool participant is a market participant who is registered to transact electric energy. '
+        asset_list:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssetList'
     MeteredvolumeDetailsGetRequest:
       pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
       type: string
@@ -107,36 +137,6 @@ components:
         metered_volume:
           type: string
           description: Metered Volume of the asset in the settlement hour (in MW).
-    MeteredvolumeDetailsGetRequest-2:
-      type: string
-      x-apim-inline: true
-    AssetList:
-      type: object
-      properties:
-        asset_ID:
-          type: string
-          description: Asset's unique short name defined by 3 or 4-digit alphanumeric code. A pool asset is registered to a pool participant.
-        asset_class:
-          type: string
-          description: Asset classification for Sink and Source assets.
-        metered_volume_list:
-          type: array
-          items:
-            $ref: '#/components/schemas/MeteredVolumes'
-    MeteredvolumeDetailsGetRequest-1:
-      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
-      type: string
-      x-apim-inline: true
-    MeteredVolumeReport:
-      type: object
-      properties:
-        pool_participant_ID:
-          type: string
-          description: 'Pool Participant''s unique short name defined by 3 or 4-digit alphanumeric code. A pool participant is a market participant who is registered to transact electric energy. '
-        asset_list:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssetList'
     MeteredvolumeDetailsGetRequest-3:
       type: string
       x-apim-inline: true

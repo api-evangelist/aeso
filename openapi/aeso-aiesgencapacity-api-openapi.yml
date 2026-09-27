@@ -69,40 +69,6 @@ paths:
       - AIESGenCapacity
 components:
   schemas:
-    AIESGenCapacityGetRequest-1:
-      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
-      type: string
-      x-apim-inline: true
-    AIESReportVO:
-      type: object
-      properties:
-        fuel_type:
-          type: string
-          description: Name of the fuel type grouping for the assets.
-        sub_fuel_type:
-          type: string
-          description: Name of the sub-fuel type grouping for the assets.
-        Hours:
-          type: array
-          items:
-            $ref: '#/components/schemas/AIESHourlyOutageVO'
-    AIESGenCapacityGetRequest:
-      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
-      type: string
-      x-apim-inline: true
-    AIESHourlyOutageVO:
-      type: object
-      properties:
-        begin_datetime_utc:
-          type: string
-          description: The begin timestamp of the settlement hour, in UTC.
-          format: date-time
-        begin_datetime_mpt:
-          type: string
-          description: The begin timestamp of the settlement hour, in MPT (Mountain Prevailing Time).
-          format: date-time
-        outage_grouping:
-          $ref: '#/components/schemas/AIESOutageGroupingVO'
     AIESOutageGroupingVO:
       type: object
       properties:
@@ -122,6 +88,40 @@ components:
           type: integer
           description: Sum of Available Capability volume of all the assets in the fuel/ sub-fuel type for the hour (in MW) i.e. MC - (MBO OUT + OP OUT).
           format: int32
+    AIESHourlyOutageVO:
+      type: object
+      properties:
+        begin_datetime_utc:
+          type: string
+          description: The begin timestamp of the settlement hour, in UTC.
+          format: date-time
+        begin_datetime_mpt:
+          type: string
+          description: The begin timestamp of the settlement hour, in MPT (Mountain Prevailing Time).
+          format: date-time
+        outage_grouping:
+          $ref: '#/components/schemas/AIESOutageGroupingVO'
+    AIESReportVO:
+      type: object
+      properties:
+        fuel_type:
+          type: string
+          description: Name of the fuel type grouping for the assets.
+        sub_fuel_type:
+          type: string
+          description: Name of the sub-fuel type grouping for the assets.
+        Hours:
+          type: array
+          items:
+            $ref: '#/components/schemas/AIESHourlyOutageVO'
+    AIESGenCapacityGetRequest-1:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
+    AIESGenCapacityGetRequest:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
   securitySchemes:
     apiKeyHeader:
       type: apiKey

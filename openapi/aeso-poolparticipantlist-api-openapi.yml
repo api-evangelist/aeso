@@ -64,6 +64,13 @@ paths:
       - Poolparticipantlist
 components:
   schemas:
+    PoolparticipantlistGetRequest-1:
+      type: string
+      default: ''
+      x-apim-inline: true
+    PoolparticipantlistGetRequest:
+      type: string
+      x-apim-inline: true
     AgentsInfo:
       type: object
       properties:
@@ -73,9 +80,6 @@ components:
         agent_name:
           type: string
           description: 'Name of the agent company - A representative of a market participant or a pool participant, as the case may be, duly appointed and authorized to act on their behalf. '
-    PoolparticipantlistGetRequest:
-      type: string
-      x-apim-inline: true
     PoolParticipantVO:
       type: object
       properties:
@@ -92,10 +96,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AgentsInfo'
-    PoolparticipantlistGetRequest-1:
-      type: string
-      default: ''
-      x-apim-inline: true
   securitySchemes:
     apiKeyHeader:
       type: apiKey

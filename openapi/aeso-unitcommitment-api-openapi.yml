@@ -69,10 +69,17 @@ paths:
       - UnitCommitment
 components:
   schemas:
-    UnitCommitmentGetRequest:
+    UnitCommitmentGetRequest-1:
       pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
       type: string
       x-apim-inline: true
+    UnitCommitmentDataV2Report:
+      type: object
+      properties:
+        unit_commitment:
+          type: array
+          items:
+            $ref: '#/components/schemas/UnitCommitmentDataV2VO'
     UnitCommitmentDataV2VO:
       type: object
       properties:
@@ -103,17 +110,10 @@ components:
         operation_end_time_mpt:
           type: string
           description: The time when the asset is no longer required to operate in response to the directive, in MPT.
-    UnitCommitmentGetRequest-1:
+    UnitCommitmentGetRequest:
       pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
       type: string
       x-apim-inline: true
-    UnitCommitmentDataV2Report:
-      type: object
-      properties:
-        unit_commitment:
-          type: array
-          items:
-            $ref: '#/components/schemas/UnitCommitmentDataV2VO'
   securitySchemes:
     apiKeyHeader:
       type: apiKey
