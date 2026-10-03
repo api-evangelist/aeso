@@ -69,6 +69,10 @@ paths:
       - AIESGenCapacity
 components:
   schemas:
+    AIESGenCapacityGetRequest-1:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
     AIESOutageGroupingVO:
       type: object
       properties:
@@ -88,19 +92,6 @@ components:
           type: integer
           description: Sum of Available Capability volume of all the assets in the fuel/ sub-fuel type for the hour (in MW) i.e. MC - (MBO OUT + OP OUT).
           format: int32
-    AIESHourlyOutageVO:
-      type: object
-      properties:
-        begin_datetime_utc:
-          type: string
-          description: The begin timestamp of the settlement hour, in UTC.
-          format: date-time
-        begin_datetime_mpt:
-          type: string
-          description: The begin timestamp of the settlement hour, in MPT (Mountain Prevailing Time).
-          format: date-time
-        outage_grouping:
-          $ref: '#/components/schemas/AIESOutageGroupingVO'
     AIESReportVO:
       type: object
       properties:
@@ -114,10 +105,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AIESHourlyOutageVO'
-    AIESGenCapacityGetRequest-1:
-      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
-      type: string
-      x-apim-inline: true
+    AIESHourlyOutageVO:
+      type: object
+      properties:
+        begin_datetime_utc:
+          type: string
+          description: The begin timestamp of the settlement hour, in UTC.
+          format: date-time
+        begin_datetime_mpt:
+          type: string
+          description: The begin timestamp of the settlement hour, in MPT (Mountain Prevailing Time).
+          format: date-time
+        outage_grouping:
+          $ref: '#/components/schemas/AIESOutageGroupingVO'
     AIESGenCapacityGetRequest:
       pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
       type: string

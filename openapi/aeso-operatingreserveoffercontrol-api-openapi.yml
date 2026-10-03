@@ -68,6 +68,28 @@ paths:
       - OperatingReserveOfferControl
 components:
   schemas:
+    OperatingReserveOfferControlReport:
+      type: object
+      properties:
+        Operating Reserve Trade Merit Order:
+          type: array
+          items:
+            $ref: '#/components/schemas/OperatingReserveOfferControlVO'
+    OperatingReserveOfferControlGetRequest:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
+    OperatingReserveOfferControlVO:
+      type: object
+      properties:
+        begin_datetime_utc:
+          type: string
+        begin_datetime_mpt:
+          type: string
+        operating_reserve_blocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/OperatingReserverOfferControlCoreDataVO'
     OperatingReserverOfferControlCoreDataVO:
       type: object
       properties:
@@ -90,28 +112,6 @@ components:
           format: double
         offer_control:
           type: string
-    OperatingReserveOfferControlGetRequest:
-      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
-      type: string
-      x-apim-inline: true
-    OperatingReserveOfferControlVO:
-      type: object
-      properties:
-        begin_datetime_utc:
-          type: string
-        begin_datetime_mpt:
-          type: string
-        operating_reserve_blocks:
-          type: array
-          items:
-            $ref: '#/components/schemas/OperatingReserverOfferControlCoreDataVO'
-    OperatingReserveOfferControlReport:
-      type: object
-      properties:
-        Operating Reserve Trade Merit Order:
-          type: array
-          items:
-            $ref: '#/components/schemas/OperatingReserveOfferControlVO'
   securitySchemes:
     apiKeyHeader:
       type: apiKey

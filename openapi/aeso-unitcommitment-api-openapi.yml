@@ -69,10 +69,6 @@ paths:
       - UnitCommitment
 components:
   schemas:
-    UnitCommitmentGetRequest-1:
-      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
-      type: string
-      x-apim-inline: true
     UnitCommitmentDataV2Report:
       type: object
       properties:
@@ -80,6 +76,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UnitCommitmentDataV2VO'
+    UnitCommitmentGetRequest-1:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
     UnitCommitmentDataV2VO:
       type: object
       properties:

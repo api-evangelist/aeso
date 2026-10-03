@@ -63,13 +63,6 @@ paths:
       - Load
 components:
   schemas:
-    ActualForecastAILReport:
-      type: object
-      properties:
-        Actual Forecast Report:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActualForecastAILVO'
     LoadAlbertaInternalLoadGetRequest:
       pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
       type: string
@@ -85,6 +78,13 @@ components:
           type: string
         forecast_alberta_internal_load:
           type: string
+    ActualForecastAILReport:
+      type: object
+      properties:
+        Actual Forecast Report:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActualForecastAILVO'
     LoadAlbertaInternalLoadGetRequest-1:
       pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
       type: string

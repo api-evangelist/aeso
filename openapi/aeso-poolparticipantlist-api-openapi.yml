@@ -71,15 +71,6 @@ components:
     PoolparticipantlistGetRequest:
       type: string
       x-apim-inline: true
-    AgentsInfo:
-      type: object
-      properties:
-        agent_ID:
-          type: string
-          description: Unique shortname of the agent company. It is a 3 or 4-digit alphanumeric code.
-        agent_name:
-          type: string
-          description: 'Name of the agent company - A representative of a market participant or a pool participant, as the case may be, duly appointed and authorized to act on their behalf. '
     PoolParticipantVO:
       type: object
       properties:
@@ -96,6 +87,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AgentsInfo'
+    AgentsInfo:
+      type: object
+      properties:
+        agent_ID:
+          type: string
+          description: Unique shortname of the agent company. It is a 3 or 4-digit alphanumeric code.
+        agent_name:
+          type: string
+          description: 'Name of the agent company - A representative of a market participant or a pool participant, as the case may be, duly appointed and authorized to act on their behalf. '
   securitySchemes:
     apiKeyHeader:
       type: apiKey

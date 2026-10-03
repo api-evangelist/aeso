@@ -364,26 +364,6 @@ paths:
       - Interchange
 components:
   schemas:
-    IntertieData:
-      type: object
-      properties:
-        flowgate:
-          type: boolean
-        date:
-          type: string
-        he:
-          type: string
-        import:
-          $ref: '#/components/schemas/ITCImportReport'
-        export:
-          $ref: '#/components/schemas/ITCExportReport'
-    InterchangeGetRequest-7:
-      enum:
-      - IMPORT
-      - EXPORT
-      type: string
-      description: start
-      x-apim-inline: true
     FlowGateTransferReport:
       type: object
       properties:
@@ -399,6 +379,48 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IntertieData'
+    InterchangeGetRequest-1:
+      type: string
+      description: end
+      x-apim-inline: true
+    InterchangeGetRequest-6:
+      enum:
+      - BC
+      - SK
+      - MATL
+      - BC_MATL
+      - SYSTEM
+      type: string
+      description: start
+      x-apim-inline: true
+    IntertieTransferReport:
+      type: object
+      properties:
+        Allocations:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/IntertieData'
+    InterchangeGetRequest-5:
+      enum:
+      - ATC
+      - TTC
+      - GROSS_OFFER
+      - TRM_SYSTEM
+      - TRM_ALLOCATION
+      - TRM_TOTAL
+      type: string
+      description: start
+      x-apim-inline: true
+    InterchangeGetRequest:
+      type: string
+      description: Start date
+      x-apim-inline: true
+    InterchangeGetRequest-4:
+      type: boolean
+      description: Version
+      default: 'false'
+      x-apim-inline: true
     InterchangeReport:
       type: object
       properties:
@@ -412,39 +434,79 @@ components:
           $ref: '#/components/schemas/FlowGateTransferReport'
         SystemlFlowgate:
           $ref: '#/components/schemas/FlowGateTransferReport'
-    InterchangeGetRequest-3:
-      maximum: 24
-      minimum: 1
-      maxLength: 2
-      enum:
-      - '1'
-      - '2'
-      - '3'
-      - '4'
-      - '5'
-      - '6'
-      - '7'
-      - '8'
-      - '9'
-      - '10'
-      - '11'
-      - '12'
-      - '13'
-      - '14'
-      - '15'
-      - '16'
-      - '17'
-      - '18'
-      - '19'
-      - '20'
-      - '21'
-      - '22'
-      - '23'
-      - '24'
-      type: integer
-      description: HE
-      default: '24'
-      x-apim-inline: true
+    TransferDataVersion:
+      type: object
+      properties:
+        reason:
+          type: string
+        atc:
+          type: number
+        trmTotal:
+          type: number
+        ttc:
+          type: number
+        trmSystem:
+          type: number
+        trmAllocation:
+          type: number
+        grossOffer:
+          type: number
+        versionUpdatedLocaltime:
+          type: string
+    ITCExportReport:
+      type: object
+      properties:
+        transferType:
+          type: string
+        reason:
+          type: string
+        atc:
+          type: number
+        trmTotal:
+          type: number
+        ttc:
+          type: number
+        trmSystem:
+          type: number
+        trmAllocation:
+          type: number
+        grossOffer:
+          type: number
+        version:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransferDataVersion'
+        updatedLocalTime:
+          type: string
+        effectiveLocalTime:
+          type: string
+    ITCImportReport:
+      type: object
+      properties:
+        transferType:
+          type: string
+        reason:
+          type: string
+        atc:
+          type: number
+        trmTotal:
+          type: number
+        ttc:
+          type: number
+        trmSystem:
+          type: number
+        trmAllocation:
+          type: number
+        grossOffer:
+          type: number
+        version:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransferDataVersion'
+        updatedLocalTime:
+          type: string
+        effectiveLocalTime:
+          type: string
     InterchangeGetRequest-2:
       maximum: 24
       minimum: 1
@@ -478,89 +540,59 @@ components:
       description: HE
       default: '1'
       x-apim-inline: true
-    TransferDataVersion:
-      type: object
-      properties:
-        reason:
-          type: string
-        atc:
-          type: number
-        trmTotal:
-          type: number
-        ttc:
-          type: number
-        trmSystem:
-          type: number
-        trmAllocation:
-          type: number
-        grossOffer:
-          type: number
-        versionUpdatedLocaltime:
-          type: string
-    InterchangeGetRequest-6:
+    InterchangeGetRequest-7:
       enum:
-      - BC
-      - SK
-      - MATL
-      - BC_MATL
-      - SYSTEM
+      - IMPORT
+      - EXPORT
       type: string
       description: start
       x-apim-inline: true
-    InterchangeGetRequest:
-      type: string
-      description: Start date
-      x-apim-inline: true
-    InterchangeGetRequest-1:
-      type: string
-      description: end
-      x-apim-inline: true
-    ITCExportReport:
+    IntertieData:
       type: object
       properties:
-        transferType:
+        flowgate:
+          type: boolean
+        date:
           type: string
-        reason:
+        he:
           type: string
-        atc:
-          type: number
-        trmTotal:
-          type: number
-        ttc:
-          type: number
-        trmSystem:
-          type: number
-        trmAllocation:
-          type: number
-        grossOffer:
-          type: number
-        version:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransferDataVersion'
-        updatedLocalTime:
-          type: string
-        effectiveLocalTime:
-          type: string
-    InterchangeGetRequest-5:
+        import:
+          $ref: '#/components/schemas/ITCImportReport'
+        export:
+          $ref: '#/components/schemas/ITCExportReport'
+    InterchangeGetRequest-3:
+      maximum: 24
+      minimum: 1
+      maxLength: 2
       enum:
-      - ATC
-      - TTC
-      - GROSS_OFFER
-      - TRM_SYSTEM
-      - TRM_ALLOCATION
-      - TRM_TOTAL
-      type: string
-      description: start
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      - '6'
+      - '7'
+      - '8'
+      - '9'
+      - '10'
+      - '11'
+      - '12'
+      - '13'
+      - '14'
+      - '15'
+      - '16'
+      - '17'
+      - '18'
+      - '19'
+      - '20'
+      - '21'
+      - '22'
+      - '23'
+      - '24'
+      type: integer
+      description: HE
+      default: '24'
       x-apim-inline: true
-    IntertieTransferReport:
-      type: object
-      properties:
-        Allocations:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/IntertieData'
     Link:
       type: object
       properties:
@@ -592,38 +624,6 @@ components:
           type: string
           xml:
             attribute: true
-    InterchangeGetRequest-4:
-      type: boolean
-      description: Version
-      default: 'false'
-      x-apim-inline: true
-    ITCImportReport:
-      type: object
-      properties:
-        transferType:
-          type: string
-        reason:
-          type: string
-        atc:
-          type: number
-        trmTotal:
-          type: number
-        ttc:
-          type: number
-        trmSystem:
-          type: number
-        trmAllocation:
-          type: number
-        grossOffer:
-          type: number
-        version:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransferDataVersion'
-        updatedLocalTime:
-          type: string
-        effectiveLocalTime:
-          type: string
   securitySchemes:
     apiKeyHeader:
       type: apiKey

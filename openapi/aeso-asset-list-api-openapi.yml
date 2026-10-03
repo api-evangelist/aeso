@@ -82,7 +82,15 @@ paths:
       - Asset List
 components:
   schemas:
-    AssetlistGetRequest:
+    AssetlistGetRequest-3:
+      type: string
+      default: ALL
+      x-apim-inline: true
+    AssetlistGetRequest-2:
+      type: string
+      default: ALL
+      x-apim-inline: true
+    AssetlistGetRequest-1:
       type: string
       x-apim-inline: true
     AssetListVO:
@@ -112,16 +120,8 @@ components:
         asset_incl_storage_flag:
           type: string
           description: "Boolean value 'Y' or blank \nY = This asset includes energy storage\nBlank = This asset does not include energy storage"
-    AssetlistGetRequest-2:
+    AssetlistGetRequest:
       type: string
-      default: ALL
-      x-apim-inline: true
-    AssetlistGetRequest-1:
-      type: string
-      x-apim-inline: true
-    AssetlistGetRequest-3:
-      type: string
-      default: ALL
       x-apim-inline: true
   securitySchemes:
     apiKeyHeader:

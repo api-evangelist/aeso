@@ -185,16 +185,6 @@ components:
           type: integer
           description: Dispatched (and Accepted) Contingency Reserve (in MW) of all the generating assets, aggregated by fuel type.
           format: int32
-    CSDInterchangeVO:
-      type: object
-      properties:
-        path:
-          type: string
-          description: AIES's interchange path name.
-        actual_flow:
-          type: integer
-          description: Flow on AIES's interchange path (in MW).
-          format: int32
     CSDSummaryDataVOv2:
       type: object
       properties:
@@ -263,6 +253,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CSDInterchangeVO'
+    CSDInterchangeVO:
+      type: object
+      properties:
+        path:
+          type: string
+          description: AIES's interchange path name.
+        actual_flow:
+          type: integer
+          description: Flow on AIES's interchange path (in MW).
+          format: int32
   securitySchemes:
     apiKeyHeader:
       type: apiKey

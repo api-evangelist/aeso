@@ -82,18 +82,6 @@ paths:
       - Outage
 components:
   schemas:
-    OutageReport:
-      type: object
-      properties:
-        Outage:
-          type: array
-          items:
-            $ref: '#/components/schemas/OutageVO'
-    OutagesReport:
-      type: object
-      properties:
-        Outages:
-          $ref: '#/components/schemas/OutageReport'
     OutageVO:
       type: object
       properties:
@@ -115,10 +103,13 @@ components:
           type: string
         fromInLocalTime:
           type: string
-    OutageGetRequest:
-      type: string
-      description: As Of Date
-      x-apim-inline: true
+    OutageReport:
+      type: object
+      properties:
+        Outage:
+          type: array
+          items:
+            $ref: '#/components/schemas/OutageVO'
     OutageGetRequest-1:
       type: string
       description: As Of Date
@@ -131,6 +122,15 @@ components:
       - BC_MATL
       type: string
       description: start
+      x-apim-inline: true
+    OutagesReport:
+      type: object
+      properties:
+        Outages:
+          $ref: '#/components/schemas/OutageReport'
+    OutageGetRequest:
+      type: string
+      description: As Of Date
       x-apim-inline: true
   securitySchemes:
     apiKeyHeader:
