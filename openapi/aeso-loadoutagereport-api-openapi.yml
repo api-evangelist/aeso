@@ -65,13 +65,10 @@ paths:
       - LoadOutageReport
 components:
   schemas:
-    LoadOutageVO:
-      type: object
-      properties:
-        loadOutagePerHourVO:
-          type: array
-          items:
-            $ref: '#/components/schemas/LoadOutagePerHourVO'
+    LoadOutageReportGetRequest-1:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
     LoadOutagePerHourVO:
       type: object
       properties:
@@ -87,14 +84,17 @@ components:
 
             '
           format: double
-    LoadOutageReportGetRequest-1:
-      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
-      type: string
-      x-apim-inline: true
     LoadOutageReportGetRequest:
       pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
       type: string
       x-apim-inline: true
+    LoadOutageVO:
+      type: object
+      properties:
+        loadOutagePerHourVO:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoadOutagePerHourVO'
   securitySchemes:
     apiKeyHeader:
       type: apiKey

@@ -178,6 +178,10 @@ components:
       pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
       type: string
       x-apim-inline: true
+    PricePoolPriceGetRequest:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
     MarketPriceDemandDataReport:
       type: object
       properties:
@@ -203,18 +207,6 @@ components:
         rolling_30day_avg:
           type: string
           description: The 30-day rolling average price for the settlement hour, in CAD.
-    PricePoolPriceGetRequest:
-      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
-      type: string
-      x-apim-inline: true
-    PriceSystemMarginalPriceGetRequest-1:
-      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
-      type: string
-      x-apim-inline: true
-    PriceSystemMarginalPriceGetRequest:
-      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
-      type: string
-      x-apim-inline: true
     SystemMarginalPriceDataVO:
       type: object
       properties:
@@ -237,6 +229,14 @@ components:
         volume:
           type: string
           description: The Available MW for the block at the time the block set the SMP.
+    PriceSystemMarginalPriceGetRequest-1:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
+    PriceSystemMarginalPriceGetRequest:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
     SystemMarginalPriceDataReport:
       type: object
       properties:

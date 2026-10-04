@@ -110,7 +110,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/OutageVO'
-    OutageGetRequest-1:
+    OutageGetRequest:
       type: string
       description: As Of Date
       x-apim-inline: true
@@ -128,7 +128,7 @@ components:
       properties:
         Outages:
           $ref: '#/components/schemas/OutageReport'
-    OutageGetRequest:
+    OutageGetRequest-1:
       type: string
       description: As Of Date
       x-apim-inline: true

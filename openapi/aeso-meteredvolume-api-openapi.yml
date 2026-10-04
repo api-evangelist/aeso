@@ -91,6 +91,13 @@ paths:
       - Meteredvolume
 components:
   schemas:
+    MeteredvolumeDetailsGetRequest:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
+    MeteredvolumeDetailsGetRequest-2:
+      type: string
+      x-apim-inline: true
     MeteredVolumes:
       type: object
       properties:
@@ -103,8 +110,7 @@ components:
         metered_volume:
           type: string
           description: Metered Volume of the asset in the settlement hour (in MW).
-    MeteredvolumeDetailsGetRequest-1:
-      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+    MeteredvolumeDetailsGetRequest-3:
       type: string
       x-apim-inline: true
     AssetList:
@@ -120,16 +126,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MeteredVolumes'
-    MeteredvolumeDetailsGetRequest-2:
-      type: string
-      x-apim-inline: true
-    MeteredvolumeDetailsGetRequest-3:
-      type: string
-      x-apim-inline: true
-    MeteredvolumeDetailsGetRequest:
-      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
-      type: string
-      x-apim-inline: true
     MeteredVolumeReport:
       type: object
       properties:
@@ -140,6 +136,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AssetList'
+    MeteredvolumeDetailsGetRequest-1:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
   securitySchemes:
     apiKeyHeader:
       type: apiKey

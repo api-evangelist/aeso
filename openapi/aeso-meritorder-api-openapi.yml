@@ -78,6 +78,10 @@ paths:
       - MeritOrder
 components:
   schemas:
+    MeritOrderEnergyGetRequest:
+      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+      type: string
+      x-apim-inline: true
     MeritOrderData:
       type: object
       properties:
@@ -91,6 +95,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EnergyBlocks'
+    EnergyMeritOrderReport:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MeritOrderData'
     EnergyBlocks:
       type: object
       properties:
@@ -137,17 +148,6 @@ components:
         offer_control:
           type: string
           description: Offer Control - Offer control parties separated by a semi-colon
-    EnergyMeritOrderReport:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/MeritOrderData'
-    MeritOrderEnergyGetRequest:
-      pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
-      type: string
-      x-apim-inline: true
   securitySchemes:
     apiKeyHeader:
       type: apiKey

@@ -68,13 +68,6 @@ paths:
       - OperatingReserveOfferControl
 components:
   schemas:
-    OperatingReserveOfferControlReport:
-      type: object
-      properties:
-        Operating Reserve Trade Merit Order:
-          type: array
-          items:
-            $ref: '#/components/schemas/OperatingReserveOfferControlVO'
     OperatingReserveOfferControlGetRequest:
       pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
       type: string
@@ -90,6 +83,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/OperatingReserverOfferControlCoreDataVO'
+    OperatingReserveOfferControlReport:
+      type: object
+      properties:
+        Operating Reserve Trade Merit Order:
+          type: array
+          items:
+            $ref: '#/components/schemas/OperatingReserveOfferControlVO'
     OperatingReserverOfferControlCoreDataVO:
       type: object
       properties:

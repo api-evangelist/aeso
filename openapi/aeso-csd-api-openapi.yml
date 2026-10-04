@@ -121,9 +121,6 @@ paths:
     - url: https://gateway-apim.aeso.ca/public/currentsupplydemand-api
 components:
   schemas:
-    CsdGenerationAssetsCurrentGetRequest:
-      type: string
-      x-apim-inline: true
     CSDAssetGenerationTypeVO:
       type: object
       properties:
@@ -150,6 +147,9 @@ components:
           type: integer
           description: Dispatched (and Accepted) Contingency Reserve (in MW) pertaining to the asset.
           format: int32
+    CsdGenerationAssetsCurrentGetRequest:
+      type: string
+      x-apim-inline: true
     CSDAssetGenerationReport:
       type: object
       properties:
