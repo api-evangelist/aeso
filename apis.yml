@@ -354,6 +354,8 @@ apis:
     url: >-
       https://www.aeso.ca/assets/downloads/external/api/API-Access-Instructions-APIM-API-Gateway.pdf
 common:
+- type: Pricing
+  url: https://developer-apim.aeso.ca/developer/products?api-version=2022-04-01-preview
 - type: Overlay
   url: overlays/aeso-poolprice-api-v1-1-overlay.yaml
 - type: Overlay
