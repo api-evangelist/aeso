@@ -56,3 +56,16 @@ free_alternative:
     The same market data is available as CSV with no key and no account from AESO's long-running ETS
     report servlets. This is why AESO's market data counts as genuinely open regardless of the key on
     the newer gateway.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units: []
+  plans:
+  - name: AESO Public API
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
